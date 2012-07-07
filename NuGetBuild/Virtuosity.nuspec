@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Virtuosity.Fody</id>
+    <version>$version$</version>
+    <title>Virtuosity.Fody</title>
+    <authors>Simon Cropp</authors>
+    <owners>Simon Cropp</owners>
+    <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
+    <projectUrl>http://code.google.com/p/virtuosity/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Fody add-in for changing all members to virtual.</description>
+    <summary />
+    <language>en-AU</language>
+    <tags>Virtual, ILWeaving, Runtime Proxy, Mocking, Fody, Cecil</tags>
+  </metadata>
+</package>
