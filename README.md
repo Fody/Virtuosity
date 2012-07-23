@@ -20,5 +20,8 @@ What it actually does to your assembly
   * change calls to those members to `virtual`
   * change `new` modifiers to `override` modifiers
 
-[Why Is This Useful](https://github.com/SimonCropp/Virtuosity/wiki/WhyIsThisUseful)
 
+## More Info 
+ * [Why Is This Useful](https://github.com/SimonCropp/Virtuosity/wiki/WhyIsThisUseful)
+ * [DoNotVirtualizeAttribute](https://github.com/SimonCropp/Virtuosity/wiki/DoNotVirtualizeAttribute)
+ * [Release Notes](https://github.com/SimonCropp/Virtuosity/wiki/ReleaseNotes)
