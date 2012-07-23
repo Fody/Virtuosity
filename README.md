@@ -20,5 +20,5 @@ What it actually does to your assembly
   * change calls to those members to `virtual`
   * change `new` modifiers to `override` modifiers
 
-[Why Is This Useful](wiki/WhyIsThisUseful)
+[Why Is This Useful](/wiki/WhyIsThisUseful)
 
