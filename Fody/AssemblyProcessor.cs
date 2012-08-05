@@ -1,21 +1,22 @@
-﻿using Mono.Cecil;
+﻿using System.Collections.Generic;
+using Mono.Cecil;
 
 public class AssemblyProcessor
 {
     TypeProcessor typeProcessor;
     InclusionChecker inclusionChecker;
-    ModuleDefinition moduleDefinition;
+    List<TypeDefinition> allTypes;
 
-    public AssemblyProcessor(TypeProcessor typeProcessor, InclusionChecker inclusionChecker, ModuleDefinition moduleDefinition)
+    public AssemblyProcessor(TypeProcessor typeProcessor, InclusionChecker inclusionChecker, List<TypeDefinition> allTypes)
     {
         this.typeProcessor = typeProcessor;
         this.inclusionChecker = inclusionChecker;
-        this.moduleDefinition = moduleDefinition;
+        this.allTypes = allTypes;
     }
 
     public void Execute()
     {
-        foreach (var type in moduleDefinition.GetAllTypeDefinitions())
+        foreach (var type in allTypes)
         {
             if (!ShouldInclude(type))
             {

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Mono.Cecil;
 
 public class ModuleWeaver
@@ -19,8 +20,9 @@ public class ModuleWeaver
         inclusionChecker.Execute();
         var memberCache = new MemberCache();
         var typeProcessor = new TypeProcessor(this, memberCache);
-        new AssemblyProcessor(typeProcessor, inclusionChecker, ModuleDefinition).Execute();
-        new CallToCallVirtConverter(memberCache, ModuleDefinition).Execute();
-        new NewToOverideConverter(memberCache, this, ModuleDefinition).Execute();
+        var allTypes = ModuleDefinition.GetTypes().ToList();
+        new AssemblyProcessor(typeProcessor, inclusionChecker, allTypes).Execute();
+        new CallToCallVirtConverter(memberCache, allTypes).Execute();
+        new NewToOverideConverter(memberCache, allTypes).Execute();
     }
 }

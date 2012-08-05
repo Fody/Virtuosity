@@ -1,20 +1,21 @@
-﻿using Mono.Cecil;
+﻿using System.Collections.Generic;
+using Mono.Cecil;
 using Mono.Cecil.Cil;
 
 public class CallToCallVirtConverter
 {
     MemberCache memberCache;
-    ModuleDefinition moduleDefinition;
+    List<TypeDefinition> allTypes;
 
-    public CallToCallVirtConverter(MemberCache memberCache, ModuleDefinition moduleDefinition)
+    public CallToCallVirtConverter(MemberCache memberCache, List<TypeDefinition> allTypes)
     {
         this.memberCache = memberCache;
-        this.moduleDefinition = moduleDefinition;
+        this.allTypes = allTypes;
     }
 
     public void Execute()
     {
-        foreach (var type in moduleDefinition.GetAllTypeDefinitions())
+        foreach (var type in allTypes)
         {
             if (type.IsInterface)
             {

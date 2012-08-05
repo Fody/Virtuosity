@@ -5,20 +5,17 @@ using Mono.Cecil;
 public class NewToOverideConverter
 {
     MemberCache memberCache;
-    ModuleWeaver moduleWeaver;
-    ModuleDefinition moduleDefinition;
+    List<TypeDefinition> allTypes;
 
-    public NewToOverideConverter(MemberCache memberCache, ModuleWeaver moduleWeaver, ModuleDefinition moduleDefinition)
+    public NewToOverideConverter(MemberCache memberCache, List<TypeDefinition> allTypes)
     {
         this.memberCache = memberCache;
-        this.moduleWeaver = moduleWeaver;
-        this.moduleDefinition = moduleDefinition;
+        this.allTypes = allTypes;
     }
 
     public void Execute()
     {
-        
-        foreach (var type in moduleDefinition.GetAllTypeDefinitions())
+        foreach (var type in allTypes)
         {
             if (type.IsInterface)
             {
