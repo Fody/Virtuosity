@@ -67,16 +67,9 @@
     <Compile Include="NamespaceReaderTest.cs" />
     <Compile Include="Verifier.cs" />
     <Compile Include="VirtualTester.cs" />
-    <Compile Include="Net35WeavingTaskTests.cs" />
-    <Compile Include="Net35ClientWeavingTaskTests.cs" />
-    <Compile Include="Net4ClientWeavingTaskTests.cs" />
-    <Compile Include="Net4WeavingTaskTests.cs" />
-    <Compile Include="BaseTaskTests.cs" />
-    <Compile Include="PhoneWeavingTaskTests.cs" />
+    <Compile Include="IntegrationTests.cs" />
     <Compile Include="PropertyFinderTests.cs" />
     <Compile Include="DefinitionFinder.cs" />
-    <Compile Include="SL5WeavingTaskTests.cs" />
-    <Compile Include="SL4WeavingTaskTests.cs" />
     <Compile Include="WeaverHelper.cs" />
     <Compile Include="XmlExtensions.cs" />
   </ItemGroup>
@@ -86,12 +79,9 @@
   <ItemGroup>
     <ProjectReference Include="..\Fody\Fody.csproj">
       <Project>{C3578A7B-09A6-4444-9383-0DEAFA4958BD}</Project>
-      <Name>Virtuosity.Fody</Name>
+      <Name>Fody</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <UsingTask TaskName="PepitaGet.RestorePackagesTask" AssemblyFile="$(SolutionDir)Tools\PepitaGet.dll" />
-  <Target Name="BeforeBuild">
-    <PepitaGet.RestorePackagesTask />
-  </Target>
+  <Import Project="$(ProjectPath)\..\..\Tools\Pepita\PepitaGet.targets" />
 </Project>

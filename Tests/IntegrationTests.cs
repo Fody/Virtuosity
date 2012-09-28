@@ -2,29 +2,21 @@
 using System.Reflection;
 using NUnit.Framework;
 
-public abstract class BaseTaskTests
+[TestFixture]
+public class IntegrationTests
 {
-    string projectPath;
     Assembly assembly;
 
-    protected BaseTaskTests(string projectPath)
+    public IntegrationTests()
     {
-
+        var projectPath = @"AssemblyToProcess\AssemblyToProcess.csproj";
 #if (!DEBUG)
 
             projectPath = projectPath.Replace("Debug", "Release");
 #endif
-        this.projectPath = projectPath;
-    }
-
-    [TestFixtureSetUp]
-    public void Setup()
-    {
         var weaverHelper = new WeaverHelper(projectPath);
         assembly = weaverHelper.Assembly;
     }
-
-
 
     [Test]
     public void MethodsAndPropertiesAreMarkedAsVirtual()
