@@ -1,8 +1,8 @@
-## This is an add-in for [Fody](https://github.com/SimonCropp/Fody/) 
+## This is an add-in for [Fody](https://github.com/Fody/Fody/) 
 
 Change all members to `virtual` as part of your build.
 
-[Introduction to Fody](http://github.com/SimonCropp/Fody/wiki/SampleUsage)
+[Introduction to Fody](http://github.com/Fody/Fody/wiki/SampleUsage)
 
 ## Nuget package http://nuget.org/packages/Virtuosity.Fody 
 
@@ -22,6 +22,6 @@ What it actually does to your assembly
 
 
 ## More Info 
- * [Why Is This Useful](https://github.com/SimonCropp/Virtuosity/wiki/WhyIsThisUseful)
- * [DoNotVirtualizeAttribute](https://github.com/SimonCropp/Virtuosity/wiki/DoNotVirtualizeAttribute)
- * [Release Notes](https://github.com/SimonCropp/Virtuosity/wiki/ReleaseNotes)
+ * [Why Is This Useful](https://github.com/Fody/Virtuosity/wiki/WhyIsThisUseful)
+ * [DoNotVirtualizeAttribute](https://github.com/Fody/Virtuosity/wiki/DoNotVirtualizeAttribute)
+ * [Release Notes](https://github.com/Fody/Virtuosity/wiki/ReleaseNotes)
