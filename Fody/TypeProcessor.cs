@@ -31,12 +31,15 @@ public class TypeProcessor
         {
             return;
         }
-
+        
+        //for the strange case when implementing an interface
         if (method.IsFinal && method.IsVirtual)
         {
             method.IsFinal = false;
+            memberCache.AddMethod(method);
             return;
         }
+
         if (method.IsFinal)
         {
             return;

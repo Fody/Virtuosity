@@ -32,6 +32,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Build.Utilities.v4.0" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Mono.Cecil, Version=0.9.5.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -59,25 +60,39 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <None Include="FodyWeavers.xml">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AssemblyLocation.cs" />
     <Compile Include="AssemblyWithExcludesTest.cs" />
     <Compile Include="AssemblyWithIncludesTest.cs" />
-    <Compile Include="ExperimentTest.cs" />
+    <Compile Include="EnsureNewToOverrideWithInterfaceTests.cs" />
     <Compile Include="LineMatcherTest.cs" />
+    <Compile Include="ModuleInitializer.cs" />
     <Compile Include="NamespaceReaderTest.cs" />
     <Compile Include="Verifier.cs" />
     <Compile Include="VirtualTester.cs" />
     <Compile Include="IntegrationTests.cs" />
-    <Compile Include="PropertyFinderTests.cs" />
-    <Compile Include="DefinitionFinder.cs" />
-    <Compile Include="WeaverHelper.cs" />
     <Compile Include="XmlExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AssemblyToProcess\AssemblyToProcess.csproj">
+      <Project>{7dec4e2d-f872-434e-a267-0bad65299950}</Project>
+      <Name>AssemblyToProcess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AssemblyWithExcludes\AssemblyWithExcludes.csproj">
+      <Project>{26a1be1e-1849-4a45-af23-ed3672d74948}</Project>
+      <Name>AssemblyWithExcludes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AssemblyWithIncludes\AssemblyWithIncludes.csproj">
+      <Project>{1cc214b0-2ba8-474b-a585-24c195fceaa7}</Project>
+      <Name>AssemblyWithIncludes</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Fody\Fody.csproj">
       <Project>{C3578A7B-09A6-4444-9383-0DEAFA4958BD}</Project>
       <Name>Fody</Name>
@@ -85,4 +100,5 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(ProjectPath)\..\..\Tools\Pepita\PepitaGet.targets" />
+  <Import Project="$(ProjectDir)\..\Tools\Fody\Fody.targets" />
 </Project>

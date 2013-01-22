@@ -43,6 +43,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractClass.cs" />
+    <Compile Include="EnsureNewToOverrideWithInterface.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="IInterface.cs" />
     <Compile Include="InterfaceSealedClass.cs" />
     <Compile Include="InterfaceVirtualClass.cs" />
@@ -55,5 +58,6 @@
     <Compile Include="SimpleMethodRedirectionClass.cs" />
     <Compile Include="SimplePropertyRedirectionClass.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

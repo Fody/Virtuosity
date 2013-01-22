@@ -6,16 +6,14 @@ public class AssemblyWithExcludesTest
     [Test]
     public void Simple()
     {
-        var weaverHelper = new WeaverHelper(@"AssemblyWithExcludes\AssemblyWithExcludes.csproj", null, "ExcludeNamespace");
-        var assembly = weaverHelper.Assembly;
-        var excludeType = assembly.GetType("ExcludeNamespace.ExcludeClass");
+        var excludeType = typeof(AssemblyWithExcludes.ExcludeNamespace.ExcludeClass);
         Assert.IsFalse(excludeType.GetMethod("Method").IsVirtual);
-        var includeType = assembly.GetType("IncludeNamespace.IncludeClass");
+        var includeType = typeof(AssemblyWithExcludes.IncludeNamespace.IncludeClass);
         Assert.IsTrue(includeType.GetMethod("Method").IsVirtual);
 
-        var inNamespaceButWithAttributeType = assembly.GetType("IncludeNamespace.InNamespaceButWithAttributeClass");
+        var inNamespaceButWithAttributeType = typeof(AssemblyWithExcludes.IncludeNamespace.InNamespaceButWithAttributeClass);
         Assert.IsFalse(inNamespaceButWithAttributeType.GetMethod("Method").IsVirtual);
-        var notInNamespaceButWithAttributeType = assembly.GetType("ExcludeNamespace.NotInNamespaceButWithAttributeClass");
+        var notInNamespaceButWithAttributeType = typeof(AssemblyWithExcludes.ExcludeNamespace.NotInNamespaceButWithAttributeClass);
         Assert.IsFalse(notInNamespaceButWithAttributeType.GetMethod("Method").IsVirtual);
     }
 }
