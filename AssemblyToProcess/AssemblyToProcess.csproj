@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractClass.cs" />
+    <Compile Include="EnsureNewToOverrideWithInterface.cs" />
     <Compile Include="IInterface.cs" />
     <Compile Include="InterfaceSealedClass.cs" />
     <Compile Include="InterfaceVirtualClass.cs" />

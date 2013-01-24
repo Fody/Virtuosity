@@ -35,6 +35,14 @@ public class IntegrationTests
         VirtualTester.EnsureMembersAreSealed("InterfaceSealedClass", assembly, "Property");
         VirtualTester.EnsureMembersAreVirtual("InterfaceSealedClass", assembly, "Property");
     }
+    [Test]
+    public void EnsureNewToOverrideWithInterface()
+    {
+        var child = assembly.GetType("EnsureNewToOverrideWithInterface.ChildImplementation");
+        var baseProperty = assembly.GetType("EnsureNewToOverrideWithInterface.BaseImplementation").GetProperty("Property", BindingFlags.Public | BindingFlags.Instance);
+        var propValue = baseProperty.GetValue(Activator.CreateInstance(child), null);
+        Assert.AreEqual("Bravo", propValue);
+    }
 
     [Test]
     public void InterfaceVirtualClass()
