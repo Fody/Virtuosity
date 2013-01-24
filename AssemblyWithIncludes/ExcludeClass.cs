@@ -1,4 +1,4 @@
-﻿namespace AssemblyWithIncludes.ExcludeNamespace
+﻿namespace ExcludeNamespace
 {
     public class ExcludeClass
     {

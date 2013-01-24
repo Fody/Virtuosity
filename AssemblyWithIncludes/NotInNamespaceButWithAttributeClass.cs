@@ -1,4 +1,4 @@
-namespace AssemblyWithIncludes.ExcludeNamespace
+namespace ExcludeNamespace
 {
     [DoNotVirtualize]
     public class NotInNamespaceButWithAttributeClass

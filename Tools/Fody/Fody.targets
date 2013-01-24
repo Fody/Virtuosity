@@ -53,7 +53,6 @@
           ProjectDirectory="$(ProjectDir)"
           SolutionDir="$(FodySolutionDir)"
           References="@(ReferencePath)"
-          SignAssembly="$(SignAssembly)"
       />
   </Target>
 
@@ -69,7 +68,6 @@
           ProjectDirectory="$(ProjectDir)"
           SolutionDir="$(FodySolutionDir)"
           References="@(ReferencePath)"
-          SignAssembly="$(SignAssembly)"
       />
   </Target>
 

@@ -1,14 +1,27 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Reflection;
 using NUnit.Framework;
 
 public static class VirtualTester
 {
-    public static void EnsureMembersAreVirtual<T>(params string[] memberNames)
+
+
+
+    public static dynamic GetInstance(this Assembly assembly, string className)
+    {
+        var type = assembly.GetType(className, true);
+        //dynamic instance = FormatterServices.GetUninitializedObject(type);
+        return Activator.CreateInstance(type);
+    }
+    public static void EnsureMembersAreVirtual(string className, Assembly assembly, params string[] memberNames)
     {
         foreach (var memberName in memberNames)
         {
-            var member = typeof(T).GetMember(memberName, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly).First();
+
+            var type = assembly.GetType(className, true);
+
+            var member = type.GetMember(memberName, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly).First();
             if (member is MethodInfo)
             {
                 var methodInfo = (member as MethodInfo);
@@ -22,11 +35,14 @@ public static class VirtualTester
             }
         }
     }
-    public static void EnsureMembersAreNotVirtual<T>(params string[] memberNames)
+    public static void EnsureMembersAreNotVirtual(string className, Assembly assembly, params string[] memberNames)
     {
         foreach (var memberName in memberNames)
         {
-            var member = typeof(T).GetMember(memberName, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly).First();
+
+            var type = assembly.GetType(className, true);
+
+            var member = type.GetMember(memberName, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly).First();
             if (member is MethodInfo)
             {
                 var methodInfo = (member as MethodInfo);
@@ -43,11 +59,14 @@ public static class VirtualTester
         }
     }
 
-    public static void EnsureMembersAreSealed<T>(params string[] memberNames)
+    public static void EnsureMembersAreSealed(string className, Assembly assembly, params string[] memberNames)
     {
         foreach (var memberName in memberNames)
         {
-            var member = typeof(T).GetMember(memberName, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly).First();
+
+            var type = assembly.GetType(className, true);
+
+            var member = type.GetMember(memberName, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly).First();
             if (member is MethodInfo)
             {
                 var methodInfo = (member as MethodInfo);
@@ -63,11 +82,14 @@ public static class VirtualTester
             }
         }
     }
-    public static void EnsureMembersAreNotSealed<T>(params string[] memberNames)
+    public static void EnsureMembersAreNotSealed(string className, Assembly assembly, params string[] memberNames)
     {
         foreach (var memberName in memberNames)
         {
-            var member = typeof(T).GetMember(memberName, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly).First();
+
+            var type = assembly.GetType(className, true);
+
+            var member = type.GetMember(memberName, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly).First();
             if (member is MethodInfo)
             {
                 var methodInfo = (member as MethodInfo);
