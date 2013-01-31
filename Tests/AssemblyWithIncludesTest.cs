@@ -1,4 +1,7 @@
-﻿using NUnit.Framework;
+﻿using System.IO;
+using System.Reflection;
+using Mono.Cecil;
+using NUnit.Framework;
 
 [TestFixture]
 public class AssemblyWithIncludesTest
@@ -6,8 +9,26 @@ public class AssemblyWithIncludesTest
     [Test]
     public void Simple()
     {
-        var weaverHelper = new WeaverHelper(@"AssemblyWithIncludes\AssemblyWithIncludes.csproj", "IncludeNamespace", null);
-        var assembly = weaverHelper.Assembly;
+        var beforeAssemblyPath = Path.GetFullPath(@"..\..\..\AssemblyWithIncludes\bin\Debug\AssemblyWithIncludes.dll");
+#if (!DEBUG)
+        beforeAssemblyPath = beforeAssemblyPath.Replace("Debug", "Release");
+#endif
+
+        var afterAssemblyPath = beforeAssemblyPath.Replace(".dll", "2.dll");
+        File.Copy(beforeAssemblyPath, afterAssemblyPath, true);
+
+        var moduleDefinition = ModuleDefinition.ReadModule(afterAssemblyPath);
+        var weavingTask = new ModuleWeaver
+        {
+            ModuleDefinition = moduleDefinition,
+            IncludeNamespaces = "IncludeNamespace"
+        };
+
+        weavingTask.Execute();
+        moduleDefinition.Write(afterAssemblyPath);
+
+        var assembly = Assembly.LoadFile(afterAssemblyPath);
+
         var excludeType = assembly.GetType("ExcludeNamespace.ExcludeClass");
         Assert.IsFalse(excludeType.GetMethod("Method").IsVirtual);
         var includeType = assembly.GetType("IncludeNamespace.IncludeClass");
