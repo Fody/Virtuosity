@@ -7,7 +7,7 @@
     <authors>Simon Cropp</authors>
     <owners>Simon Cropp</owners>
     <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
-    <projectUrl>http://github.com/SimonCropp/Virtuosity</projectUrl>
+    <projectUrl>http://github.com/Fody/Virtuosity</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Fody add-in for changing all members to virtual.</description>
     <summary />
