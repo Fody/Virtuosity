@@ -20,6 +20,74 @@ What it actually does to your assembly
   * change calls to those members to `virtual`
   * change `new` modifiers to `override` modifiers
 
+# Configuration Options
+
+## Exclude types with an Attribute
+
+If for some reason you want to skip a specific class you can mark it with a `DoNotVirtualizeAttribute`. 
+
+Since no reference assembly is shipped with Virtuosity. Just add the below class to your assembly. Namespace does not matter.
+
+    public class DoNotVirtualizeAttribute : Attribute
+    {
+    }
+
+So your class will look like this
+
+    [DoNotVirtualize]
+    public class ClassToSkip
+    {
+        ...
+    }
+
+## Include or exclude namespaces
+ 
+These config options are access by modifying the `Virtuosity` node in FodyWeavers.xml 
+ 
+### ExcludeNamespaces
+
+A list of namespaces to exclude.
+
+Can not be defiend with `IncludeNamespaces`.
+
+Can take two forms. 
+
+As an element with items delimetered by a newline.
+
+    <Virtuosity>
+        <ExcludeNamespaces>
+            Foo
+            Bar
+        </ExcludeNamespaces>
+    </Virtuosity>
+    
+Or as a attribute with items delimetered by a pipe `|`.
+
+    <Virtuosity ExcludeNamespaces='Foo|Bar'/>
+    
+        
+## IncludeNamespaces
+
+A list of namespaces to include.
+
+Can not be defiend with `ExcludeNamespaces`.
+
+Can take two forms. 
+
+As an element with items delimetered by a newline.
+
+    <Virtuosity>
+        <IncludeNamespaces>
+            Foo
+            Bar
+        </IncludeNamespaces>
+    </Virtuosity>
+    
+Or as a attribute with items delimetered by a pipe `|`.
+
+    <Virtuosity IncludeNamespaces='Foo|Bar'/>
+
+
 # Why is this useful
 
 If you are coding in .net you will have used or heard of one of the following tools
