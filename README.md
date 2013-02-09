@@ -111,4 +111,4 @@ Well all these tools make use of [DynamicProxy](http://www.castleproject.org/pro
  * [Ninject Important Note:Your methods/properties to be intercepted must be virtual!](http://innovatian.com/2010/03/using-ninject-extensions-interception-part-1-the-basics/)
  * [NSubstitute:Some operations on non virtual members should throw an exception](http://groups.google.com/group/nsubstitute/browse_thread/thread/407cb0408ce97bfd)
 
-If you forget to mark something as virtual these tools will not work and fail in sometimes very unhelpful ways. So rather than having to remember to mark things as virtual Virtuosity means members will be virtual by default.
+If you forget to mark something as virtual these tools will not work and fail in sometimes very unhelpful ways. So rather than having to remember to use the virtual keyword Virtuosity means members will be virtual by default.
