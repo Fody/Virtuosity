@@ -93,9 +93,8 @@ Or as a attribute with items delimetered by a pipe `|`.
 If you are coding in .net you will have used or heard of one of the following tools
 
  * [NHibernate](http://community.jboss.org/wiki/NHibernateforNET)
- * [Rhino Mocks](http://ayende.com/projects/rhino-mocks.aspx)
+ * [Rhino Mocks](http://hibernatingrhinos.com/oss/rhino-mocks)
  * [Moq](http://code.google.com/p/moq/)
- * [NMock2](http://sourceforge.net/projects/nmock2/)
  * [Ninject](http://ninject.org/)
  * [NSubstitute](http://nsubstitute.github.com/)
  * [Entity Framework](http://www.asp.net/entity-framework/)
