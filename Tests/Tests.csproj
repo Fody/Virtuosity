@@ -64,6 +64,7 @@
   <ItemGroup>
     <Compile Include="AssemblyWithExcludesTest.cs" />
     <Compile Include="AssemblyWithIncludesTest.cs" />
+    <Compile Include="ConfigReaderTests.cs" />
     <Compile Include="LineMatcherTest.cs" />
     <Compile Include="NamespaceReaderTest.cs" />
     <Compile Include="Verifier.cs" />

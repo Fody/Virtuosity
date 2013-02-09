@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Reflection;
 using Mono.Cecil;
 using NUnit.Framework;
@@ -19,10 +20,10 @@ public class AssemblyWithIncludesTest
 
         var moduleDefinition = ModuleDefinition.ReadModule(afterAssemblyPath);
         var weavingTask = new ModuleWeaver
-        {
-            ModuleDefinition = moduleDefinition,
-            IncludeNamespaces = "IncludeNamespace"
-        };
+            {
+                ModuleDefinition = moduleDefinition,
+                IncludeNamespaces = new List<string> {"IncludeNamespace"}
+            };
 
         weavingTask.Execute();
         moduleDefinition.Write(afterAssemblyPath);
@@ -38,5 +39,9 @@ public class AssemblyWithIncludesTest
         Assert.IsFalse(inNamespaceButWithAttributeType.GetMethod("Method").IsVirtual);
         var notInNamespaceButWithAttributeType = assembly.GetType("ExcludeNamespace.NotInNamespaceButWithAttributeClass");
         Assert.IsFalse(notInNamespaceButWithAttributeType.GetMethod("Method").IsVirtual);
+
+#if(DEBUG)
+        Verifier.Verify(beforeAssemblyPath, afterAssemblyPath);
+#endif
     }
 }

@@ -3,32 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using Mono.Cecil;
 
-public class InclusionChecker
+public partial class ModuleWeaver
 {
-    ModuleWeaver moduleWeaver;
     public Func<TypeDefinition, bool> ShouldIncludeType;
     List<LineMatcher> lineMatchers;
 
-    public InclusionChecker(ModuleWeaver moduleWeaver)
+    public void ProcessIncludesExcludes()
     {
-        this.moduleWeaver = moduleWeaver;
-    }
-
-    public void Execute()
-    {
-        if (moduleWeaver.ExcludeNamespaces != null && moduleWeaver.IncludeNamespaces != null)
+        if (ExcludeNamespaces.Any())
         {
-            throw new Exception("Only ExcludeNamespaces OR IncludeNamespaces allowed.");
-        }
-        if (moduleWeaver.ExcludeNamespaces != null)
-        {
-            lineMatchers = GetLines(moduleWeaver.ExcludeNamespaces).ToList();
+            lineMatchers = GetLines(ExcludeNamespaces).ToList();
             ShouldIncludeType = definition => lineMatchers.All(lineMatcher => !lineMatcher.Match(definition.Namespace)) && !ContainsIgnoreAttribute(definition);
             return;
         }
-        if (moduleWeaver.IncludeNamespaces != null)
+        if (IncludeNamespaces.Any())
         {
-            lineMatchers = GetLines(moduleWeaver.IncludeNamespaces).ToList();
+            lineMatchers = GetLines(IncludeNamespaces).ToList();
             ShouldIncludeType = definition => lineMatchers.Any(lineMatcher => lineMatcher.Match(definition.Namespace)) && !ContainsIgnoreAttribute(definition);
             return;
         }
@@ -40,33 +30,32 @@ public class InclusionChecker
         return typeDefinition.CustomAttributes.ContainsAttribute("DoNotVirtualizeAttribute");
     }
 
-    public static IEnumerable<LineMatcher> GetLines(string namespaces)
+    public static IEnumerable<LineMatcher> GetLines(List<string> namespaces)
     {
-        return namespaces.Split(new[] {"\r\n"}, StringSplitOptions.RemoveEmptyEntries).Select(BuildLineMatcher);
+        return namespaces.Select(BuildLineMatcher);
     }
 
     public static LineMatcher BuildLineMatcher(string line)
     {
-        var tempLine = line.Trim();
 
         var starStart = false;
-        if (tempLine.StartsWith("*"))
+        if (line.StartsWith("*"))
         {
             starStart = true;
-            tempLine = tempLine.Substring(1);
+            line = line.Substring(1);
         }
 
         var starEnd = false;
-        if (tempLine.EndsWith("*"))
+        if (line.EndsWith("*"))
         {
             starEnd = true;
-            tempLine = tempLine.Substring(0, tempLine.Length - 1);
+            line = line.Substring(0, line.Length - 1);
         }
 
-        ValidateLine(tempLine);
+        ValidateLine(line);
         return new LineMatcher
                    {
-                       Line = tempLine,
+                       Line = line,
                        StarStart = starStart,
                        StarEnd = starEnd,
                    };

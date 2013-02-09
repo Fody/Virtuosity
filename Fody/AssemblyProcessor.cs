@@ -1,30 +1,19 @@
-﻿using System.Collections.Generic;
-using Mono.Cecil;
+﻿using Mono.Cecil;
 
-public class AssemblyProcessor
+public partial class ModuleWeaver
 {
-    TypeProcessor typeProcessor;
-    InclusionChecker inclusionChecker;
-    List<TypeDefinition> allTypes;
 
-    public AssemblyProcessor(TypeProcessor typeProcessor, InclusionChecker inclusionChecker, List<TypeDefinition> allTypes)
+    public void ProcessAssembly()
     {
-        this.typeProcessor = typeProcessor;
-        this.inclusionChecker = inclusionChecker;
-        this.allTypes = allTypes;
-    }
-
-    public void Execute()
-    {
-        foreach (var type in allTypes)
+        foreach (var type in ModuleDefinition.GetTypes())
         {
             if (!ShouldInclude(type))
             {
                 continue;
             }
-            if (inclusionChecker.ShouldIncludeType(type))
+            if (ShouldIncludeType(type))
             {
-                typeProcessor.Execute(type);
+                ProcessType(type);
             }
         }
     }

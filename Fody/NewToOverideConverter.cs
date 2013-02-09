@@ -2,20 +2,12 @@
 using System.Linq;
 using Mono.Cecil;
 
-public class NewToOverideConverter
+public partial class ModuleWeaver
 {
-    MemberCache memberCache;
-    List<TypeDefinition> allTypes;
 
-    public NewToOverideConverter(MemberCache memberCache, List<TypeDefinition> allTypes)
+    public void ConvertNewToOverrides()
     {
-        this.memberCache = memberCache;
-        this.allTypes = allTypes;
-    }
-
-    public void Execute()
-    {
-        foreach (var type in allTypes)
+        foreach (var type in ModuleDefinition.GetTypes())
         {
             if (type.IsInterface)
             {
@@ -26,7 +18,7 @@ public class NewToOverideConverter
                 continue;
             }
             var baseTypes = GetBaseTypes(type).ToList();
-            var baseMethods = memberCache.Methods.Where(x => baseTypes.Contains(x.DeclaringType)).ToList();
+            var baseMethods = MethodCache.Where(x => baseTypes.Contains(x.DeclaringType)).ToList();
             if (baseMethods.Count == 0)
             {
                 continue;

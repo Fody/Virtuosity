@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Reflection;
 using Mono.Cecil;
 using NUnit.Framework;
@@ -21,7 +22,7 @@ public class AssemblyWithExcludesTest
         var weavingTask = new ModuleWeaver
         {
             ModuleDefinition = moduleDefinition,
-            ExcludeNamespaces = "ExcludeNamespace"
+            ExcludeNamespaces = new List<string> { "ExcludeNamespace"}
         };
 
         weavingTask.Execute();
@@ -38,5 +39,8 @@ public class AssemblyWithExcludesTest
         Assert.IsFalse(inNamespaceButWithAttributeType.GetMethod("Method").IsVirtual);
         var notInNamespaceButWithAttributeType = assembly.GetType("ExcludeNamespace.NotInNamespaceButWithAttributeClass");
         Assert.IsFalse(notInNamespaceButWithAttributeType.GetMethod("Method").IsVirtual);
+#if(DEBUG)
+        Verifier.Verify(beforeAssemblyPath, afterAssemblyPath);
+#endif
     }
 }

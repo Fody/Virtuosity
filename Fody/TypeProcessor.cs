@@ -1,19 +1,10 @@
 ﻿using Mono.Cecil;
 
-public class TypeProcessor
+public partial class ModuleWeaver
 {
-    ModuleWeaver moduleWeaver;
-    MemberCache memberCache;
-
-    public TypeProcessor(ModuleWeaver moduleWeaver, MemberCache memberCache)
+    public void ProcessType(TypeDefinition typeDefinition)
     {
-        this.moduleWeaver = moduleWeaver;
-        this.memberCache = memberCache;
-    }
-
-    public void Execute(TypeDefinition typeDefinition)
-    {
-        moduleWeaver.LogInfo("\t" + typeDefinition.FullName);
+        LogInfo("\t" + typeDefinition.FullName);
 
         foreach (var method in typeDefinition.Methods)
         {
@@ -35,7 +26,7 @@ public class TypeProcessor
         if (method.IsFinal && method.IsVirtual)
         {
             method.IsFinal = false;
-            memberCache.AddMethod(method);
+            AddMethodToCache(method);
             return;
         }
         if (method.IsFinal)
@@ -58,7 +49,7 @@ public class TypeProcessor
         {
             return;
         }
-        memberCache.AddMethod(method);
+        AddMethodToCache(method);
         method.IsVirtual = true;
         method.IsNewSlot = true;
     }

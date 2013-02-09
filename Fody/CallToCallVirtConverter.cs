@@ -1,21 +1,12 @@
-﻿using System.Collections.Generic;
-using Mono.Cecil;
+﻿using Mono.Cecil;
 using Mono.Cecil.Cil;
 
-public class CallToCallVirtConverter
+public partial class ModuleWeaver
 {
-    MemberCache memberCache;
-    List<TypeDefinition> allTypes;
 
-    public CallToCallVirtConverter(MemberCache memberCache, List<TypeDefinition> allTypes)
+    public void ConvertCallToCallVirt()
     {
-        this.memberCache = memberCache;
-        this.allTypes = allTypes;
-    }
-
-    public void Execute()
-    {
-        foreach (var type in allTypes)
+        foreach (var type in ModuleDefinition.GetTypes())
         {
             if (type.IsInterface)
             {
@@ -54,7 +45,7 @@ public class CallToCallVirtConverter
                 continue;
             }
 
-            foreach (var method in memberCache.Methods)
+            foreach (var method in MethodCache)
             {
                 if (instruction.Operand == method)
                 {

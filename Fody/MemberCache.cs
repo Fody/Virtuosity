@@ -1,17 +1,13 @@
 ﻿using System.Collections.Generic;
 using Mono.Cecil;
 
-public class MemberCache
+public partial class ModuleWeaver
 {
-    public MemberCache()
+
+    public void AddMethodToCache(MethodDefinition methodDefinition)
     {
-        Methods = new List<MethodDefinition>();
+        MethodCache.Add(methodDefinition);
     }
 
-    public void AddMethod(MethodDefinition methodDefinition)
-    {
-        Methods.Add(methodDefinition);
-    }
-
-    public List<MethodDefinition> Methods;
+    public List<MethodDefinition> MethodCache = new List<MethodDefinition>();
 }
