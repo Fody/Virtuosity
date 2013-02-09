@@ -9,12 +9,12 @@ public class ConfigReaderTests
     public void ExcludeNamespacesNode()
     {
         var xElement = XElement.Parse(@"
-<Costura>
+<Virtuosity>
     <ExcludeNamespaces>
 Foo
 Bar
     </ExcludeNamespaces>
-</Costura>");
+</Virtuosity>");
         var moduleWeaver = new ModuleWeaver { Config = xElement };
         moduleWeaver.ReadConfig();
         Assert.AreEqual("Foo", moduleWeaver.ExcludeNamespaces[0]);
@@ -25,7 +25,7 @@ Bar
     public void ExcludeNamespacesAttribute()
     {
         var xElement = XElement.Parse(@"
-<Costura ExcludeNamespaces='Foo|Bar'/>");
+<Virtuosity ExcludeNamespaces='Foo|Bar'/>");
         var moduleWeaver = new ModuleWeaver { Config = xElement };
         moduleWeaver.ReadConfig();
         Assert.AreEqual("Foo", moduleWeaver.ExcludeNamespaces[0]);
@@ -36,11 +36,11 @@ Bar
     public void ExcludeNamespacesConbined()
     {
         var xElement = XElement.Parse(@"
-<Costura  ExcludeNamespaces='Foo'>
+<Virtuosity  ExcludeNamespaces='Foo'>
     <ExcludeNamespaces>
 Bar
     </ExcludeNamespaces>
-</Costura>");
+</Virtuosity>");
         var moduleWeaver = new ModuleWeaver { Config = xElement };
         moduleWeaver.ReadConfig();
         Assert.AreEqual("Foo", moduleWeaver.ExcludeNamespaces[0]);
@@ -51,12 +51,12 @@ Bar
     public void IncludeNamespacesNode()
     {
         var xElement = XElement.Parse(@"
-<Costura>
+<Virtuosity>
     <IncludeNamespaces>
 Foo
 Bar
     </IncludeNamespaces>
-</Costura>");
+</Virtuosity>");
         var moduleWeaver = new ModuleWeaver { Config = xElement };
         moduleWeaver.ReadConfig();
         Assert.AreEqual("Foo", moduleWeaver.IncludeNamespaces[0]);
@@ -67,7 +67,7 @@ Bar
     public void IncludeNamespacesAttribute()
     {
         var xElement = XElement.Parse(@"
-<Costura IncludeNamespaces='Foo|Bar'/>");
+<Virtuosity IncludeNamespaces='Foo|Bar'/>");
         var moduleWeaver = new ModuleWeaver { Config = xElement };
         moduleWeaver.ReadConfig();
         Assert.AreEqual("Foo", moduleWeaver.IncludeNamespaces[0]);
@@ -79,7 +79,7 @@ Bar
     public void IncludeAndExcludeNamespacesAttribute()
     {
         var xElement = XElement.Parse(@"
-<Costura IncludeNamespaces='Bar' ExcludeNamespaces='Foo'/>");
+<Virtuosity IncludeNamespaces='Bar' ExcludeNamespaces='Foo'/>");
         var moduleWeaver = new ModuleWeaver { Config = xElement };
         moduleWeaver.ReadConfig();
     }
@@ -88,11 +88,11 @@ Bar
     public void IncludeNamespacesConbined()
     {
         var xElement = XElement.Parse(@"
-<Costura  IncludeNamespaces='Foo'>
+<Virtuosity  IncludeNamespaces='Foo'>
     <IncludeNamespaces>
 Bar
     </IncludeNamespaces>
-</Costura>");
+</Virtuosity>");
         var moduleWeaver = new ModuleWeaver { Config = xElement };
         moduleWeaver.ReadConfig();
         Assert.AreEqual("Foo", moduleWeaver.IncludeNamespaces[0]);
