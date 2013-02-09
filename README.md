@@ -4,9 +4,11 @@ Change all members to `virtual` as part of your build.
 
 [Introduction to Fody](http://github.com/Fody/Fody/wiki/SampleUsage)
 
-## Nuget package http://nuget.org/packages/Virtuosity.Fody 
+# Nuget package
 
-What it actually does to your assembly
+There is a nuget package avaliable here http://nuget.org/packages/Virtuosity.Fody 
+
+# What it actually does to your assembly
 
 ### Selects all members that meet the following criteria
   * from non `sealed` classes
