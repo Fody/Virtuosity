@@ -9,8 +9,8 @@
     <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
     <projectUrl>http://github.com/Fody/Virtuosity</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <iconUrl>https://raw.github.com/Fody/Virtuosity/master/Icons/package_icon.png</iconUrl>
     <description>Fody add-in for changing all members to virtual.</description>
-    <summary />
     <language>en-AU</language>
     <tags>Virtual, ILWeaving, Runtime Proxy, Mocking, Fody, Cecil</tags>
     <dependencies>
