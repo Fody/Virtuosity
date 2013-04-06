@@ -117,6 +117,6 @@ If you forget to mark something as virtual these tools will not work and fail in
 
 ## Icon
 
-Icon courtesy of [The Noun Project](http://thenounproject.com)
+<a href="http://thenounproject.com/noun/russian-doll/#icon-No1964" target="_blank">Russian Doll</a> designed by <a href="http://thenounproject.com/Simon Child" target="_blank">Simon Child</a> from The Noun Project
 
 
