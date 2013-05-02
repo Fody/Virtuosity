@@ -2,7 +2,9 @@
 using System.Linq;
 using System.Linq.Expressions;
 using Mono.Cecil;
+using Scalpel;
 
+[Remove]
 public static class DefinitionFinder
 {
     public static PropertyDefinition FindProperty<T>(Expression<Func<T>> expression)

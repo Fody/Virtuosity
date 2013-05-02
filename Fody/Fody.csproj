@@ -10,10 +10,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Virtuosity.Fody</RootNamespace>
     <AssemblyName>Virtuosity.Fody</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
-    <FodyPath>..\packages\Fody.1.13.6.1</FodyPath>
+    <FodyPath>..\packages\Fody.1.13.7.0</FodyPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -25,6 +25,7 @@
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>
     </DocumentationFile>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -33,6 +34,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>false</SignAssembly>
@@ -40,9 +42,20 @@
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>..\key.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Deployable|AnyCPU'">
+    <OutputPath>bin\Deployable\</OutputPath>
+    <DefineConstants>TRACE;SCALPEL</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <None Include="Fody.targets" />
     <None Include="packages.config" />
+    <Reference Include="Microsoft.Build.Utilities.v4.0" />
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="Mono.Cecil, Version=0.9.5.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\Cecil\Mono.Cecil.dll</HintPath>
@@ -59,6 +72,13 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\Cecil\Mono.Cecil.Rocks.dll</HintPath>
     </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit.2.6.2\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Scalpel">
+      <HintPath>..\packages\Scalpel.Fody.0.12.0.0\Lib\NET40\Scalpel.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml" />
@@ -67,17 +87,28 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyProcessor.cs" />
+    <Compile Include="AssemblyWithExcludesTest.cs" />
+    <Compile Include="AssemblyWithIncludesTest.cs" />
     <Compile Include="CecilExtensions.cs" />
     <Compile Include="ConfigReader.cs" />
+    <Compile Include="ConfigReaderTests.cs" />
+    <Compile Include="DefinitionFinder.cs" />
     <Compile Include="Extensions.cs" />
+    <Compile Include="IntegrationTests.cs" />
     <Compile Include="LineMatcher.cs" />
+    <Compile Include="LineMatcherTest.cs" />
     <Compile Include="MemberCache.cs" />
     <Compile Include="InclusionChecker.cs" />
+    <Compile Include="NamespaceReaderTest.cs" />
     <Compile Include="NewToOverideConverter.cs" />
     <Compile Include="CallToCallVirtConverter.cs" />
+    <Compile Include="PropertyFinderTests.cs" />
     <Compile Include="TypeProcessor.cs" />
     <Compile Include="ModuleWeaver.cs" />
     <Compile Include="..\CommonAssemblyInfo.cs" />
+    <Compile Include="Verifier.cs" />
+    <Compile Include="VirtTests.cs" />
+    <Compile Include="VirtualTester.cs" />
     <Compile Include="WeavingException.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

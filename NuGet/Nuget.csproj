@@ -11,6 +11,9 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <ConfigurationName>Release</ConfigurationName>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Deployable|AnyCPU'">
+    <ConfigurationName>Deployable</ConfigurationName>
+  </PropertyGroup>
   <ItemGroup>
     <None Include="Virtuosity.nuspec">
       <SubType>Designer</SubType>
