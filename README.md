@@ -1,5 +1,7 @@
 ## This is an add-in for [Fody](https://github.com/Fody/Fody/) 
 
+![Icon](https://raw.github.com/Fody/Virtuosity/master/Icons/package_icon.png)
+
 Change all members to `virtual` as part of your build.
 
 [Introduction to Fody](http://github.com/Fody/Fody/wiki/SampleUsage)
