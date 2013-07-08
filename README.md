@@ -8,7 +8,7 @@ Change all members to `virtual` as part of your build.
 
 # Nuget package
 
-There is a nuget package avaliable here http://nuget.org/packages/Virtuosity.Fody 
+There is a nuget package available here http://nuget.org/packages/Virtuosity.Fody 
 
 # What it actually does to your assembly
 
@@ -74,11 +74,11 @@ Or as a attribute with items delimetered by a pipe `|`.
 
 A list of namespaces to include.
 
-Can not be defiend with `ExcludeNamespaces`.
+Can not be defined with `ExcludeNamespaces`.
 
 Can take two forms. 
 
-As an element with items delimetered by a newline.
+As an element with items delimited by a newline.
 
     <Virtuosity>
         <IncludeNamespaces>
@@ -87,7 +87,7 @@ As an element with items delimetered by a newline.
         </IncludeNamespaces>
     </Virtuosity>
     
-Or as a attribute with items delimetered by a pipe `|`.
+Or as a attribute with items delimited by a pipe `|`.
 
     <Virtuosity IncludeNamespaces='Foo|Bar'/>
 
