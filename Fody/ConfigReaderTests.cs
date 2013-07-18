@@ -33,7 +33,7 @@ Bar
     }
 
     [Test]
-    public void ExcludeNamespacesConbined()
+    public void ExcludeNamespacesCombined()
     {
         var xElement = XElement.Parse(@"
 <Virtuosity  ExcludeNamespaces='Foo'>
@@ -85,7 +85,7 @@ Bar
     }
 
     [Test]
-    public void IncludeNamespacesConbined()
+    public void IncludeNamespacesCombined()
     {
         var xElement = XElement.Parse(@"
 <Virtuosity  IncludeNamespaces='Foo'>
