@@ -13,12 +13,14 @@ public class ConfigReaderTests
     <ExcludeNamespaces>
 Foo
 Bar
+Foo.Bar
     </ExcludeNamespaces>
 </Virtuosity>");
         var moduleWeaver = new ModuleWeaver { Config = xElement };
         moduleWeaver.ReadConfig();
         Assert.AreEqual("Foo", moduleWeaver.ExcludeNamespaces[0]);
         Assert.AreEqual("Bar", moduleWeaver.ExcludeNamespaces[1]);
+        Assert.AreEqual("Foo.Bar", moduleWeaver.ExcludeNamespaces[2]);
     }
 
     [Test]
@@ -55,12 +57,14 @@ Bar
     <IncludeNamespaces>
 Foo
 Bar
+Foo.Bar
     </IncludeNamespaces>
 </Virtuosity>");
         var moduleWeaver = new ModuleWeaver { Config = xElement };
         moduleWeaver.ReadConfig();
         Assert.AreEqual("Foo", moduleWeaver.IncludeNamespaces[0]);
         Assert.AreEqual("Bar", moduleWeaver.IncludeNamespaces[1]);
+        Assert.AreEqual("Foo.Bar", moduleWeaver.IncludeNamespaces[2]);
     }
 
     [Test]

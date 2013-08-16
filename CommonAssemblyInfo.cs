@@ -2,5 +2,5 @@
 
 [assembly: AssemblyTitle("Virtuosity")]
 [assembly: AssemblyProduct("Virtuosity")]
-[assembly: AssemblyVersion("1.19.3")]
-[assembly: AssemblyFileVersion("1.19.3")]
+[assembly: AssemblyVersion("1.19.4")]
+[assembly: AssemblyFileVersion("1.19.4")]

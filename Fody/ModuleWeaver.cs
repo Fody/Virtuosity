@@ -13,6 +13,7 @@ public partial class ModuleWeaver
 
     public void Execute()
     {
+        ReadConfig();
         ProcessIncludesExcludes();
         ProcessAssembly();
         ConvertCallToCallVirt();
