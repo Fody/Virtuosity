@@ -5,7 +5,7 @@ using NUnit.Framework;
 namespace VirtualVsSealedTests
 {
 	[TestFixture]
-	public class VirtTests
+	public class VirtualTests
 	{
 
 		public class ClassWithNonEmptyMethods
@@ -27,8 +27,8 @@ namespace VirtualVsSealedTests
 
         static void Main()
         {
-            var virtTests = new VirtTests();
-            virtTests.NonEmptyMethodTest();
+            var virtualTests = new VirtualTests();
+            virtualTests.NonEmptyMethodTest();
         }
 
 	    [Test]

@@ -16,7 +16,7 @@ public partial class ModuleWeaver
         ReadConfig();
         ProcessIncludesExcludes();
         ProcessAssembly();
-        ConvertCallToCallVirt();
+        ConvertCallToCallVirtual();
         ConvertNewToOverrides();
     }
 }

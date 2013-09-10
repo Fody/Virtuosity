@@ -4,7 +4,7 @@ using Mono.Cecil.Cil;
 public partial class ModuleWeaver
 {
 
-    public void ConvertCallToCallVirt()
+    public void ConvertCallToCallVirtual()
     {
         foreach (var type in ModuleDefinition.GetTypes())
         {

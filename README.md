@@ -52,11 +52,11 @@ These config options are access by modifying the `Virtuosity` node in FodyWeaver
 
 A list of namespaces to exclude.
 
-Can not be defiend with `IncludeNamespaces`.
+Can not be defined with `IncludeNamespaces`.
 
 Can take two forms. 
 
-As an element with items delimetered by a newline.
+As an element with items delimited by a newline.
 
     <Virtuosity>
         <ExcludeNamespaces>
@@ -65,7 +65,7 @@ As an element with items delimetered by a newline.
         </ExcludeNamespaces>
     </Virtuosity>
     
-Or as a attribute with items delimetered by a pipe `|`.
+Or as a attribute with items delimited by a pipe `|`.
 
     <Virtuosity ExcludeNamespaces='Foo|Bar'/>
     
