@@ -61,6 +61,7 @@ public partial class ModuleWeaver
                    };
     }
 
+    // ReSharper disable once UnusedParameter.Local
     static void ValidateLine(string line)
     {
         if (line.Contains("*"))
