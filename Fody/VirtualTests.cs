@@ -25,6 +25,7 @@ namespace VirtualVsSealedTests
 
 		const int iterations = 1000000000;
 
+// ReSharper disable once UnusedMember.Local
         static void Main()
         {
             var virtualTests = new VirtualTests();

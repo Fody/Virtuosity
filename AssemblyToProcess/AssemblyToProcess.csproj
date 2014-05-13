@@ -10,8 +10,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AssemblyToProcess</RootNamespace>
     <AssemblyName>AssemblyToProcess</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>3</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -29,6 +31,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>false</SignAssembly>
@@ -45,25 +48,53 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AbstractClass.cs" />
-    <Compile Include="EnsureNewToOverrideWithInterface.cs" />
-    <Compile Include="IInterface.cs" />
-    <Compile Include="InterfaceSealedClass.cs" />
-    <Compile Include="InterfaceVirtualClass.cs" />
-    <Compile Include="MethodRedirectionBaseClass.cs" />
-    <Compile Include="MethodRedirectionChildClass.cs" />
-    <Compile Include="MethodsAndPropertiesAreMarkedAsVirtualClass.cs" />
-    <Compile Include="PropertyRedirectionBaseClass.cs" />
-    <Compile Include="PropertyRedirectionChildClass.cs" />
-    <Compile Include="SealedClass.cs" />
-    <Compile Include="SimpleMethodRedirectionClass.cs" />
-    <Compile Include="SimplePropertyRedirectionClass.cs" />
+    <Compile Include="AbstractClass.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AsyncClass.cs" />
+    <Compile Include="EnsureNewToOverrideWithInterface.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IInterface.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="InterfaceSealedClass.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="InterfaceVirtualClass.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MethodRedirectionBaseClass.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MethodRedirectionChildClass.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MethodsAndPropertiesAreMarkedAsVirtualClass.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PropertyRedirectionBaseClass.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PropertyRedirectionChildClass.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SealedClass.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SimpleMethodRedirectionClass.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SimplePropertyRedirectionClass.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

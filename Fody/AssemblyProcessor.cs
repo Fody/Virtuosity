@@ -5,7 +5,7 @@ public partial class ModuleWeaver
 
     public void ProcessAssembly()
     {
-        foreach (var type in ModuleDefinition.GetTypes())
+        foreach (var type in ModuleDefinition.GetAllClasses())
         {
             if (!ShouldInclude(type))
             {
@@ -20,10 +20,6 @@ public partial class ModuleWeaver
 
     bool ShouldInclude(TypeDefinition type)
     {
-        if (!type.IsClass)
-        {
-            return false;
-        }
         if (type.IsSealed)
         {
             return false;

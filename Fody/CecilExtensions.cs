@@ -9,4 +9,31 @@ public static class CecilExtensions
     {
         return attributes.Any(attribute => attribute.Constructor.DeclaringType.Name == attributeName);
     }
+
+    public static List<TypeDefinition> GetAllClasses(this ModuleDefinition moduleDefinition)
+    {
+        var definitions = new List<TypeDefinition>();
+        //First is always module so we will skip that;
+        GetTypes(moduleDefinition.Types.Skip(1), definitions);
+        return definitions;
+    }
+
+    static void GetTypes(IEnumerable<TypeDefinition> typeDefinitions, List<TypeDefinition> definitions)
+    {
+        foreach (var typeDefinition in typeDefinitions)
+        {
+            GetTypes(typeDefinition.NestedTypes, definitions);
+
+            if (typeDefinition.IsInterface)
+            {
+                continue;
+            }
+            if (typeDefinition.IsEnum)
+            {
+                continue;
+            }
+            definitions.Add(typeDefinition);
+
+        }
+    }
 }

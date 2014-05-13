@@ -18,5 +18,6 @@ public partial class ModuleWeaver
         ProcessAssembly();
         ConvertCallToCallVirtual();
         ConvertNewToOverrides();
+        ConvertFunctionPointer();
     }
 }
