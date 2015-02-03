@@ -6,9 +6,12 @@ Change all members to `virtual` as part of your build.
 
 [Introduction to Fody](http://github.com/Fody/Fody/wiki/SampleUsage)
 
-# Nuget package
+## The nuget package  [![NuGet Status](http://img.shields.io/nuget/v/Virtuosity.Fody.svg?style=flat)](https://www.nuget.org/packages/Virtuosity.Fody/)
 
-There is a nuget package available here http://nuget.org/packages/Virtuosity.Fody 
+https://nuget.org/packages/Virtuosity.Fody/
+
+    PM> Install-Package Virtuosity.Fody
+    
 
 # What it actually does to your assembly
 
