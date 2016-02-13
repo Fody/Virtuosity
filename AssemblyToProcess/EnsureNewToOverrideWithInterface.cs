@@ -8,17 +8,11 @@ namespace EnsureNewToOverrideWithInterface
 
     public class BaseImplementation : IInterface
     {
-        public string Property
-        {
-            get { return "Alpha"; }
-        }
+        public string Property => "Alpha";
     }
 
     public class ChildImplementation : BaseImplementation
     {
-        public string Property
-        {
-            get { return "Bravo"; }
-        }
+        public string Property => "Bravo";
     }
 }
