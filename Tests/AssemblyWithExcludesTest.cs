@@ -10,7 +10,7 @@ public class AssemblyWithExcludesTest
     [Test]
     public void Simple()
     {
-        var beforeAssemblyPath = Path.GetFullPath(@"..\..\..\AssemblyWithExcludes\bin\Debug\AssemblyWithExcludes.dll");
+        var beforeAssemblyPath = Path.GetFullPath(Path.Combine(TestContext.CurrentContext.TestDirectory, @"..\..\..\AssemblyWithExcludes\bin\Debug\AssemblyWithExcludes.dll"));
 #if (!DEBUG)
         beforeAssemblyPath = beforeAssemblyPath.Replace("Debug", "Release");
 #endif

@@ -2,9 +2,7 @@
 using System.Linq;
 using System.Reflection;
 using NUnit.Framework;
-using Scalpel;
 
-[Remove]
 public static class VirtualTester
 {
 
@@ -14,7 +12,7 @@ public static class VirtualTester
         //dynamic instance = FormatterServices.GetUninitializedObject(type);
         return Activator.CreateInstance(type);
     }
- 
+
     public static void EnsureMembersAreVirtual(string className, Assembly assembly, params string[] memberNames)
     {
         foreach (var memberName in memberNames)

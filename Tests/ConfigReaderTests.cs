@@ -79,13 +79,13 @@ Foo.Bar
     }
 
     [Test]
-    [ExpectedException(ExpectedMessage = "Either configure IncludeNamespaces OR ExcludeNamespaces, not both.")]
     public void IncludeAndExcludeNamespacesAttribute()
     {
         var xElement = XElement.Parse(@"
 <Virtuosity IncludeNamespaces='Bar' ExcludeNamespaces='Foo'/>");
         var moduleWeaver = new ModuleWeaver { Config = xElement };
-        moduleWeaver.ReadConfig();
+        var exception = Assert.Throws<WeavingException>(() => moduleWeaver.ReadConfig());
+        Assert.AreEqual("Either configure IncludeNamespaces OR ExcludeNamespaces, not both.", exception.Message);
     }
 
     [Test]

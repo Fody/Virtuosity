@@ -10,7 +10,7 @@ public class AssemblyWithIncludesTest
     [Test]
     public void Simple()
     {
-        var beforeAssemblyPath = Path.GetFullPath(@"..\..\..\AssemblyWithIncludes\bin\Debug\AssemblyWithIncludes.dll");
+        var beforeAssemblyPath = Path.GetFullPath(Path.Combine(TestContext.CurrentContext.TestDirectory, @"..\..\..\AssemblyWithIncludes\bin\Debug\AssemblyWithIncludes.dll"));
 #if (!DEBUG)
         beforeAssemblyPath = beforeAssemblyPath.Replace("Debug", "Release");
 #endif

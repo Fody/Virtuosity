@@ -33,7 +33,7 @@ namespace VirtualVsSealedTests
         }
 
 	    [Test]
-        [Ignore]
+        [Explicit]
 		public void NonEmptyMethodTest()
 		{
 
