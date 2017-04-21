@@ -8,28 +8,27 @@ using NUnit.Framework;
 public class IntegrationTests
 {
     Assembly assembly;
-    string beforeAssemblyPath;
-    string afterAssemblyPath;
 
     public IntegrationTests()
     {
-        beforeAssemblyPath = Path.GetFullPath(Path.Combine(TestContext.CurrentContext.TestDirectory, @"..\..\..\AssemblyToProcess\bin\Debug\AssemblyToProcess.dll"));
+        var beforeAssemblyPath = Path.GetFullPath(Path.Combine(TestContext.CurrentContext.TestDirectory, @"..\..\..\AssemblyToProcess\bin\Debug\AssemblyToProcess.dll"));
 #if (!DEBUG)
-
         beforeAssemblyPath = beforeAssemblyPath.Replace("Debug", "Release");
 #endif
 
-        afterAssemblyPath = beforeAssemblyPath.Replace(".dll", "2.dll");
+        var afterAssemblyPath = beforeAssemblyPath.Replace(".dll", "2.dll");
         File.Copy(beforeAssemblyPath, afterAssemblyPath, true);
 
-        var moduleDefinition = ModuleDefinition.ReadModule(afterAssemblyPath);
-        var weavingTask = new ModuleWeaver
+        using (var moduleDefinition = ModuleDefinition.ReadModule(beforeAssemblyPath))
         {
-            ModuleDefinition = moduleDefinition,
-        };
+            var weavingTask = new ModuleWeaver
+            {
+                ModuleDefinition = moduleDefinition,
+            };
 
-        weavingTask.Execute();
-        moduleDefinition.Write(afterAssemblyPath);
+            weavingTask.Execute();
+            moduleDefinition.Write(afterAssemblyPath);
+        }
 
         assembly = Assembly.LoadFile(afterAssemblyPath);
     }
@@ -39,10 +38,11 @@ public class IntegrationTests
     {
         VirtualTester.EnsureMembersAreVirtual("MethodsAndPropertiesAreMarkedAsVirtualClass", assembly, "Method1", "Property1");
     }
+
     [Test]
     public void NonAbstractMethodsAndPropertiesOnAbstractClassAreMarkedAsVirtual()
     {
-		VirtualTester.EnsureMembersAreVirtual("AbstractClass", assembly, "NonAbstractMethod", "NonAbstractProperty");
+        VirtualTester.EnsureMembersAreVirtual("AbstractClass", assembly, "NonAbstractMethod", "NonAbstractProperty");
     }
 
     [Test]
@@ -51,6 +51,7 @@ public class IntegrationTests
         VirtualTester.EnsureMembersAreSealed("InterfaceSealedClass", assembly, "Property");
         VirtualTester.EnsureMembersAreVirtual("InterfaceSealedClass", assembly, "Property");
     }
+
     [Test]
     public void EnsureNewToOverrideWithInterface()
     {
@@ -66,6 +67,7 @@ public class IntegrationTests
         VirtualTester.EnsureMembersAreVirtual("InterfaceVirtualClass", assembly, "Property");
         VirtualTester.EnsureMembersAreNotSealed("InterfaceVirtualClass", assembly, "Property");
     }
+
     [Test]
     public void EnsurePropertyCallIsRedirected()
     {
@@ -89,4 +91,3 @@ public class IntegrationTests
 #endif
 
 }
-

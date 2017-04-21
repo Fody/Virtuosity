@@ -18,15 +18,17 @@ public class AssemblyWithExcludesTest
         var afterAssemblyPath = beforeAssemblyPath.Replace(".dll", "2.dll");
         File.Copy(beforeAssemblyPath, afterAssemblyPath, true);
 
-        var moduleDefinition = ModuleDefinition.ReadModule(afterAssemblyPath);
-        var weavingTask = new ModuleWeaver
+        using (var moduleDefinition = ModuleDefinition.ReadModule(beforeAssemblyPath))
         {
-            ModuleDefinition = moduleDefinition,
-            ExcludeNamespaces = new List<string> { "ExcludeNamespace"}
-        };
+            var weavingTask = new ModuleWeaver
+            {
+                ModuleDefinition = moduleDefinition,
+                ExcludeNamespaces = new List<string> { "ExcludeNamespace"}
+            };
 
-        weavingTask.Execute();
-        moduleDefinition.Write(afterAssemblyPath);
+            weavingTask.Execute();
+            moduleDefinition.Write(afterAssemblyPath);
+        }
 
         var assembly = Assembly.LoadFile(afterAssemblyPath);
 

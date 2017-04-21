@@ -1,23 +1,14 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Reflection;
 using NUnit.Framework;
 
 public static class VirtualTester
 {
 
-    public static dynamic GetInstance(this Assembly assembly, string className)
-    {
-        var type = assembly.GetType(className, true);
-        //dynamic instance = FormatterServices.GetUninitializedObject(type);
-        return Activator.CreateInstance(type);
-    }
-
     public static void EnsureMembersAreVirtual(string className, Assembly assembly, params string[] memberNames)
     {
         foreach (var memberName in memberNames)
         {
-
             var type = assembly.GetType(className, true);
 
             var member = type.GetMember(memberName, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly).First();
@@ -39,7 +30,6 @@ public static class VirtualTester
     {
         foreach (var memberName in memberNames)
         {
-
             var type = assembly.GetType(className, true);
 
             var member = type.GetMember(memberName, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly).First();
@@ -63,7 +53,6 @@ public static class VirtualTester
     {
         foreach (var memberName in memberNames)
         {
-
             var type = assembly.GetType(className, true);
 
             var member = type.GetMember(memberName, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly).First();
@@ -87,13 +76,12 @@ public static class VirtualTester
     {
         foreach (var memberName in memberNames)
         {
-
             var type = assembly.GetType(className, true);
 
             var member = type.GetMember(memberName, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly).First();
             if (member is MethodInfo)
             {
-                var methodInfo = (member as MethodInfo);
+                var methodInfo = member as MethodInfo;
                 Assert.IsFalse(methodInfo.IsFinal, methodInfo.Name);
             }
             if (member is PropertyInfo)
@@ -106,6 +94,5 @@ public static class VirtualTester
             }
         }
     }
-
 
 }

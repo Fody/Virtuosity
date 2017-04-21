@@ -16,7 +16,10 @@ Bar
 Foo.Bar
     </ExcludeNamespaces>
 </Virtuosity>");
-        var moduleWeaver = new ModuleWeaver { Config = xElement };
+        var moduleWeaver = new ModuleWeaver
+        {
+            Config = xElement
+        };
         moduleWeaver.ReadConfig();
         Assert.AreEqual("Foo", moduleWeaver.ExcludeNamespaces[0]);
         Assert.AreEqual("Bar", moduleWeaver.ExcludeNamespaces[1]);
@@ -28,7 +31,10 @@ Foo.Bar
     {
         var xElement = XElement.Parse(@"
 <Virtuosity ExcludeNamespaces='Foo|Bar'/>");
-        var moduleWeaver = new ModuleWeaver { Config = xElement };
+        var moduleWeaver = new ModuleWeaver
+        {
+            Config = xElement
+        };
         moduleWeaver.ReadConfig();
         Assert.AreEqual("Foo", moduleWeaver.ExcludeNamespaces[0]);
         Assert.AreEqual("Bar", moduleWeaver.ExcludeNamespaces[1]);
@@ -43,7 +49,10 @@ Foo.Bar
 Bar
     </ExcludeNamespaces>
 </Virtuosity>");
-        var moduleWeaver = new ModuleWeaver { Config = xElement };
+        var moduleWeaver = new ModuleWeaver
+        {
+            Config = xElement
+        };
         moduleWeaver.ReadConfig();
         Assert.AreEqual("Foo", moduleWeaver.ExcludeNamespaces[0]);
         Assert.AreEqual("Bar", moduleWeaver.ExcludeNamespaces[1]);
@@ -60,7 +69,10 @@ Bar
 Foo.Bar
     </IncludeNamespaces>
 </Virtuosity>");
-        var moduleWeaver = new ModuleWeaver { Config = xElement };
+        var moduleWeaver = new ModuleWeaver
+        {
+            Config = xElement
+        };
         moduleWeaver.ReadConfig();
         Assert.AreEqual("Foo", moduleWeaver.IncludeNamespaces[0]);
         Assert.AreEqual("Bar", moduleWeaver.IncludeNamespaces[1]);
@@ -72,7 +84,10 @@ Foo.Bar
     {
         var xElement = XElement.Parse(@"
 <Virtuosity IncludeNamespaces='Foo|Bar'/>");
-        var moduleWeaver = new ModuleWeaver { Config = xElement };
+        var moduleWeaver = new ModuleWeaver
+        {
+            Config = xElement
+        };
         moduleWeaver.ReadConfig();
         Assert.AreEqual("Foo", moduleWeaver.IncludeNamespaces[0]);
         Assert.AreEqual("Bar", moduleWeaver.IncludeNamespaces[1]);
@@ -83,7 +98,10 @@ Foo.Bar
     {
         var xElement = XElement.Parse(@"
 <Virtuosity IncludeNamespaces='Bar' ExcludeNamespaces='Foo'/>");
-        var moduleWeaver = new ModuleWeaver { Config = xElement };
+        var moduleWeaver = new ModuleWeaver
+        {
+            Config = xElement
+        };
         var exception = Assert.Throws<WeavingException>(() => moduleWeaver.ReadConfig());
         Assert.AreEqual("Either configure IncludeNamespaces OR ExcludeNamespaces, not both.", exception.Message);
     }
@@ -97,7 +115,10 @@ Foo.Bar
 Bar
     </IncludeNamespaces>
 </Virtuosity>");
-        var moduleWeaver = new ModuleWeaver { Config = xElement };
+        var moduleWeaver = new ModuleWeaver
+        {
+            Config = xElement
+        };
         moduleWeaver.ReadConfig();
         Assert.AreEqual("Foo", moduleWeaver.IncludeNamespaces[0]);
         Assert.AreEqual("Bar", moduleWeaver.IncludeNamespaces[1]);
