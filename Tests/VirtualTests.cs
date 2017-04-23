@@ -52,7 +52,7 @@ namespace VirtualVsSealedTests
             }
             virtualWatch.Stop();
             Console.WriteLine("virtual total {0}ms", virtualWatch.ElapsedMilliseconds);
-            Console.WriteLine("per call virtual {0}ns", ((float) virtualWatch.ElapsedMilliseconds * 1000000) / iterations);
+            Console.WriteLine("per call virtual {0}ns", (float) virtualWatch.ElapsedMilliseconds * 1000000 / iterations);
 
 
             var sealedWatch = new Stopwatch();
@@ -63,7 +63,7 @@ namespace VirtualVsSealedTests
             }
             sealedWatch.Stop();
             Console.WriteLine("sealed total {0}ms", sealedWatch.ElapsedMilliseconds);
-            Console.WriteLine("per call sealed {0}ns", ((float) sealedWatch.ElapsedMilliseconds * 1000000) / iterations);
+            Console.WriteLine("per call sealed {0}ns", (float) sealedWatch.ElapsedMilliseconds * 1000000 / iterations);
         }
 
     }

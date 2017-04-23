@@ -14,7 +14,7 @@ public static class VirtualTester
             var member = type.GetMember(memberName, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly).First();
             if (member is MethodInfo)
             {
-                var methodInfo = (member as MethodInfo);
+                var methodInfo = member as MethodInfo;
                 Assert.IsTrue(methodInfo.IsVirtual, methodInfo.Name);
             }
             if (member is PropertyInfo)
@@ -35,7 +35,7 @@ public static class VirtualTester
             var member = type.GetMember(memberName, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly).First();
             if (member is MethodInfo)
             {
-                var methodInfo = (member as MethodInfo);
+                var methodInfo = member as MethodInfo;
                 Assert.IsFalse(methodInfo.IsVirtual, methodInfo.Name);
             }
             if (member is PropertyInfo)
@@ -58,7 +58,7 @@ public static class VirtualTester
             var member = type.GetMember(memberName, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly).First();
             if (member is MethodInfo)
             {
-                var methodInfo = (member as MethodInfo);
+                var methodInfo = member as MethodInfo;
                 Assert.IsTrue(methodInfo.IsFinal, methodInfo.Name);
             }
             if (member is PropertyInfo)
