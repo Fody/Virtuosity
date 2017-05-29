@@ -6,6 +6,8 @@ Change all members to `virtual` as part of your build.
 
 [Introduction to Fody](http://github.com/Fody/Fody/wiki/SampleUsage)
 
+[![NuGet Status](https://img.shields.io/gitter/room/fody/fody.svg?style=flat)](https://gitter.im/Fody/Fody)
+
 ## The nuget package  [![NuGet Status](http://img.shields.io/nuget/v/Virtuosity.Fody.svg?style=flat)](https://www.nuget.org/packages/Virtuosity.Fody/)
 
 https://nuget.org/packages/Virtuosity.Fody/
@@ -123,5 +125,3 @@ If you forget to mark something as virtual these tools will not work and fail in
 ## Icon
 
 <a href="http://thenounproject.com/noun/russian-doll/#icon-No1964" target="_blank">Russian Doll</a> designed by <a href="http://thenounproject.com/Simon Child" target="_blank">Simon Child</a> from The Noun Project
-
-
