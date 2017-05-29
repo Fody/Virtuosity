@@ -1,3 +1,7 @@
+[![Chat on Gitter](https://img.shields.io/gitter/room/fody/fody.svg?style=flat)](https://gitter.im/Fody)
+[![NuGet Status](http://img.shields.io/nuget/v/Virtuosity.Fody.svg?style=flat)](https://www.nuget.org/packages/Virtuosity.Fody/)
+
+
 ## This is an add-in for [Fody](https://github.com/Fody/Fody/) 
 
 ![Icon](https://raw.github.com/Fody/Virtuosity/master/Icons/package_icon.png)
@@ -6,9 +10,8 @@ Change all members to `virtual` as part of your build.
 
 [Introduction to Fody](http://github.com/Fody/Fody/wiki/SampleUsage)
 
-[![NuGet Status](https://img.shields.io/gitter/room/fody/fody.svg?style=flat)](https://gitter.im/Fody/Fody)
 
-## The nuget package  [![NuGet Status](http://img.shields.io/nuget/v/Virtuosity.Fody.svg?style=flat)](https://www.nuget.org/packages/Virtuosity.Fody/)
+## The nuget package
 
 https://nuget.org/packages/Virtuosity.Fody/
 
@@ -17,19 +20,25 @@ https://nuget.org/packages/Virtuosity.Fody/
 
 # What it actually does to your assembly
 
+
 ### Selects all members that meet the following criteria
   * from non `sealed` classes
   * non `static` members
   * non `abstract` members
   * non `private` members
   * non `virtual` members
+  
 
 ### Change them to `virtual`
+
+
 ### For all (now `virtual`) members 
   * change calls to those members to `virtual`
   * change `new` modifiers to `override` modifiers
 
+
 # Configuration Options
+
 
 ## Exclude types with an Attribute
 
@@ -49,9 +58,11 @@ So your class will look like this
         ...
     }
 
+
 ## Include or exclude namespaces
  
 These config options are access by modifying the `Virtuosity` node in FodyWeavers.xml 
+
  
 ### ExcludeNamespaces
 
@@ -73,7 +84,7 @@ As an element with items delimited by a newline.
 Or as a attribute with items delimited by a pipe `|`.
 
     <Virtuosity ExcludeNamespaces='Foo|Bar'/>
-    
+
         
 ## IncludeNamespaces
 
@@ -119,7 +130,6 @@ Well all these tools make use of [DynamicProxy](http://www.castleproject.org/pro
  * [NSubstitute:Some operations on non virtual members should throw an exception](http://groups.google.com/group/nsubstitute/browse_thread/thread/407cb0408ce97bfd)
 
 If you forget to mark something as virtual these tools will not work and fail in sometimes very unhelpful ways. So rather than having to remember to use the virtual keyword Virtuosity means members will be virtual by default.
-
 
 
 ## Icon
