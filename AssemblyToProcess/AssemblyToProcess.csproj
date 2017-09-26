@@ -62,6 +62,7 @@
     <Compile Include="EnsureNewToOverrideWithInterface.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="CallVirtualizedMethodInClassNestedInGenericClass.cs" />
     <Compile Include="IInterface.cs">
       <SubType>Code</SubType>
     </Compile>
