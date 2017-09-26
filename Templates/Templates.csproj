@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractClass.cs" />
+    <Compile Include="CallVirtualizedMethodInClassNestedInGenericClass.cs" />
     <Compile Include="MethodRedirectionBaseClass.cs" />
     <Compile Include="MethodRedirectionChildClass.cs" />
     <Compile Include="MethodsAndPropertiesAreMarkedAsVirtualClass.cs" />

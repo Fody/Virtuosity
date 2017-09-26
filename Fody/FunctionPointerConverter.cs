@@ -42,28 +42,49 @@ public partial class ModuleWeaver
                 continue;
             }
 
-            foreach (var method in MethodCache)
+            var methodToLdvirtfn = DetermineMethodTo_Ldvirtftn(instruction.Operand);
+            if (methodToLdvirtfn == null)
             {
-                if (instruction.Operand != method)
-                {
-                    continue;
-                }
-                if (!foundUsageInMethod)
-                {
-                    methodDefinition.Body.SimplifyMacros();
-                    foundUsageInMethod = true;
-                }
-                index++;
-                instructions.Insert(index, Instruction.Create(OpCodes.Ldvirtftn, method));
-                instruction.OpCode = OpCodes.Dup;
-                instruction.Operand = null;
-                break;
+                continue;
             }
+
+            if (!foundUsageInMethod)
+            {
+                methodDefinition.Body.SimplifyMacros();
+                foundUsageInMethod = true;
+            }
+
+            index++;
+            instructions.Insert(index, Instruction.Create(OpCodes.Ldvirtftn, methodToLdvirtfn));
+            instruction.OpCode = OpCodes.Dup;
+            instruction.Operand = null;
         }
 
         if (foundUsageInMethod)
         {
             methodDefinition.Body.OptimizeMacros();
         }
+    }
+
+    MethodReference DetermineMethodTo_Ldvirtftn(object operand)
+    {
+        foreach (var method in MethodCache)
+        {
+            if (operand == method)
+            {
+                return method;
+            }
+
+            if (operand is MethodReference operandMethodReference)
+            {
+                var operandMethodDefinition = operandMethodReference.Resolve();
+                if (operandMethodDefinition == method)
+                {
+                    return operandMethodReference;
+                }
+            }
+        }
+
+        return null;
     }
 }
