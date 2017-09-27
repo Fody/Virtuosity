@@ -58,6 +58,7 @@
     <Compile Include="MethodRedirectionBaseClass.cs" />
     <Compile Include="MethodRedirectionChildClass.cs" />
     <Compile Include="MethodsAndPropertiesAreMarkedAsVirtualClass.cs" />
+    <Compile Include="NewProperty.cs" />
     <Compile Include="SealedClass.cs" />
     <Compile Include="SimpleMethodRedirectionClass.cs" />
     <Compile Include="SimplePropertyRedirectionClass.cs" />

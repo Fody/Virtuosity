@@ -1,42 +1,11 @@
 ﻿using System;
-using System.IO;
 using System.Reflection;
-using Mono.Cecil;
 using NUnit.Framework;
 // ReSharper disable PrivateFieldCanBeConvertedToLocalVariable
 
 [TestFixture]
-public class IntegrationTests
+public class IntegrationTests : IntegrationTestsBase
 {
-    Assembly assembly;
-
-    string beforeAssemblyPath;
-    string afterAssemblyPath;
-
-    public IntegrationTests()
-    {
-        beforeAssemblyPath = Path.GetFullPath(Path.Combine(TestContext.CurrentContext.TestDirectory, @"..\..\..\AssemblyToProcess\bin\Debug\AssemblyToProcess.dll"));
-#if (!DEBUG)
-        beforeAssemblyPath = beforeAssemblyPath.Replace("Debug", "Release");
-#endif
-
-        afterAssemblyPath = beforeAssemblyPath.Replace(".dll", "2.dll");
-        File.Copy(beforeAssemblyPath, afterAssemblyPath, true);
-
-        using (var moduleDefinition = ModuleDefinition.ReadModule(beforeAssemblyPath))
-        {
-            var weavingTask = new ModuleWeaver
-            {
-                ModuleDefinition = moduleDefinition,
-            };
-
-            weavingTask.Execute();
-            moduleDefinition.Write(afterAssemblyPath);
-        }
-
-        assembly = Assembly.LoadFile(afterAssemblyPath);
-    }
-
     [Test]
     public void MethodsAndPropertiesAreMarkedAsVirtual()
     {
@@ -93,5 +62,4 @@ public class IntegrationTests
         Verifier.Verify(beforeAssemblyPath,afterAssemblyPath);
     }
 #endif
-
 }

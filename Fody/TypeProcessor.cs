@@ -41,10 +41,6 @@ public partial class ModuleWeaver
         {
             return;
         }
-        if (method.IsVirtual)
-        {
-            return;
-        }
         if (method.IsPrivate)
         {
             return;

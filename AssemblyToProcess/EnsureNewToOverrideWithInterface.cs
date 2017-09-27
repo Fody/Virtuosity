@@ -13,6 +13,8 @@ namespace EnsureNewToOverrideWithInterface
 
     public class ChildImplementation : BaseImplementation
     {
+        #pragma warning disable 108, 114
         public string Property => "Bravo";
+        #pragma warning restore 108, 114
     }
 }

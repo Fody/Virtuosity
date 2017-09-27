@@ -60,8 +60,10 @@
     <Compile Include="AssemblyWithIncludesTest.cs" />
     <Compile Include="ConfigReaderTests.cs" />
     <Compile Include="IntegrationTests.cs" />
+    <Compile Include="IntegrationTestsBase.cs" />
     <Compile Include="LineMatcherTest.cs" />
     <Compile Include="NamespaceReaderTest.cs" />
+    <Compile Include="NewPropertyIntegrationTests.cs" />
     <Compile Include="Verifier.cs" />
     <Compile Include="VirtualTester.cs" />
     <Compile Include="VirtualTests.cs" />

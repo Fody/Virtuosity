@@ -81,6 +81,7 @@
     <Compile Include="MethodsAndPropertiesAreMarkedAsVirtualClass.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="NewProperty.cs" />
     <Compile Include="PropertyRedirectionBaseClass.cs">
       <SubType>Code</SubType>
     </Compile>

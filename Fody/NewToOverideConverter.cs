@@ -73,13 +73,36 @@ public partial class ModuleWeaver
         {
             return;
         }
-        var definition = baseMethods.FirstOrDefault(x =>
-                                                    x.Name == methodDefinition.Name
-                                                    && x.MethodReturnType.ReturnType == methodDefinition.MethodReturnType.ReturnType);
+        var definition = baseMethods.FirstOrDefault(baseMethod =>
+                                                    HaveSameMethodSignature(methodDefinition, baseMethod));
         if (definition == null)
         {
             return;
         }
         methodDefinition.IsNewSlot = false;
+    }
+
+    static bool HaveSameMethodSignature(MethodDefinition md1, MethodDefinition md2)
+    {
+        if (md1.Name != md2.Name
+            || md1.MethodReturnType.ReturnType != md2.MethodReturnType.ReturnType)
+        {
+            return false;
+        }
+
+        if (md1.Parameters.Count != md2.Parameters.Count)
+        {
+            return false;
+        }
+
+        for (int i = 0; i < md1.Parameters.Count; i++)
+        {
+            if (md1.Parameters[i].ParameterType != md2.Parameters[i].ParameterType)
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 }
