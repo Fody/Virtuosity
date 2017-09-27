@@ -63,6 +63,7 @@
     <Compile Include="IntegrationTestsBase.cs" />
     <Compile Include="LineMatcherTest.cs" />
     <Compile Include="NamespaceReaderTest.cs" />
+    <Compile Include="SerializationCallbacksIntegrationTests.cs" />
     <Compile Include="NewPropertyIntegrationTests.cs" />
     <Compile Include="Verifier.cs" />
     <Compile Include="VirtualTester.cs" />

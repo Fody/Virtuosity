@@ -1,4 +1,5 @@
-﻿using Mono.Cecil;
+﻿using System.Linq;
+using Mono.Cecil;
 
 public partial class ModuleWeaver
 {
@@ -45,8 +46,22 @@ public partial class ModuleWeaver
         {
             return;
         }
+
+        if (MethodIsSerializationCallback(method))
+        {
+            return;
+        }
+
         AddMethodToCache(method);
         method.IsVirtual = true;
         method.IsNewSlot = true;
+    }
+
+    bool MethodIsSerializationCallback(MethodDefinition method)
+    {
+        return method.CustomAttributes.ContainsAttribute("OnSerializingAttribute")
+               || method.CustomAttributes.ContainsAttribute("OnSerializedAttribute")
+               || method.CustomAttributes.ContainsAttribute("OnDeserializingAttribute")
+               || method.CustomAttributes.ContainsAttribute("OnDeserializedAttribute");
     }
 }
