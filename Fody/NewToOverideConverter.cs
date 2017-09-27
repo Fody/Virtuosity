@@ -95,7 +95,7 @@ public partial class ModuleWeaver
             return false;
         }
 
-        for (int i = 0; i < md1.Parameters.Count; i++)
+        for (var i = 0; i < md1.Parameters.Count; i++)
         {
             if (md1.Parameters[i].ParameterType != md2.Parameters[i].ParameterType)
             {

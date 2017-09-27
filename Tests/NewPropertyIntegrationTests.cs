@@ -40,6 +40,68 @@ public class NewPropertyIntegrationTests : IntegrationTestsBase
     }
 
     [Test]
+    public void Get_OnBaseClass_MustBeNewVirtualMethod()
+    {
+        AssertIsNewVirtualMethod(baseProperty.GetMethod);
+    }
+
+    [Test]
+    public void Set_OnBaseClass_MustBeNewVirtualMethod()
+    {
+        AssertIsNewVirtualMethod(baseProperty.SetMethod);
+    }
+
+    [Test]
+    public void Get_WhenPropertyUsesSameBackingFieldAsBase_MustBeNewVirtualMethod()
+    {
+        AssertIsNewVirtualMethod(derivedSameBackingProperty.GetMethod);
+    }
+
+    [Test]
+    public void Set_WhenPropertyUsesSameBackingFieldAsBase_MustBeNewVirtualMethod()
+    {
+        AssertIsNewVirtualMethod(derivedSameBackingProperty.SetMethod);
+    }
+
+
+    [Test]
+    public void Get_WhenPropertyUsesOtherBackingFieldAsBase_MustBeNewVirtualMethod()
+    {
+        AssertIsNewVirtualMethod(derivedNewProperty.GetMethod);
+    }
+
+    [Test]
+    public void Set_WhenPropertyUsesOtherBackingFieldAsBase_MustBeNewVirtualMethod()
+    {
+        AssertIsNewVirtualMethod(derivedNewProperty.SetMethod);
+    }
+
+    [Test]
+    public void Get_Generic_WhenPropertyUsesSameBackingFieldAsBase_MustBeNewVirtualMethod()
+    {
+        AssertIsNewVirtualMethod(genericDerivedSameBackingProperty.GetMethod);
+    }
+
+    [Test]
+    public void Set_Generic_WhenPropertyUsesSameBackingFieldAsBase_MustBeNewVirtualMethod()
+    {
+        AssertIsNewVirtualMethod(genericDerivedSameBackingProperty.SetMethod);
+    }
+
+
+    [Test]
+    public void Get_Generic_WhenPropertyUsesOtherBackingFieldAsBase_MustBeNewVirtualMethod()
+    {
+        AssertIsNewVirtualMethod(genericDerivedNewProperty.GetMethod);
+    }
+
+    [Test]
+    public void Set_Generic_WhenPropertyUsesOtherBackingFieldAsBase_MustBeNewVirtualMethod()
+    {
+        AssertIsNewVirtualMethod(genericDerivedNewProperty.SetMethod);
+    }
+
+    [Test]
     public void Get_WhenPropertyUsesSameBackingFieldAsBase_MustGetValueFromBase()
     {
         var expectedDateTimeOffset = DateTimeOffset.UtcNow;
@@ -156,5 +218,16 @@ public class NewPropertyIntegrationTests : IntegrationTestsBase
             .GetProperties(PropertyBindingFlags)
             .Where(x => x.DeclaringType == type)
             .SingleOrDefault(x => string.Compare(x.Name, name, StringComparison.InvariantCultureIgnoreCase) == 0);
+    }
+
+    private static void AssertIsNewVirtualMethod(MethodInfo method)
+    {
+        Assert.IsFalse(method.IsAbstract, $"{method.Name} IsAbstract");
+        Assert.IsTrue(method.IsHideBySig, $"{method.Name} IsHideBySig");
+        Assert.IsTrue(method.IsSpecialName, $"{method.Name} IsSpecialName");
+        Assert.IsTrue(method.IsVirtual, $"{method.Name} IsVirtual");
+        Assert.IsFalse(method.IsStatic, $"{method.Name} IsStatic");
+        Assert.IsFalse(method.IsFinal, $"{method.Name} IsFinal");
+        Assert.IsTrue(method.Attributes.HasFlag(MethodAttributes.NewSlot), $"{method.Name} HasFlag(NewSlot)");
     }
 }
