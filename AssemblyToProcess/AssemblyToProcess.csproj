@@ -53,6 +53,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractClass.cs">
@@ -81,6 +82,8 @@
     <Compile Include="MethodsAndPropertiesAreMarkedAsVirtualClass.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="NewProperty.cs" />
+    <Compile Include="SerializationCallbackMethods.cs" />
     <Compile Include="PropertyRedirectionBaseClass.cs">
       <SubType>Code</SubType>
     </Compile>
