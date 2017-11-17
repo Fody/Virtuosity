@@ -1,5 +1,5 @@
 using System;
 
-    public class DoNotVirtualizeAttribute : Attribute
-    {
-    }
+public class DoNotVirtualizeAttribute : Attribute
+{
+}

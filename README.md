@@ -4,7 +4,7 @@
 
 ## This is an add-in for [Fody](https://github.com/Fody/Fody/) 
 
-![Icon](https://raw.github.com/Fody/Virtuosity/master/Icons/package_icon.png)
+![Icon](https://raw.github.com/Fody/Virtuosity/master/package_icon.png)
 
 Change all members to `virtual` as part of your build.
 
@@ -22,19 +22,21 @@ https://nuget.org/packages/Virtuosity.Fody/
 
 
 ### Selects all members that meet the following criteria
-  * from non `sealed` classes
-  * non `static` members
-  * non `abstract` members
-  * non `private` members
-  * non `virtual` members
-  
+
+ * from non `sealed` classes
+ * non `static` members
+ * non `abstract` members
+ * non `private` members
+ * non `virtual` members
+
 
 ### Change them to `virtual`
 
 
 ### For all (now `virtual`) members 
-  * change calls to those members to `virtual`
-  * change `new` modifiers to `override` modifiers
+
+ * change calls to those members to `virtual`
+ * change `new` modifiers to `override` modifiers
 
 
 # Configuration Options
@@ -80,12 +82,12 @@ As an element with items delimited by a newline.
             Bar
         </ExcludeNamespaces>
     </Virtuosity>
-    
+
 Or as a attribute with items delimited by a pipe `|`.
 
     <Virtuosity ExcludeNamespaces='Foo|Bar'/>
 
-        
+
 ## IncludeNamespaces
 
 A list of namespaces to include.

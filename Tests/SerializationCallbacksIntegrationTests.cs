@@ -6,11 +6,11 @@ using NUnit.Framework;
 public class SerializationCallbacksIntegrationTests : IntegrationTestsBase
 {
     readonly Type type;
-    
+
     public SerializationCallbacksIntegrationTests()
     {
         // when this fails with a TypeLoadException with message Type 'SerializationCallbackMethods' in assembly '(...)'
-        // has method '(...)' which is either static, virtual, abstract or generic, but is marked as being a serialization callback 
+        // has method '(...)' which is either static, virtual, abstract or generic, but is marked as being a serialization callback
         // then that's because one of the callbacks has been virtualized
         type = assembly.GetType("SerializationCallbackMethods", true);
     }

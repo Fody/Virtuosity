@@ -3,7 +3,6 @@ using Mono.Cecil;
 
 public partial class ModuleWeaver
 {
-
     public void AddMethodToCache(MethodDefinition methodDefinition)
     {
         MethodCache.Add(methodDefinition);

@@ -11,8 +11,8 @@
     {
         public new virtual DateTimeOffset Value
         {
-            get { return (DateTimeOffset) base.Value; }
-            set { base.Value = value; }
+            get => (DateTimeOffset) base.Value;
+            set => base.Value = value;
         }
     }
 
@@ -20,8 +20,8 @@
     {
         public new virtual T Value
         {
-            get { return (T) base.Value; }
-            set { base.Value = value; }
+            get => (T) base.Value;
+            set => base.Value = value;
         }
     }
 }
