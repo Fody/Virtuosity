@@ -7,37 +7,12 @@ using NUnit.Framework;
 
 public static class Verifier
 {
-    public static void Verify(string beforeAssemblyPath, string afterAssemblyPath)
-    {
-        var before = Validate(beforeAssemblyPath);
-        var after = Validate(afterAssemblyPath);
-        var message = $"Failed processing {Path.GetFileName(afterAssemblyPath)}\r\n{after}";
-        Assert.AreEqual(TrimLineNumbers(before), TrimLineNumbers(after), message);
-    }
+    static string exePath;
 
-    static string Validate(string assemblyPath2)
-    {
-        var exePath = GetPathToPeVerify();
-        if (!File.Exists(exePath))
-        {
-            return string.Empty;
-        }
-        using (var process = Process.Start(new ProcessStartInfo(exePath, "\"" + assemblyPath2 + "\"")
-        {
-            RedirectStandardOutput = true,
-            UseShellExecute = false,
-            CreateNoWindow = true
-        }))
-        {
-            process.WaitForExit(10000);
-            return process.StandardOutput.ReadToEnd().Trim().Replace(assemblyPath2, "");
-        }
-    }
-
-    static string GetPathToPeVerify()
+    static Verifier()
     {
         var windowsSdk = Environment.ExpandEnvironmentVariables(@"%programfiles(x86)%\Microsoft SDKs\Windows\");
-        var exePath = Directory.EnumerateFiles(windowsSdk, "PEVerify.exe",SearchOption.AllDirectories)
+        exePath = Directory.EnumerateFiles(windowsSdk, "PEVerify.exe", SearchOption.AllDirectories)
             .OrderBy(x =>
             {
                 var fileVersionInfo = FileVersionInfo.GetVersionInfo(x);
@@ -48,7 +23,28 @@ public static class Verifier
         {
             throw new Exception("Could not find path to PEVerify");
         }
-        return exePath;
+    }
+
+    public static void Verify(string beforeAssemblyPath, string afterAssemblyPath)
+    {
+        var before = Validate(beforeAssemblyPath);
+        var after = Validate(afterAssemblyPath);
+        var message = $"Failed processing {Path.GetFileName(afterAssemblyPath)}\r\n{after}";
+        Assert.AreEqual(TrimLineNumbers(before), TrimLineNumbers(after), message);
+    }
+
+    static string Validate(string assemblyPath2)
+    {
+        using (var process = Process.Start(new ProcessStartInfo(exePath, $"\"{assemblyPath2}\"")
+        {
+            RedirectStandardOutput = true,
+            UseShellExecute = false,
+            CreateNoWindow = true
+        }))
+        {
+            process.WaitForExit(10000);
+            return process.StandardOutput.ReadToEnd().Trim().Replace(assemblyPath2, "");
+        }
     }
 
     static string TrimLineNumbers(string foo)
