@@ -4,7 +4,6 @@ using NUnit.Framework;
 
 public static class VirtualTester
 {
-
     public static void EnsureMembersAreVirtual(string className, Assembly assembly, params string[] memberNames)
     {
         foreach (var memberName in memberNames)
@@ -94,5 +93,4 @@ public static class VirtualTester
             }
         }
     }
-
 }

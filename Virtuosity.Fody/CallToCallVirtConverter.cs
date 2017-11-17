@@ -3,7 +3,6 @@ using Mono.Cecil.Cil;
 
 public partial class ModuleWeaver
 {
-
     public void ConvertCallToCallVirtual()
     {
         foreach (var type in ModuleDefinition.GetTypes())

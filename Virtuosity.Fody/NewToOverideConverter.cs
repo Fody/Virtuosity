@@ -4,7 +4,6 @@ using Mono.Cecil;
 
 public partial class ModuleWeaver
 {
-
     public void ConvertNewToOverrides()
     {
         foreach (var type in ModuleDefinition.GetTypes())

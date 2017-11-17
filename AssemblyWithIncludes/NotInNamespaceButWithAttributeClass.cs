@@ -5,7 +5,6 @@ namespace ExcludeNamespace
     {
         public void Method()
         {
-            
         }
     }
 }

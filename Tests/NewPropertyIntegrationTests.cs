@@ -22,13 +22,13 @@ public class NewPropertyIntegrationTests : IntegrationTestsBase
 
     readonly PropertyInfo genericDerivedSameBackingProperty;
     readonly PropertyInfo genericDerivedNewProperty;
-    
+
     public NewPropertyIntegrationTests()
     {
         var baseType = assembly.GetType("NewProperty.BaseProperty", true);
         derivedType = assembly.GetType("NewProperty.DateTimeOffsetProperty", true);
         genericDerivedType = assembly.GetType("NewProperty.GenericProperty`1", true).MakeGenericType(typeof(DateTimeOffset));
-        
+
         baseProperty = GetPropertyInfoFromSpecificType(baseType, NewProperty_SameBackingField_PropertyName);
         baseNewProperty = GetPropertyInfoFromSpecificType(baseType, NewProperty_DifferentBackingField_PropertyName);
 
@@ -105,7 +105,7 @@ public class NewPropertyIntegrationTests : IntegrationTestsBase
     public void Get_WhenPropertyUsesSameBackingFieldAsBase_MustGetValueFromBase()
     {
         var expectedDateTimeOffset = DateTimeOffset.UtcNow;
-        
+
         dynamic instance = Activator.CreateInstance(derivedType);
 
         baseProperty.SetValue(instance, expectedDateTimeOffset);

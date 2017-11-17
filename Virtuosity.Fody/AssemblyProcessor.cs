@@ -2,7 +2,6 @@
 
 public partial class ModuleWeaver
 {
-
     public void ProcessAssembly()
     {
         foreach (var type in ModuleDefinition.GetAllClasses())

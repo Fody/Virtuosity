@@ -4,7 +4,6 @@ using Mono.Cecil.Rocks;
 
 public partial class ModuleWeaver
 {
-
     public void ConvertFunctionPointer()
     {
         foreach (var type in ModuleDefinition.GetAllClasses())
