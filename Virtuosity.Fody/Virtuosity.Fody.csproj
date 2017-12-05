@@ -2,16 +2,17 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net452;netcoreapp2.0</TargetFrameworks>
+    <DebugType>portable</DebugType>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <PackageReference Include="FodyCecil" Version="2.*" />
-    <PackageReference Include="PepitaPackage" Version="*" />
+    <PackageReference Include="PepitaPackage" Version="1.*" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
     <Compile Include="..\CommonAssemblyInfo.cs" />
   </ItemGroup>
-  <Target Name="BuildNugets" AfterTargets="CopyFilesToOutputDirectory">
+  <Target Name="BuildNugets" AfterTargets="CopyFilesToOutputDirectory" Condition="'$(ConfigurationName)' == 'Release'">
     <ItemGroup>
       <FilesToDelete Include="$(SolutionDir)nugets\**\*.*" />
     </ItemGroup>

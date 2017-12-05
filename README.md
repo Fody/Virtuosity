@@ -11,14 +11,36 @@ Change all members to `virtual` as part of your build.
 [Introduction to Fody](http://github.com/Fody/Fody/wiki/SampleUsage)
 
 
-## The nuget package
+## Usage
 
-https://nuget.org/packages/Virtuosity.Fody/
+See also [Fody usage](https://github.com/Fody/Fody#usage).
 
-    PM> Install-Package Virtuosity.Fody
-    
 
-# What it actually does to your assembly
+### NuGet installation
+
+Install the [Virtuosity.Fody NuGet package](https://nuget.org/packages/Virtuosity.Fody/) and update the [Fody NuGet package](https://nuget.org/packages/Fody/):
+
+```
+PM> Install-Package Virtuosity.Fody
+PM> Update-Package Fody
+```
+
+The `Update-Package Fody` is required since NuGet always defaults to the oldest, and most buggy, version of any dependency.
+
+
+### Add to FodyWeavers.xml
+
+Add `<Virtuosity/>` to [FodyWeavers.xml](https://github.com/Fody/Fody#add-fodyweaversxml)
+
+```xml
+<?xml version="1.0" encoding="utf-8" ?>
+<Weavers>
+  <Virtuosity/>
+</Weavers>
+```
+
+
+## What it actually does to your assembly
 
 
 ### Selects all members that meet the following criteria
@@ -48,22 +70,26 @@ If for some reason you want to skip a specific class you can mark it with a `DoN
 
 Since no reference assembly is shipped with Virtuosity. Just add the below class to your assembly. Namespace does not matter.
 
-    public class DoNotVirtualizeAttribute : Attribute
-    {
-    }
+```
+public class DoNotVirtualizeAttribute : Attribute
+{
+}
+```
 
 So your class will look like this
 
-    [DoNotVirtualize]
-    public class ClassToSkip
-    {
-        ...
-    }
+```
+[DoNotVirtualize]
+public class ClassToSkip
+{
+    ...
+}
+```
 
 
 ## Include or exclude namespaces
  
-These config options are access by modifying the `Virtuosity` node in FodyWeavers.xml 
+These config options are access by modifying the `Virtuosity` node in FodyWeavers.xml
 
  
 ### ExcludeNamespaces
@@ -76,16 +102,20 @@ Can take two forms.
 
 As an element with items delimited by a newline.
 
-    <Virtuosity>
-        <ExcludeNamespaces>
-            Foo
-            Bar
-        </ExcludeNamespaces>
-    </Virtuosity>
+```xml
+<Virtuosity>
+    <ExcludeNamespaces>
+        Foo
+        Bar
+    </ExcludeNamespaces>
+</Virtuosity>
+```
 
 Or as a attribute with items delimited by a pipe `|`.
 
-    <Virtuosity ExcludeNamespaces='Foo|Bar'/>
+```xml
+<Virtuosity ExcludeNamespaces='Foo|Bar'/>
+```
 
 
 ## IncludeNamespaces
@@ -98,16 +128,20 @@ Can take two forms.
 
 As an element with items delimited by a newline.
 
-    <Virtuosity>
-        <IncludeNamespaces>
-            Foo
-            Bar
-        </IncludeNamespaces>
-    </Virtuosity>
-    
+```xml
+<Virtuosity>
+    <IncludeNamespaces>
+        Foo
+        Bar
+    </IncludeNamespaces>
+</Virtuosity>
+```
+
 Or as a attribute with items delimited by a pipe `|`.
 
-    <Virtuosity IncludeNamespaces='Foo|Bar'/>
+```xml
+<Virtuosity IncludeNamespaces='Foo|Bar'/>
+```
 
 
 # Why is this useful
