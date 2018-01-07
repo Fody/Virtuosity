@@ -1,46 +1,25 @@
 ﻿using System.Collections.Generic;
-using System.IO;
-using System.Reflection;
-using Mono.Cecil;
-using NUnit.Framework;
+using Fody;
+using Xunit;
 
-[TestFixture]
 public class AssemblyWithIncludesTest
 {
-    [Test]
+    [Fact]
     public void Simple()
     {
-        var beforeAssemblyPath = Path.Combine(TestContext.CurrentContext.TestDirectory, "AssemblyWithIncludes.dll");
-
-        var afterAssemblyPath = beforeAssemblyPath.Replace(".dll", "2.dll");
-        File.Copy(beforeAssemblyPath, afterAssemblyPath, true);
-
-        using (var moduleDefinition = ModuleDefinition.ReadModule(beforeAssemblyPath))
+        var weavingTask = new ModuleWeaver
         {
-            var weavingTask = new ModuleWeaver
-            {
-                ModuleDefinition = moduleDefinition,
-                IncludeNamespaces = new List<string> {"IncludeNamespace"}
-            };
-
-            weavingTask.Execute();
-            moduleDefinition.Write(afterAssemblyPath);
-        }
-
-        var assembly = Assembly.LoadFile(afterAssemblyPath);
-
+            IncludeNamespaces = new List<string> { "IncludeNamespace" }
+        };
+        var assembly = weavingTask.ExecuteTestRun("AssemblyWithIncludes.dll").Assembly;
         var excludeType = assembly.GetType("ExcludeNamespace.ExcludeClass");
-        Assert.IsFalse(excludeType.GetMethod("Method").IsVirtual);
+        Assert.False(excludeType.GetMethod("Method").IsVirtual);
         var includeType = assembly.GetType("IncludeNamespace.IncludeClass");
-        Assert.IsTrue(includeType.GetMethod("Method").IsVirtual);
+        Assert.True(includeType.GetMethod("Method").IsVirtual);
 
         var inNamespaceButWithAttributeType = assembly.GetType("IncludeNamespace.InNamespaceButWithAttributeClass");
-        Assert.IsFalse(inNamespaceButWithAttributeType.GetMethod("Method").IsVirtual);
+        Assert.False(inNamespaceButWithAttributeType.GetMethod("Method").IsVirtual);
         var notInNamespaceButWithAttributeType = assembly.GetType("ExcludeNamespace.NotInNamespaceButWithAttributeClass");
-        Assert.IsFalse(notInNamespaceButWithAttributeType.GetMethod("Method").IsVirtual);
-
-#if(DEBUG)
-        Verifier.Verify(beforeAssemblyPath, afterAssemblyPath);
-#endif
+        Assert.False(notInNamespaceButWithAttributeType.GetMethod("Method").IsVirtual);
     }
 }

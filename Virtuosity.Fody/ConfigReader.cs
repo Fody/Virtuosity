@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Xml.Linq;
 
 public partial class ModuleWeaver
 {
-    public XElement Config { get; set; }
     public List<string> IncludeNamespaces = new List<string>();
     public List<string> ExcludeNamespaces = new List<string>();
 
@@ -25,7 +23,6 @@ public partial class ModuleWeaver
         }
     }
 
-
     void ReadExcludes()
     {
         var excludeNamespacesAttribute = Config.Attribute("ExcludeNamespaces");
@@ -41,8 +38,12 @@ public partial class ModuleWeaver
         if (excludeNamespacesElement != null)
         {
             foreach (var item in excludeNamespacesElement.Value
-                                                         .Split(new[] {"\r\n", "\n"}, StringSplitOptions.RemoveEmptyEntries)
-                                                         .NonEmpty())
+                .Split(new[]
+                {
+                    "\r\n",
+                    "\n"
+                }, StringSplitOptions.RemoveEmptyEntries)
+                .NonEmpty())
             {
                 ExcludeNamespaces.Add(item);
             }
@@ -64,8 +65,12 @@ public partial class ModuleWeaver
         if (includeNamespacesElement != null)
         {
             foreach (var item in includeNamespacesElement.Value
-                                                         .Split(new[] {"\r\n", "\n"}, StringSplitOptions.RemoveEmptyEntries)
-                                                         .NonEmpty())
+                .Split(new[]
+                {
+                    "\r\n",
+                    "\n"
+                }, StringSplitOptions.RemoveEmptyEntries)
+                .NonEmpty())
             {
                 IncludeNamespaces.Add(item);
             }

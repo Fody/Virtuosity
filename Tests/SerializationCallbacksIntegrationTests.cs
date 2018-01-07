@@ -1,11 +1,19 @@
 ﻿using System;
 using System.Reflection;
-using NUnit.Framework;
+using Fody;
+using Xunit;
 
-[TestFixture]
-public class SerializationCallbacksIntegrationTests : IntegrationTestsBase
+public class SerializationCallbacksIntegrationTests
 {
-    readonly Type type;
+    Type type;
+    static Assembly assembly;
+
+    static SerializationCallbacksIntegrationTests()
+    {
+        var weavingTask = new ModuleWeaver();
+        assembly = weavingTask.ExecuteTestRun("AssemblyToProcess.dll",
+            assemblyName: nameof(SerializationCallbacksIntegrationTests)).Assembly;
+    }
 
     public SerializationCallbacksIntegrationTests()
     {
@@ -15,31 +23,31 @@ public class SerializationCallbacksIntegrationTests : IntegrationTestsBase
         type = assembly.GetType("SerializationCallbackMethods", true);
     }
 
-    [Test]
+    [Fact]
     public void Method_MarkedByOnSerializingAttribute_MustNotMakeVirtual()
     {
         AssertUnmodifiedMethod("Serializing");
     }
 
-    [Test]
+    [Fact]
     public void Method_MarkedByOnSerializedAttribute_MustNotMakeVirtual()
     {
         AssertUnmodifiedMethod("Serialized");
     }
 
-    [Test]
+    [Fact]
     public void Method_MarkedByOnDeserializingAttribute_MustNotMakeVirtual()
     {
         AssertUnmodifiedMethod("Deserializing");
     }
 
-    [Test]
+    [Fact]
     public void Method_MarkedByOnDeserializedAttribute_MustNotMakeVirtual()
     {
         AssertUnmodifiedMethod("Deserialized");
     }
 
-    [Test]
+    [Fact]
     public void MustBeAbleToInstanciateType()
     {
         Activator.CreateInstance(type);
@@ -49,13 +57,13 @@ public class SerializationCallbacksIntegrationTests : IntegrationTestsBase
     {
         var method = type.GetMethod(methodName);
 
-        Assert.IsFalse(method.IsAbstract, $"{method.Name} IsAbstract");
-        Assert.IsFalse(method.IsSpecialName, $"{method.Name} IsSpecialName");
-        Assert.IsFalse(method.IsVirtual, $"{method.Name} IsVirtual");
-        Assert.IsFalse(method.IsStatic, $"{method.Name} IsStatic");
-        Assert.IsFalse(method.IsFinal, $"{method.Name} IsFinal");
-        Assert.IsFalse(method.Attributes.HasFlag(MethodAttributes.NewSlot), $"{method.Name} HasFlag(NewSlot)");
-        Assert.IsTrue(method.IsHideBySig, $"{method.Name} IsHideBySig");
-        Assert.IsTrue(method.IsPublic, $"{method.Name} IsPublic");
+        Assert.False(method.IsAbstract, $"{method.Name} IsAbstract");
+        Assert.False(method.IsSpecialName, $"{method.Name} IsSpecialName");
+        Assert.False(method.IsVirtual, $"{method.Name} IsVirtual");
+        Assert.False(method.IsStatic, $"{method.Name} IsStatic");
+        Assert.False(method.IsFinal, $"{method.Name} IsFinal");
+        Assert.False(method.Attributes.HasFlag(MethodAttributes.NewSlot), $"{method.Name} HasFlag(NewSlot)");
+        Assert.True(method.IsHideBySig, $"{method.Name} IsHideBySig");
+        Assert.True(method.IsPublic, $"{method.Name} IsPublic");
     }
 }

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2009
+VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 15.0.26730.16
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Virtuosity.Fody", "Virtuosity.Fody\Virtuosity.Fody.csproj", "{C3578A7B-09A6-4444-9383-0DEAFA4958BD}"
 EndProject
@@ -14,6 +14,13 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssemblyWithIncludes", "AssemblyWithIncludes\AssemblyWithIncludes.csproj", "{1CC214B0-2BA8-474B-A585-24C195FCEAA7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{89ADCA0F-7A27-4B47-A83C-5F5D4FC267C3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E6149F2E-E148-4DE4-93E6-1CFD12B2DC2B}"
+	ProjectSection(SolutionItems) = preProject
+		Directory.Build.props = Directory.Build.props
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Virtuosity", "Virtuosity\Virtuosity.csproj", "{69277B03-45BB-44FD-8214-7D759B47609B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,6 +68,14 @@ Global
 		{89ADCA0F-7A27-4B47-A83C-5F5D4FC267C3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{89ADCA0F-7A27-4B47-A83C-5F5D4FC267C3}.Release|x86.ActiveCfg = Release|Any CPU
 		{89ADCA0F-7A27-4B47-A83C-5F5D4FC267C3}.Release|x86.Build.0 = Release|Any CPU
+		{69277B03-45BB-44FD-8214-7D759B47609B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69277B03-45BB-44FD-8214-7D759B47609B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69277B03-45BB-44FD-8214-7D759B47609B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{69277B03-45BB-44FD-8214-7D759B47609B}.Debug|x86.Build.0 = Debug|Any CPU
+		{69277B03-45BB-44FD-8214-7D759B47609B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69277B03-45BB-44FD-8214-7D759B47609B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69277B03-45BB-44FD-8214-7D759B47609B}.Release|x86.ActiveCfg = Release|Any CPU
+		{69277B03-45BB-44FD-8214-7D759B47609B}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

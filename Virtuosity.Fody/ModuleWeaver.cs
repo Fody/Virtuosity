@@ -1,17 +1,10 @@
-﻿using System;
-using Mono.Cecil;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Fody;
 
-public partial class ModuleWeaver
+public partial class ModuleWeaver:BaseModuleWeaver
 {
-    public Action<string> LogDebug { get; set; }
-    public ModuleDefinition ModuleDefinition { get; set; }
-
-    public ModuleWeaver()
-    {
-        LogDebug = s => { };
-    }
-
-    public void Execute()
+    public override void Execute()
     {
         ReadConfig();
         ProcessIncludesExcludes();
@@ -20,4 +13,11 @@ public partial class ModuleWeaver
         ConvertNewToOverrides();
         ConvertFunctionPointer();
     }
+
+    public override IEnumerable<string> GetAssembliesForScanning()
+    {
+        return Enumerable.Empty<string>();
+    }
+
+    public override bool ShouldCleanReference => true;
 }

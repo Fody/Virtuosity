@@ -1,52 +1,50 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using NUnit.Framework;
+using Xunit;
 
-[TestFixture]
 public class NamespaceReaderTest
 {
-    [Test]
+    [Fact]
     public void GetLines()
     {
         var namespaces = ModuleWeaver.GetLines(new List<string> { "Namespace1","Namespace2" }).ToList();
-        Assert.AreEqual("Namespace1", namespaces[0].Line);
-        Assert.AreEqual("Namespace2", namespaces[1].Line);
+        Assert.Equal("Namespace1", namespaces[0].Line);
+        Assert.Equal("Namespace2", namespaces[1].Line);
     }
 
-
-    [Test]
+    [Fact]
     public void BuildLineMatcherSimple()
     {
         var lineMatcher = ModuleWeaver.BuildLineMatcher("Namespace1");
-        Assert.AreEqual("Namespace1", lineMatcher.Line);
-        Assert.IsFalse(lineMatcher.StarStart);
-        Assert.IsFalse(lineMatcher.StarEnd);
+        Assert.Equal("Namespace1", lineMatcher.Line);
+        Assert.False(lineMatcher.StarStart);
+        Assert.False(lineMatcher.StarEnd);
     }
 
-    [Test]
+    [Fact]
     public void BuildLineMatcherStarStart()
     {
         var lineMatcher = ModuleWeaver.BuildLineMatcher("*Namespace1");
-        Assert.AreEqual("Namespace1", lineMatcher.Line);
-        Assert.IsTrue(lineMatcher.StarStart);
-        Assert.IsFalse(lineMatcher.StarEnd);
+        Assert.Equal("Namespace1", lineMatcher.Line);
+        Assert.True(lineMatcher.StarStart);
+        Assert.False(lineMatcher.StarEnd);
     }
 
-    [Test]
+    [Fact]
     public void BuildLineMatcherStarEnd()
     {
         var lineMatcher = ModuleWeaver.BuildLineMatcher("Namespace1*");
-        Assert.AreEqual("Namespace1", lineMatcher.Line);
-        Assert.IsFalse(lineMatcher.StarStart);
-        Assert.IsTrue(lineMatcher.StarEnd);
+        Assert.Equal("Namespace1", lineMatcher.Line);
+        Assert.False(lineMatcher.StarStart);
+        Assert.True(lineMatcher.StarEnd);
     }
 
-    [Test]
+    [Fact]
     public void BuildLineMatcherStarStartEnd()
     {
         var lineMatcher = ModuleWeaver.BuildLineMatcher("*Namespace1*");
-        Assert.AreEqual("Namespace1", lineMatcher.Line);
-        Assert.IsTrue(lineMatcher.StarStart);
-        Assert.IsTrue(lineMatcher.StarEnd);
+        Assert.Equal("Namespace1", lineMatcher.Line);
+        Assert.True(lineMatcher.StarStart);
+        Assert.True(lineMatcher.StarEnd);
     }
 }
