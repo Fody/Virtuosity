@@ -11,17 +11,17 @@ public class NewPropertyIntegrationTests
 
     const BindingFlags PropertyBindingFlags = BindingFlags.Public | BindingFlags.Instance;
 
-    readonly Type derivedType;
-    readonly Type genericDerivedType;
+    Type derivedType;
+    Type genericDerivedType;
 
-    readonly PropertyInfo baseProperty;
-    readonly PropertyInfo baseNewProperty;
+    PropertyInfo baseProperty;
+    PropertyInfo baseNewProperty;
 
-    readonly PropertyInfo derivedSameBackingProperty;
-    readonly PropertyInfo derivedNewProperty;
+    PropertyInfo derivedSameBackingProperty;
+    PropertyInfo derivedNewProperty;
 
-    readonly PropertyInfo genericDerivedSameBackingProperty;
-    readonly PropertyInfo genericDerivedNewProperty;
+    PropertyInfo genericDerivedSameBackingProperty;
+    PropertyInfo genericDerivedNewProperty;
 
     static Assembly assembly;
 

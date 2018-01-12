@@ -1,9 +1,9 @@
 ﻿using System.Xml.Linq;
+using Fody;
 using Xunit;
 
 public class ConfigReaderTests
 {
-
     [Fact]
     public void ExcludeNamespacesNode()
     {
@@ -122,5 +122,4 @@ Bar
         Assert.Equal("Foo", moduleWeaver.IncludeNamespaces[0]);
         Assert.Equal("Bar", moduleWeaver.IncludeNamespaces[1]);
     }
-
 }
