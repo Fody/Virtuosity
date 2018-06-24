@@ -48,7 +48,7 @@ public class SerializationCallbacksIntegrationTests
     }
 
     [Fact]
-    public void MustBeAbleToInstanciateType()
+    public void MustBeAbleToInstantiateType()
     {
         Activator.CreateInstance(type);
     }
