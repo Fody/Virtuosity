@@ -7,6 +7,7 @@
     <Authors>Simon Cropp</Authors>
     <Description>Fody add-in for changing all members to virtual.</Description>
     <PackageTags>Virtual, ILWeaving, Runtime Proxy, Mocking, Fody, Cecil</PackageTags>
+    <PackageOutputPath>$(SolutionDir)nugets</PackageOutputPath>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Fody" Version="4.0.2" PrivateAssets="None" />
