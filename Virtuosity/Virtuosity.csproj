@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net452;netstandard1.0</TargetFrameworks>
@@ -8,6 +8,9 @@
     <Description>Fody add-in for changing all members to virtual.</Description>
     <PackageTags>Virtual, ILWeaving, Runtime Proxy, Mocking, Fody, Cecil</PackageTags>
     <PackageOutputPath>$(SolutionDir)nugets</PackageOutputPath>
+    <PackageIconUrl>https://raw.githubusercontent.com/Fody/Virtuosity/master/master/package_icon.png</PackageIconUrl>
+    <PackageProjectUrl>http://github.com/Fody/Virtuosity</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Fody" Version="4.0.2" PrivateAssets="None" />
