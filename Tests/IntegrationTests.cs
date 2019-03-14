@@ -36,6 +36,12 @@ public class IntegrationTests
     }
 
     [Fact]
+    public void EnsureNested()
+    {
+        VirtualTester.EnsureMembersAreVirtual("EnsureNested.Outer+Inner", assembly, "Property");
+    }
+
+    [Fact]
     public void EnsureNewToOverrideWithInterface()
     {
         var child = assembly.GetType("EnsureNewToOverrideWithInterface.ChildImplementation");
