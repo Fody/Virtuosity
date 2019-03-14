@@ -6,90 +6,88 @@ public static class VirtualTester
 {
     public static void EnsureMembersAreVirtual(string className, Assembly assembly, params string[] memberNames)
     {
+        var type = assembly.GetType(className, true);
+
         foreach (var memberName in memberNames)
         {
-            var type = assembly.GetType(className, true);
-
             var member = type.GetMember(memberName, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly).First();
-            if (member is MethodInfo)
+            if (member is MethodInfo methodInfo)
             {
-                var methodInfo = member as MethodInfo;
                 Assert.True(methodInfo.IsVirtual, methodInfo.Name);
             }
-            if (member is PropertyInfo)
+
+            if (member is PropertyInfo propertyInfo)
             {
-                var propertyInfo = member as PropertyInfo;
-                Assert.True(propertyInfo.GetSetMethod().IsVirtual, propertyInfo.Name);
-                Assert.True(propertyInfo.GetGetMethod().IsVirtual, propertyInfo.Name);
+                var setMethod = propertyInfo.GetSetMethod();
+                Assert.True(setMethod != null && setMethod.IsVirtual, propertyInfo.Name);
+                var getMethod = propertyInfo.GetGetMethod();
+                Assert.True(getMethod != null && getMethod.IsVirtual, propertyInfo.Name);
             }
         }
     }
 
     public static void EnsureMembersAreNotVirtual(string className, Assembly assembly, params string[] memberNames)
     {
+        var type = assembly.GetType(className, true);
+
         foreach (var memberName in memberNames)
         {
-            var type = assembly.GetType(className, true);
-
             var member = type.GetMember(memberName, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly).First();
-            if (member is MethodInfo)
+            if (member is MethodInfo methodInfo)
             {
-                var methodInfo = member as MethodInfo;
                 Assert.False(methodInfo.IsVirtual, methodInfo.Name);
             }
-            if (member is PropertyInfo)
+
+            if (member is PropertyInfo propertyInfo)
             {
-                var propertyInfo = member as PropertyInfo;
                 var setMethod = propertyInfo.GetSetMethod();
-                Assert.False(setMethod.IsVirtual, propertyInfo.Name);
+                Assert.False(setMethod != null && setMethod.IsVirtual, propertyInfo.Name);
                 var getMethod = propertyInfo.GetGetMethod();
-                Assert.False(getMethod.IsVirtual, propertyInfo.Name);
+                Assert.False(getMethod != null && getMethod.IsVirtual, propertyInfo.Name);
             }
         }
     }
 
     public static void EnsureMembersAreSealed(string className, Assembly assembly, params string[] memberNames)
     {
+        var type = assembly.GetType(className, true);
+
         foreach (var memberName in memberNames)
         {
-            var type = assembly.GetType(className, true);
-
             var member = type.GetMember(memberName, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly).First();
-            if (member is MethodInfo)
+            if (member is MethodInfo methodInfo)
             {
-                var methodInfo = member as MethodInfo;
                 Assert.True(methodInfo.IsFinal, methodInfo.Name);
             }
-            if (member is PropertyInfo)
+
+            if (member is PropertyInfo propertyInfo)
             {
-                var propertyInfo = member as PropertyInfo;
                 var setMethod = propertyInfo.GetSetMethod();
-                Assert.True(setMethod.IsFinal, propertyInfo.Name);
+                Assert.True(setMethod != null && setMethod.IsFinal, propertyInfo.Name);
                 var getMethod = propertyInfo.GetGetMethod();
-                Assert.True(getMethod.IsFinal, propertyInfo.Name);
+                Assert.True(getMethod != null && getMethod.IsFinal, propertyInfo.Name);
             }
         }
     }
 
     public static void EnsureMembersAreNotSealed(string className, Assembly assembly, params string[] memberNames)
     {
+        var type = assembly.GetType(className, true);
+
         foreach (var memberName in memberNames)
         {
-            var type = assembly.GetType(className, true);
-
             var member = type.GetMember(memberName, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly).First();
-            if (member is MethodInfo)
+            if (member is MethodInfo methodInfo)
             {
-                var methodInfo = member as MethodInfo;
                 Assert.False(methodInfo.IsFinal, methodInfo.Name);
             }
-            if (member is PropertyInfo)
+
+            if (member is PropertyInfo propertyInfo)
             {
-                var propertyInfo = member as PropertyInfo;
                 var setMethod = propertyInfo.GetSetMethod();
-                Assert.False(setMethod.IsFinal, propertyInfo.Name);
+                Assert.False(setMethod != null && setMethod.IsFinal, propertyInfo.Name);
                 var getMethod = propertyInfo.GetGetMethod();
-                Assert.False(getMethod.IsFinal, propertyInfo.Name);
+                Assert.False(getMethod != null && getMethod.IsFinal, propertyInfo.Name);
             }
         }
     }
