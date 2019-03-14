@@ -19,9 +19,16 @@ public static class VirtualTester
             if (member is PropertyInfo propertyInfo)
             {
                 var setMethod = propertyInfo.GetSetMethod();
-                Assert.True(setMethod != null && setMethod.IsVirtual, propertyInfo.Name);
+                if (setMethod != null)
+                {
+                    Assert.True(setMethod.IsVirtual, propertyInfo.Name);
+                }
+
                 var getMethod = propertyInfo.GetGetMethod();
-                Assert.True(getMethod != null && getMethod.IsVirtual, propertyInfo.Name);
+                if (getMethod != null)
+                {
+                    Assert.True(getMethod.IsVirtual, propertyInfo.Name);
+                }
             }
         }
     }
@@ -41,9 +48,16 @@ public static class VirtualTester
             if (member is PropertyInfo propertyInfo)
             {
                 var setMethod = propertyInfo.GetSetMethod();
-                Assert.False(setMethod != null && setMethod.IsVirtual, propertyInfo.Name);
+                if (setMethod != null)
+                {
+                    Assert.False(setMethod.IsVirtual, propertyInfo.Name);
+                }
+
                 var getMethod = propertyInfo.GetGetMethod();
-                Assert.False(getMethod != null && getMethod.IsVirtual, propertyInfo.Name);
+                if (getMethod != null)
+                {
+                    Assert.False(getMethod.IsVirtual, propertyInfo.Name);
+                }
             }
         }
     }
@@ -63,9 +77,16 @@ public static class VirtualTester
             if (member is PropertyInfo propertyInfo)
             {
                 var setMethod = propertyInfo.GetSetMethod();
-                Assert.True(setMethod != null && setMethod.IsFinal, propertyInfo.Name);
+                if (setMethod != null)
+                {
+                    Assert.True(setMethod.IsFinal, propertyInfo.Name);
+                }
+
                 var getMethod = propertyInfo.GetGetMethod();
-                Assert.True(getMethod != null && getMethod.IsFinal, propertyInfo.Name);
+                if (getMethod != null)
+                {
+                    Assert.True(getMethod.IsFinal, propertyInfo.Name);
+                }
             }
         }
     }
@@ -85,9 +106,16 @@ public static class VirtualTester
             if (member is PropertyInfo propertyInfo)
             {
                 var setMethod = propertyInfo.GetSetMethod();
-                Assert.False(setMethod != null && setMethod.IsFinal, propertyInfo.Name);
+                if (setMethod != null)
+                {
+                    Assert.False(setMethod.IsFinal, propertyInfo.Name);
+                }
+
                 var getMethod = propertyInfo.GetGetMethod();
-                Assert.False(getMethod != null && getMethod.IsFinal, propertyInfo.Name);
+                if (getMethod != null)
+                {
+                    Assert.False(getMethod.IsFinal, propertyInfo.Name);
+                }
             }
         }
     }
