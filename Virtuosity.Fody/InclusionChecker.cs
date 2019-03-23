@@ -13,14 +13,22 @@ public partial class ModuleWeaver
         if (ExcludeNamespaces.Any())
         {
             lineMatchers = GetLines(ExcludeNamespaces).ToList();
-            ShouldIncludeType = definition => lineMatchers.All(lineMatcher => !lineMatcher.Match(definition.Namespace)) && !ContainsIgnoreAttribute(definition);
+            ShouldIncludeType = type =>
+            {
+                return lineMatchers.All(lineMatcher => !lineMatcher.Match(type.Namespace)) &&
+                       !ContainsIgnoreAttribute(type);
+            };
             return;
         }
 
         if (IncludeNamespaces.Any())
         {
             lineMatchers = GetLines(IncludeNamespaces).ToList();
-            ShouldIncludeType = definition => lineMatchers.Any(lineMatcher => lineMatcher.Match(definition.Namespace)) && !ContainsIgnoreAttribute(definition);
+            ShouldIncludeType = type =>
+            {
+                return lineMatchers.Any(lineMatcher => lineMatcher.Match(type.Namespace)) &&
+                       !ContainsIgnoreAttribute(type);
+            };
             return;
         }
 
