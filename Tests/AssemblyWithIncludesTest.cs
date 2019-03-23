@@ -21,8 +21,8 @@ public class AssemblyWithIncludesTest
     {
         assembly.EnsureMembersAreNotVirtual("ExcludeNamespace.ExcludeClass", "Method");
         assembly.EnsureMembersAreVirtual("IncludeNamespace.IncludeClass", "Method");
-        assembly.EnsureMembersAreNotVirtual("IncludeNamespace.InNamespaceButWithAttributeClass", "Method");
-        assembly.EnsureMembersAreNotVirtual("ExcludeNamespace.NotInNamespaceButWithAttributeClass", "Method");
+        assembly.EnsureMembersAreNotVirtual("IncludeNamespace.InNamespaceButWithAttribute", "Method");
+        assembly.EnsureMembersAreNotVirtual("ExcludeNamespace.NotInNamespaceButWithAttribute", "Method");
     }
     }
 }

@@ -1,7 +1,7 @@
 namespace IncludeNamespace
 {
     [DoNotVirtualize]
-    public class InNamespaceButWithAttributeClass
+    public class InNamespaceButWithAttribute
     {
         public void Method()
         {

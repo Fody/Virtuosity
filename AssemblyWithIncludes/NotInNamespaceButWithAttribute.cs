@@ -1,7 +1,7 @@
 namespace ExcludeNamespace
 {
     [DoNotVirtualize]
-    public class NotInNamespaceButWithAttributeClass
+    public class NotInNamespaceButWithAttribute
     {
         public void Method()
         {

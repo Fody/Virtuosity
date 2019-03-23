@@ -6,16 +6,17 @@ using Mono.Cecil;
 public partial class ModuleWeaver
 {
     public Func<TypeDefinition, bool> ShouldIncludeType;
-    List<LineMatcher> lineMatchers;
+    List<LineMatcher> matchers;
 
     public void ProcessIncludesExcludes()
     {
         if (ExcludeNamespaces.Any())
         {
-            lineMatchers = GetLines(ExcludeNamespaces).ToList();
+            matchers = GetLines(ExcludeNamespaces).ToList();
             ShouldIncludeType = type =>
             {
                 return lineMatchers.All(lineMatcher => !lineMatcher.Match(type.Namespace)) &&
+                return matchers.All(matcher => !matcher.Match(type.Namespace)) &&
                        !ContainsIgnoreAttribute(type);
             };
             return;
@@ -23,21 +24,24 @@ public partial class ModuleWeaver
 
         if (IncludeNamespaces.Any())
         {
-            lineMatchers = GetLines(IncludeNamespaces).ToList();
+            matchers = GetLines(IncludeNamespaces).ToList();
             ShouldIncludeType = type =>
             {
-                return lineMatchers.Any(lineMatcher => lineMatcher.Match(type.Namespace)) &&
+                return matchers.Any(lineMatcher => lineMatcher.Match(type.Namespace)) &&
                        !ContainsIgnoreAttribute(type);
             };
             return;
         }
 
-        ShouldIncludeType = definition => !ContainsIgnoreAttribute(definition);
+        ShouldIncludeType = type => !ContainsIgnoreAttribute(type);
     }
 
-    bool ContainsIgnoreAttribute(TypeDefinition typeDefinition)
     {
         return typeDefinition.CustomAttributes.ContainsAttribute("DoNotVirtualizeAttribute");
+    bool ContainsIgnoreAttribute(TypeDefinition type)
+    {
+        type = CheckNested(type);
+        return type.CustomAttributes.ContainsAttribute("DoNotVirtualizeAttribute");
     }
 
     public static IEnumerable<LineMatcher> GetLines(List<string> namespaces)
