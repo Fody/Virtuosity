@@ -9,6 +9,17 @@ public static class CecilExtensions
         return attributes.Any(attribute => attribute.Constructor.DeclaringType.Name == attributeName);
     }
 
+
+    public static string GetNamespace(this TypeDefinition type)
+    {
+        if (type.IsNested)
+        {
+            return type.DeclaringType.Namespace;
+        }
+
+        return type.Namespace;
+    }
+
     public static List<TypeDefinition> GetAllClasses(this ModuleDefinition moduleDefinition)
     {
         var definitions = new List<TypeDefinition>();
