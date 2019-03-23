@@ -15,6 +15,7 @@ public partial class ModuleWeaver
             matchers = GetLines(ExcludeNamespaces).ToList();
             ShouldIncludeType = type =>
             {
+                type = CheckNested(type);
                 return matchers.All(matcher => !matcher.Match(type.Namespace)) &&
                        !ContainsIgnoreAttribute(type);
             };
@@ -26,6 +27,7 @@ public partial class ModuleWeaver
             matchers = GetLines(IncludeNamespaces).ToList();
             ShouldIncludeType = type =>
             {
+                type = CheckNested(type);
                 return matchers.Any(lineMatcher => lineMatcher.Match(type.Namespace)) &&
                        !ContainsIgnoreAttribute(type);
             };
@@ -35,12 +37,29 @@ public partial class ModuleWeaver
         ShouldIncludeType = type => !ContainsIgnoreAttribute(type);
     }
 
+    TypeDefinition CheckNested(TypeDefinition type)
     {
-        return typeDefinition.CustomAttributes.ContainsAttribute("DoNotVirtualizeAttribute");
+        if (type.IsNested)
+        {
+            return type.DeclaringType;
+        }
+
+        return type;
+    }
+
     bool ContainsIgnoreAttribute(TypeDefinition type)
     {
-        type = CheckNested(type);
-        return type.CustomAttributes.ContainsAttribute("DoNotVirtualizeAttribute");
+        if (type.CustomAttributes.ContainsAttribute("DoNotVirtualizeAttribute"))
+        {
+            return true;
+        }
+
+        if (type.IsNested)
+        {
+            return type.DeclaringType.CustomAttributes.ContainsAttribute("DoNotVirtualizeAttribute");
+        }
+
+        return false;
     }
 
     public static IEnumerable<LineMatcher> GetLines(List<string> namespaces)
