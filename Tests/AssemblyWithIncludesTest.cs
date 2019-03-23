@@ -13,8 +13,7 @@ public class AssemblyWithIncludesTest
         {
             IncludeNamespaces = new List<string> { "IncludeNamespace" }
         };
-        assembly = weavingTask.ExecuteTestRun("AssemblyWithIncludes.dll",
-            assemblyName: nameof(IntegrationTests)).Assembly;
+        assembly = weavingTask.ExecuteTestRun("AssemblyWithIncludes.dll").Assembly;
     }
 
     [Fact]
