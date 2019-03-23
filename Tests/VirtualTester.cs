@@ -4,7 +4,7 @@ using Xunit;
 
 public static class VirtualTester
 {
-    public static void EnsureMembersAreVirtual(string className, Assembly assembly, params string[] memberNames)
+    public static void EnsureMembersAreVirtual(this Assembly assembly, string className, params string[] memberNames)
     {
         var type = assembly.GetType(className, true);
 
@@ -33,7 +33,7 @@ public static class VirtualTester
         }
     }
 
-    public static void EnsureMembersAreNotVirtual(string className, Assembly assembly, params string[] memberNames)
+    public static void EnsureMembersAreNotVirtual(this Assembly assembly, string className, params string[] memberNames)
     {
         var type = assembly.GetType(className, true);
 
@@ -62,7 +62,7 @@ public static class VirtualTester
         }
     }
 
-    public static void EnsureMembersAreSealed(string className, Assembly assembly, params string[] memberNames)
+    public static void EnsureMembersAreSealed(this Assembly assembly, string className, params string[] memberNames)
     {
         var type = assembly.GetType(className, true);
 
@@ -91,7 +91,7 @@ public static class VirtualTester
         }
     }
 
-    public static void EnsureMembersAreNotSealed(string className, Assembly assembly, params string[] memberNames)
+    public static void EnsureMembersAreNotSealed(this Assembly assembly, string className, params string[] memberNames)
     {
         var type = assembly.GetType(className, true);
 

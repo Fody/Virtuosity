@@ -20,10 +20,10 @@ public class AssemblyWithIncludesTest
     [Fact]
     public void Simple()
     {
-        VirtualTester.EnsureMembersAreNotVirtual("ExcludeNamespace.ExcludeClass", assembly, "Method");
-        VirtualTester.EnsureMembersAreVirtual("IncludeNamespace.IncludeClass", assembly, "Method");
-        VirtualTester.EnsureMembersAreNotVirtual("IncludeNamespace.InNamespaceButWithAttributeClass", assembly, "Method");
-        VirtualTester.EnsureMembersAreNotVirtual("ExcludeNamespace.NotInNamespaceButWithAttributeClass", assembly, "Method");
+        assembly.EnsureMembersAreNotVirtual("ExcludeNamespace.ExcludeClass", "Method");
+        assembly.EnsureMembersAreVirtual("IncludeNamespace.IncludeClass", "Method");
+        assembly.EnsureMembersAreNotVirtual("IncludeNamespace.InNamespaceButWithAttributeClass", "Method");
+        assembly.EnsureMembersAreNotVirtual("ExcludeNamespace.NotInNamespaceButWithAttributeClass", "Method");
     }
     }
 }

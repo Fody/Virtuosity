@@ -19,26 +19,26 @@ public class IntegrationTests
     [Fact]
     public void MethodsAndPropertiesAreMarkedAsVirtual()
     {
-        VirtualTester.EnsureMembersAreVirtual("MethodsAndPropertiesAreMarkedAsVirtualClass", assembly, "Method1", "Property1");
+        assembly.EnsureMembersAreVirtual("MethodsAndPropertiesAreMarkedAsVirtualClass", "Method1", "Property1");
     }
 
     [Fact]
     public void NonAbstractMethodsAndPropertiesOnAbstractClassAreMarkedAsVirtual()
     {
-        VirtualTester.EnsureMembersAreVirtual("AbstractClass", assembly, "NonAbstractMethod", "NonAbstractProperty");
+        assembly.EnsureMembersAreVirtual("AbstractClass", "NonAbstractMethod", "NonAbstractProperty");
     }
 
     [Fact]
     public void InterfaceSealedClass()
     {
-        VirtualTester.EnsureMembersAreSealed("InterfaceSealedClass", assembly, "Property");
-        VirtualTester.EnsureMembersAreVirtual("InterfaceSealedClass", assembly, "Property");
+        assembly.EnsureMembersAreSealed("InterfaceSealedClass", "Property");
+        assembly.EnsureMembersAreVirtual("InterfaceSealedClass", "Property");
     }
 
     [Fact]
     public void EnsureNested()
     {
-        VirtualTester.EnsureMembersAreVirtual("EnsureNested.Outer+Inner", assembly, "Property");
+        assembly.EnsureMembersAreVirtual("EnsureNested.Outer+Inner", "Property");
     }
 
     [Fact]
@@ -53,8 +53,8 @@ public class IntegrationTests
     [Fact]
     public void InterfaceVirtualClass()
     {
-        VirtualTester.EnsureMembersAreVirtual("InterfaceVirtualClass", assembly, "Property");
-        VirtualTester.EnsureMembersAreNotSealed("InterfaceVirtualClass", assembly, "Property");
+        assembly.EnsureMembersAreVirtual("InterfaceVirtualClass", "Property");
+        assembly.EnsureMembersAreNotSealed("InterfaceVirtualClass", "Property");
     }
 
     [Fact]
@@ -68,6 +68,6 @@ public class IntegrationTests
     [Fact]
     public void SealedNotMarkedVirtual()
     {
-        VirtualTester.EnsureMembersAreNotVirtual("SealedClass", assembly, "Method1", "Property1");
+        assembly.EnsureMembersAreNotVirtual("SealedClass", "Method1", "Property1");
     }
 }
