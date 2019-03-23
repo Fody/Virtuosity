@@ -12,6 +12,7 @@ public partial class ModuleWeaver:BaseModuleWeaver
         ConvertCallToCallVirtual();
         ConvertNewToOverrides();
         ConvertFunctionPointer();
+        CleanAttributes();
     }
 
     public override IEnumerable<string> GetAssembliesForScanning()

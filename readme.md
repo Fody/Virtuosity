@@ -64,9 +64,9 @@ Add `<Virtuosity/>` to [FodyWeavers.xml](https://github.com/Fody/Home/blob/maste
 
 ## Exclude types with an Attribute
 
-If for some reason you want to skip a specific class you can mark it with a `DoNotVirtualizeAttribute`. 
+To exclude a specific class you can mark it with a `DoNotVirtualizeAttribute`.
 
-Since no reference assembly is shipped with Virtuosity. Just add the below class to your assembly. Namespace does not matter.
+Add the below class to your assembly. Namespace does not matter.
 
 ```
 public class DoNotVirtualizeAttribute : Attribute

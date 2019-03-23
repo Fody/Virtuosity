@@ -1,5 +1,8 @@
+using Virtuosity;
+
 namespace ExcludeNamespace
 {
+
     [DoNotVirtualize]
     public class NotInNamespaceButWithAttribute
     {

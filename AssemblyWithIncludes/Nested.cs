@@ -1,4 +1,6 @@
-﻿namespace IncludeNamespace
+﻿using Virtuosity;
+
+namespace IncludeNamespace
 {
     public class Outer
     {

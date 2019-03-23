@@ -13,6 +13,7 @@
     <ProjectReference Include="..\AssemblyWithExcludes\AssemblyWithExcludes.csproj" />
     <ProjectReference Include="..\AssemblyWithIncludes\AssemblyWithIncludes.csproj" />
     <ProjectReference Include="..\Virtuosity.Fody\Virtuosity.Fody.csproj" />
+    <ProjectReference Include="..\Virtuosity\Virtuosity.csproj" />
     <ProjectReference Include="..\AssemblyToProcess\AssemblyToProcess.csproj" />
   </ItemGroup>
 </Project>

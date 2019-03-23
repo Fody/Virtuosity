@@ -1,4 +1,6 @@
-﻿namespace IncludeNamespace
+﻿using Virtuosity;
+
+namespace IncludeNamespace
 {
     public class Outer
     {
@@ -18,6 +20,8 @@
 
 namespace ExcludeNamespace
 {
+    using Virtuosity;
+
     public class Outer
     {
         public class Inner

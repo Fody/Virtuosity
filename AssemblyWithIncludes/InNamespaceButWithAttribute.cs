@@ -1,3 +1,5 @@
+using Virtuosity;
+
 namespace IncludeNamespace
 {
     [DoNotVirtualize]
