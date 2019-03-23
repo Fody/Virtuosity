@@ -15,7 +15,6 @@ public partial class ModuleWeaver
             matchers = GetLines(ExcludeNamespaces).ToList();
             ShouldIncludeType = type =>
             {
-                return lineMatchers.All(lineMatcher => !lineMatcher.Match(type.Namespace)) &&
                 return matchers.All(matcher => !matcher.Match(type.Namespace)) &&
                        !ContainsIgnoreAttribute(type);
             };
