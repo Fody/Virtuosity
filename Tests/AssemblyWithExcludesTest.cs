@@ -1,26 +1,27 @@
 ﻿using System.Collections.Generic;
+using System.Reflection;
 using Fody;
 using Xunit;
 
 public class AssemblyWithExcludesTest
 {
-    [Fact]
-    public void Simple()
+    static Assembly assembly;
+
+    static AssemblyWithExcludesTest()
     {
         var weavingTask = new ModuleWeaver
         {
             ExcludeNamespaces = new List<string> { "ExcludeNamespace" }
         };
-        var assembly = weavingTask.ExecuteTestRun("AssemblyWithExcludes.dll").Assembly;
+        assembly = weavingTask.ExecuteTestRun("AssemblyWithExcludes.dll").Assembly;
+    }
 
-        var excludeType = assembly.GetType("ExcludeNamespace.ExcludeClass");
-        Assert.False(excludeType.GetMethod("Method").IsVirtual);
-        var includeType = assembly.GetType("IncludeNamespace.IncludeClass");
-        Assert.True(includeType.GetMethod("Method").IsVirtual);
-
-        var inNamespaceButWithAttributeType = assembly.GetType("IncludeNamespace.InNamespaceButWithAttributeClass");
-        Assert.False(inNamespaceButWithAttributeType.GetMethod("Method").IsVirtual);
-        var notInNamespaceButWithAttributeType = assembly.GetType("ExcludeNamespace.NotInNamespaceButWithAttributeClass");
-        Assert.False(notInNamespaceButWithAttributeType.GetMethod("Method").IsVirtual);
+    [Fact]
+    public void Simple()
+    {
+        assembly.EnsureMembersAreNotVirtual("ExcludeNamespace.ExcludeClass", "Method");
+        assembly.EnsureMembersAreVirtual("IncludeNamespace.IncludeClass", "Method");
+        assembly.EnsureMembersAreNotVirtual("IncludeNamespace.InNamespaceButWithAttributeClass", "Method");
+        assembly.EnsureMembersAreNotVirtual("ExcludeNamespace.NotInNamespaceButWithAttributeClass", "Method");
     }
 }
