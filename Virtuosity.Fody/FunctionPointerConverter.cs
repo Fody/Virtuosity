@@ -6,7 +6,7 @@ public partial class ModuleWeaver
 {
     public void ConvertFunctionPointer()
     {
-        foreach (var type in ModuleDefinition.GetAllClasses())
+        foreach (var type in allClasses)
         {
             foreach (var methodDefinition in type.Methods)
             {

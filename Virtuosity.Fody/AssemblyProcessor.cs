@@ -4,7 +4,7 @@ public partial class ModuleWeaver
 {
     public void ProcessAssembly()
     {
-        foreach (var type in ModuleDefinition.GetAllClasses())
+        foreach (var type in allClasses)
         {
             if (!ShouldInclude(type))
             {
