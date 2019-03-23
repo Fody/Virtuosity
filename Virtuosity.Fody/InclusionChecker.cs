@@ -16,12 +16,14 @@ public partial class ModuleWeaver
             ShouldIncludeType = definition => lineMatchers.All(lineMatcher => !lineMatcher.Match(definition.Namespace)) && !ContainsIgnoreAttribute(definition);
             return;
         }
+
         if (IncludeNamespaces.Any())
         {
             lineMatchers = GetLines(IncludeNamespaces).ToList();
             ShouldIncludeType = definition => lineMatchers.Any(lineMatcher => lineMatcher.Match(definition.Namespace)) && !ContainsIgnoreAttribute(definition);
             return;
         }
+
         ShouldIncludeType = definition => !ContainsIgnoreAttribute(definition);
     }
 
@@ -37,7 +39,6 @@ public partial class ModuleWeaver
 
     public static LineMatcher BuildLineMatcher(string line)
     {
-
         var starStart = false;
         if (line.StartsWith("*"))
         {
@@ -54,11 +55,11 @@ public partial class ModuleWeaver
 
         ValidateLine(line);
         return new LineMatcher
-                   {
-                       Line = line,
-                       StarStart = starStart,
-                       StarEnd = starEnd,
-                   };
+        {
+            Line = line,
+            StarStart = starStart,
+            StarEnd = starEnd,
+        };
     }
 
     // ReSharper disable once UnusedParameter.Local
@@ -68,6 +69,7 @@ public partial class ModuleWeaver
         {
             throw new Exception("Namespaces can't only start or end with '*'.");
         }
+
         if (line.Contains(" "))
         {
             throw new Exception("Namespaces cant contain spaces.");
