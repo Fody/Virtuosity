@@ -24,5 +24,13 @@ public class AssemblyWithIncludesTest
         assembly.EnsureMembersAreNotVirtual("IncludeNamespace.InNamespaceButWithAttribute", "Method");
         assembly.EnsureMembersAreNotVirtual("ExcludeNamespace.NotInNamespaceButWithAttribute", "Method");
     }
+
+    [Fact]
+    public void EnsureNested()
+    {
+        assembly.EnsureMembersAreVirtual("IncludeNamespace.Outer+Inner", "Property");
+        assembly.EnsureMembersAreNotVirtual("ExcludeNamespace.Outer+Inner", "Property");
+        assembly.EnsureMembersAreNotVirtual("IncludeNamespace.Outer+InnerWithAttribute", "Method");
+        assembly.EnsureMembersAreNotVirtual("ExcludeNamespace.Outer+InnerWithAttribute", "Method");
     }
 }
