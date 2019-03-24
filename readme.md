@@ -146,16 +146,16 @@ Or as a attribute with items delimited by a pipe `|`.
 
 When using one of the following tools
 
- * [NHibernate](http://community.jboss.org/wiki/NHibernateforNET)
- * [Rhino Mocks](http://hibernatingrhinos.com/oss/rhino-mocks)
- * [Moq](http://code.google.com/p/moq/)
- * [Ninject](http://ninject.org/)
- * [NSubstitute](http://nsubstitute.github.com/)
- * [Entity Framework](http://www.asp.net/entity-framework/)
+ * [NHibernate](https://nhibernate.info/)
+ * [Rhino Mocks](https://hibernatingrhinos.com/oss/rhino-mocks)
+ * [Moq](https://github.com/moq/moq)
+ * [Ninject](http://www.ninject.org/)
+ * [NSubstitute](https://nsubstitute.github.io/)
+ * [Entity Framework](https://docs.microsoft.com/en-us/ef/)
 
 All these tools make use of [DynamicProxy](http://www.castleproject.org/projects/dynamicproxy/). DynamicProxy allows for runtime interception of members. The one caveat is that all intercepted members must be virtual. This means that that all the above tools, to some extent, require members to be virtual.
 
- * [http://msdn.microsoft.com/en-us/library/gg715120(v=vs.103).aspx] "One of the requirements for lazy loading proxy creation is that the navigation properties must be declared virtual"
+ * [EF: Lazy Loading](https://docs.microsoft.com/en-us/ef/ef6/querying/related-data#lazy-loading) "When using POCO entity types, lazy loading is achieved by creating instances of derived proxy types and then overriding virtual properties to add the loading hook"
  * [Must Everything Be Virtual With NHibernate?](http://davybrion.com/blog/2009/03/must-everything-be-virtual-with-nhibernate/)
  * [RhinoMocks Why methods need to be declared virtual](http://groups.google.com/group/RhinoMocks/browse_thread/thread/a2cb93f1ba8d4735/37d377ddb92cb729?lnk=gst&q=virtual)
  * [Moq My method needs to be virtual?](http://groups.google.com/group/moqdisc/browse_thread/thread/2e02e367d017f274)
