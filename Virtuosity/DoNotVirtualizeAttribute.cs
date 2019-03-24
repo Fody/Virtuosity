@@ -3,10 +3,10 @@ using System;
 namespace Virtuosity
 {
     /// <summary>
-    /// Used to exclude a class form vitualization.
+    /// Used to exclude a class form virtualization.
     /// </summary>
     [AttributeUsage(AttributeTargets.Class)]
-    public class DoNotVirtualizeAttribute :
+    public sealed class DoNotVirtualizeAttribute :
         Attribute
     {
     }
