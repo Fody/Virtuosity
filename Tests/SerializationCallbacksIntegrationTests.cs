@@ -2,8 +2,10 @@
 using System.Reflection;
 using Fody;
 using Xunit;
+using Xunit.Abstractions;
 
-public class SerializationCallbacksIntegrationTests
+public class SerializationCallbacksIntegrationTests :
+    XunitLoggingBase
 {
     Type type;
     static Assembly assembly;
@@ -15,7 +17,8 @@ public class SerializationCallbacksIntegrationTests
             assemblyName: nameof(SerializationCallbacksIntegrationTests)).Assembly;
     }
 
-    public SerializationCallbacksIntegrationTests()
+    public SerializationCallbacksIntegrationTests(ITestOutputHelper output) :
+        base(output)
     {
         // when this fails with a TypeLoadException with message Type 'SerializationCallbackMethods' in assembly '(...)'
         // has method '(...)' which is either static, virtual, abstract or generic, but is marked as being a serialization callback
