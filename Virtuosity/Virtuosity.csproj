@@ -9,7 +9,7 @@
     <PackageTags>Virtual, ILWeaving, Runtime Proxy, Mocking, Fody, Cecil</PackageTags>
     <PackageOutputPath>$(SolutionDir)nugets</PackageOutputPath>
     <PackageIconUrl>https://raw.githubusercontent.com/Fody/Virtuosity/master/package_icon.png</PackageIconUrl>
-    <PackageProjectUrl>http://github.com/Fody/Virtuosity</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/Fody/Virtuosity</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
   <ItemGroup>
