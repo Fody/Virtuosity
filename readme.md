@@ -167,4 +167,4 @@ When a member is not virtual these tools will not work and fail in sometimes ver
 
 ## Icon
 
-<a href="http://thenounproject.com/noun/russian-doll/#icon-No1964" target="_blank">Russian Doll</a> designed by <a href="http://thenounproject.com/Simon Child" target="_blank">Simon Child</a> from The Noun Project
+[Russian Doll](https://thenounproject.com/noun/russian-doll/#icon-No1964) designed by [Simon Child](https://thenounproject.com/Simon Child) from [The Noun Project](https://thenounproject.com).
