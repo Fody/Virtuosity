@@ -7,7 +7,7 @@ using Xunit.Abstractions;
 // ReSharper disable PrivateFieldCanBeConvertedToLocalVariable
 
 public class IntegrationTests :
-    XunitLoggingBase
+    XunitApprovalBase
 {
     static Assembly assembly;
 

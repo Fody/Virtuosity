@@ -5,7 +5,7 @@ using Xunit;
 using Xunit.Abstractions;
 
 public class SerializationCallbacksIntegrationTests :
-    XunitLoggingBase
+    XunitApprovalBase
 {
     Type type;
     static Assembly assembly;

@@ -6,7 +6,7 @@ using Xunit;
 using Xunit.Abstractions;
 
 public class NewPropertyIntegrationTests :
-    XunitLoggingBase
+    XunitApprovalBase
 {
     const string NewProperty_SameBackingField_PropertyName = "Value";
     const string NewProperty_DifferentBackingField_PropertyName = "ReplacedValue";
