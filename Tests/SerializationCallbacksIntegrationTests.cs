@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Reflection;
 using Fody;
+using VerifyXunit;
 using Xunit;
 using Xunit.Abstractions;
 
 public class SerializationCallbacksIntegrationTests :
-    XunitApprovalBase
+    VerifyBase
 {
     Type type;
     static Assembly assembly;

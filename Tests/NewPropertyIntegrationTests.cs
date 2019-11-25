@@ -2,11 +2,12 @@
 using System.Linq;
 using System.Reflection;
 using Fody;
+using VerifyXunit;
 using Xunit;
 using Xunit.Abstractions;
 
 public class NewPropertyIntegrationTests :
-    XunitApprovalBase
+    VerifyBase
 {
     const string NewProperty_SameBackingField_PropertyName = "Value";
     const string NewProperty_DifferentBackingField_PropertyName = "ReplacedValue";
