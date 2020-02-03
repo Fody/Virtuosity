@@ -4,7 +4,7 @@ public partial class ModuleWeaver
 {
     public void ProcessType(TypeDefinition typeDefinition)
     {
-        LogDebug($"\t{typeDefinition.FullName}");
+        WriteDebug($"\t{typeDefinition.FullName}");
 
         foreach (var method in typeDefinition.Methods)
         {
