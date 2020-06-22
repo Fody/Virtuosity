@@ -2,12 +2,9 @@
 using System.Linq;
 using System.Reflection;
 using Fody;
-using VerifyXunit;
 using Xunit;
-using Xunit.Abstractions;
 
-public class NewPropertyIntegrationTests :
-    VerifyBase
+public class NewPropertyIntegrationTests
 {
     const string NewProperty_SameBackingField_PropertyName = "Value";
     const string NewProperty_DifferentBackingField_PropertyName = "ReplacedValue";
@@ -35,8 +32,7 @@ public class NewPropertyIntegrationTests :
             assemblyName: nameof(NewPropertyIntegrationTests)).Assembly;
     }
 
-    public NewPropertyIntegrationTests(ITestOutputHelper output) :
-        base(output)
+    public NewPropertyIntegrationTests()
     {
         var baseType = assembly.GetType("NewProperty.BaseProperty", true);
         derivedType = assembly.GetType("NewProperty.DateTimeOffsetProperty", true);

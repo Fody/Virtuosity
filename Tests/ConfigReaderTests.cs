@@ -1,11 +1,8 @@
 ﻿using System.Xml.Linq;
 using Fody;
-using VerifyXunit;
 using Xunit;
-using Xunit.Abstractions;
 
-public class ConfigReaderTests :
-    VerifyBase
+public class ConfigReaderTests
 {
     [Fact]
     public void ExcludeNamespacesNode()
@@ -124,10 +121,5 @@ Bar
         moduleWeaver.ReadConfig();
         Assert.Equal("Foo", moduleWeaver.IncludeNamespaces[0]);
         Assert.Equal("Bar", moduleWeaver.IncludeNamespaces[1]);
-    }
-
-    public ConfigReaderTests(ITestOutputHelper output) : 
-        base(output)
-    {
     }
 }

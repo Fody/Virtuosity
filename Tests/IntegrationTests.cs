@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Reflection;
 using Fody;
-using VerifyXunit;
 using Xunit;
-using Xunit.Abstractions;
 
 // ReSharper disable PrivateFieldCanBeConvertedToLocalVariable
 
-public class IntegrationTests :
-    VerifyBase
+public class IntegrationTests
 {
     static Assembly assembly;
 
@@ -72,10 +69,5 @@ public class IntegrationTests :
     public void SealedNotMarkedVirtual()
     {
         assembly.EnsureMembersAreNotVirtual("SealedClass", "Method1", "Property1");
-    }
-
-    public IntegrationTests(ITestOutputHelper output) :
-        base(output)
-    {
     }
 }
