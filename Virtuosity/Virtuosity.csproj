@@ -11,6 +11,7 @@
     <PackageIconUrl>https://raw.githubusercontent.com/Fody/Virtuosity/master/package_icon.png</PackageIconUrl>
     <PackageProjectUrl>https://github.com/Fody/Virtuosity</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <WeaverPropsFile>Weaver.props</WeaverPropsFile>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Fody" Version="6.3.0" PrivateAssets="none" />
