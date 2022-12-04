@@ -56,7 +56,7 @@ public partial class ModuleWeaver
         method.IsNewSlot = true;
     }
 
-    bool MethodIsSerializationCallback(MethodDefinition method)
+    static bool MethodIsSerializationCallback(MethodDefinition method)
     {
         return method.CustomAttributes.ContainsAttribute("OnSerializingAttribute")
                || method.CustomAttributes.ContainsAttribute("OnSerializedAttribute")

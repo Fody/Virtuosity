@@ -9,7 +9,7 @@ public class AsyncClass
     }
 
 // ReSharper disable once UnusedParameter.Local
-    Task AsyncMethod2(Action func)
+    static Task AsyncMethod2(Action func)
     {
         throw new NotImplementedException();
     }

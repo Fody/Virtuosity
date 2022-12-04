@@ -35,7 +35,7 @@ public partial class ModuleWeaver
         ShouldIncludeType = type => !ContainsIgnoreAttribute(type);
     }
 
-    bool ContainsIgnoreAttribute(TypeDefinition type)
+    static bool ContainsIgnoreAttribute(TypeDefinition type)
     {
         if (type.CustomAttributes.ContainsAttribute("DoNotVirtualizeAttribute"))
         {

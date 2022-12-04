@@ -17,7 +17,7 @@ public partial class ModuleWeaver
         }
     }
 
-    bool ShouldInclude(TypeDefinition type)
+    static bool ShouldInclude(TypeDefinition type)
     {
         if (type.IsSealed)
         {

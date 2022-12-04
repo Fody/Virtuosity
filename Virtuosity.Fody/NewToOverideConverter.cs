@@ -34,7 +34,7 @@ public partial class ModuleWeaver
         }
     }
 
-    IEnumerable<TypeReference> GetBaseTypes(TypeDefinition typeDefinition)
+    static IEnumerable<TypeReference> GetBaseTypes(TypeDefinition typeDefinition)
     {
         var typeReferences = new List<TypeReference>();
         do
@@ -57,7 +57,7 @@ public partial class ModuleWeaver
         return typeReferences;
     }
 
-    void Replace(MethodDefinition methodDefinition, List<MethodDefinition> baseMethods)
+    static void Replace(MethodDefinition methodDefinition, List<MethodDefinition> baseMethods)
     {
         if (methodDefinition == null)
         {
