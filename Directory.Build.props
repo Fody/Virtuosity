@@ -4,5 +4,6 @@
     <Version>3.1.1</Version>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <NoWarn>NU5118</NoWarn>
+    <LangVersion>11</LangVersion>
   </PropertyGroup>
 </Project>
