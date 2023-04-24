@@ -1,9 +1,8 @@
-﻿namespace IncludeNamespace
+﻿namespace IncludeNamespace;
+
+public class IncludeClass
 {
-    public class IncludeClass
+    public void Method()
     {
-        public void Method()
-        {
-        }
     }
 }

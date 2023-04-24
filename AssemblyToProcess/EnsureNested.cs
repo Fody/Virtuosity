@@ -1,10 +1,9 @@
-﻿namespace EnsureNested
+﻿namespace EnsureNested;
+
+public class Outer
 {
-    public class Outer
+    public class Inner
     {
-        public class Inner
-        {
-            public string Property => "Bravo";
-        }
+        public string Property => "Bravo";
     }
 }

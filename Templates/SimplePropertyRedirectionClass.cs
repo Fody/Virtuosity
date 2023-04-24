@@ -1,9 +1,8 @@
-﻿namespace Templates
-{
-    public class SimplePropertyRedirectionClass
-    {
-        public virtual string Property1 => Property2;
+﻿namespace Templates;
 
-        public virtual string Property2 { get; set; }
-    }
+public class SimplePropertyRedirectionClass
+{
+    public virtual string Property1 => Property2;
+
+    public virtual string Property2 { get; set; }
 }

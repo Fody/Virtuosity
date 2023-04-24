@@ -1,27 +1,26 @@
-﻿namespace Templates
+﻿namespace Templates;
+
+using System;
+
+public abstract class BasePropertyTemplate
 {
-    using System;
+    public virtual object Value { get; set; }
+}
 
-    public abstract class BasePropertyTemplate
+public class DateTimeOffsetPropertyTemplate : BasePropertyTemplate
+{
+    public new virtual DateTimeOffset Value
     {
-        public virtual object Value { get; set; }
+        get => (DateTimeOffset) base.Value;
+        set => base.Value = value;
     }
+}
 
-    public class DateTimeOffsetPropertyTemplate : BasePropertyTemplate
+public class GenericPropertyTemplate<T> : BasePropertyTemplate
+{
+    public new virtual T Value
     {
-        public new virtual DateTimeOffset Value
-        {
-            get => (DateTimeOffset) base.Value;
-            set => base.Value = value;
-        }
-    }
-
-    public class GenericPropertyTemplate<T> : BasePropertyTemplate
-    {
-        public new virtual T Value
-        {
-            get => (T) base.Value;
-            set => base.Value = value;
-        }
+        get => (T) base.Value;
+        set => base.Value = value;
     }
 }

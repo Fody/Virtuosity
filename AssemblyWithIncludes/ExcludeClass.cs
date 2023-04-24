@@ -1,9 +1,8 @@
-﻿namespace ExcludeNamespace
+﻿namespace ExcludeNamespace;
+
+public class ExcludeClass
 {
-    public class ExcludeClass
+    public void Method()
     {
-        public void Method()
-        {
-        }
     }
 }

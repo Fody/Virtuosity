@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Reflection;
+﻿using System.Reflection;
 using Fody;
 using Xunit;
 
@@ -11,7 +10,10 @@ public class AssemblyWithIncludesTest
     {
         var weavingTask = new ModuleWeaver
         {
-            IncludeNamespaces = new List<string> { "IncludeNamespace" }
+            IncludeNamespaces = new()
+            {
+                "IncludeNamespace"
+            }
         };
         assembly = weavingTask.ExecuteTestRun("AssemblyWithIncludes.dll").Assembly;
     }

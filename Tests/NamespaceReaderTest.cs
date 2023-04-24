@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using Xunit;
 
 public class NamespaceReaderTest
@@ -7,7 +6,13 @@ public class NamespaceReaderTest
     [Fact]
     public void GetLines()
     {
-        var namespaces = ModuleWeaver.GetLines(new List<string> { "Namespace1","Namespace2" }).ToList();
+        var namespaces = ModuleWeaver.GetLines(
+                new()
+                {
+                    "Namespace1",
+                    "Namespace2"
+                })
+            .ToList();
         Assert.Equal("Namespace1", namespaces[0].Line);
         Assert.Equal("Namespace2", namespaces[1].Line);
     }

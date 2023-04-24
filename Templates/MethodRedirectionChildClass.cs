@@ -1,10 +1,9 @@
-﻿namespace Templates
+﻿namespace Templates;
+
+public class MethodRedirectionChildClass : MethodRedirectionBaseClass
 {
-    public class MethodRedirectionChildClass : MethodRedirectionBaseClass
+    public override string Method2()
     {
-        public override string Method2()
-        {
-            return "Child";
-        }
+        return "Child";
     }
 }

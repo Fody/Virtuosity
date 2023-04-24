@@ -1,36 +1,35 @@
 ﻿using System;
 
-namespace VirtuosityAbstractClassLDFTNIssue
+namespace VirtuosityAbstractClassLDFTNIssue;
+
+public interface IChannelBase
 {
-    public interface IChannelBase
+    AsyncResultBase BeginCreateSession(AsyncCallback asyncCallback);
+}
+
+public class RegistrationChannel<TChannel>
+    where TChannel : IChannelBase
+{
+    protected class WcfChannelAsyncResult : AsyncResultBase
     {
-        AsyncResultBase BeginCreateSession(AsyncCallback asyncCallback);
-    }
-
-    public class RegistrationChannel<TChannel>
-        where TChannel : IChannelBase
-    {
-        protected class WcfChannelAsyncResult : AsyncResultBase
+        public void OnOperationCompleted(IAsyncResult ar)
         {
-            public void OnOperationCompleted(IAsyncResult ar)
-            {
-            }
-        }
-
-        public AsyncResultBase DoSomething(AsyncCallback callback)
-        {
-            var arb = new WcfChannelAsyncResult();
-
-            arb.InnerResult = arb.Channel.BeginCreateSession(arb.OnOperationCompleted);
-
-            return arb;
         }
     }
 
-    public abstract class AsyncResultBase
+    public AsyncResultBase DoSomething(AsyncCallback callback)
     {
-        public AsyncResultBase InnerResult { get; set; }
+        var arb = new WcfChannelAsyncResult();
 
-        public IChannelBase Channel { get; set; }
+        arb.InnerResult = arb.Channel.BeginCreateSession(arb.OnOperationCompleted);
+
+        return arb;
     }
+}
+
+public abstract class AsyncResultBase
+{
+    public AsyncResultBase InnerResult { get; set; }
+
+    public IChannelBase Channel { get; set; }
 }

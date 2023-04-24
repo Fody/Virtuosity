@@ -1,50 +1,49 @@
-﻿namespace NewProperty
+﻿namespace NewProperty;
+
+using System;
+
+public abstract class BaseProperty
 {
-    using System;
+    public object Value { get; set; }
 
-    public abstract class BaseProperty
+    public object ReplacedValue { get; set; }
+}
+
+public class DateTimeOffsetProperty : BaseProperty
+{
+    public new DateTimeOffset Value
     {
-        public object Value { get; set; }
-
-        public object ReplacedValue { get; set; }
+        get => (DateTimeOffset)base.Value;
+        set => base.Value = value;
     }
 
-    public class DateTimeOffsetProperty : BaseProperty
-    {
-        public new DateTimeOffset Value
-        {
-            get => (DateTimeOffset)base.Value;
-            set => base.Value = value;
-        }
+    public new DateTimeOffset ReplacedValue { get; set; }
+}
 
-        public new DateTimeOffset ReplacedValue { get; set; }
+public class GenericProperty<T> : BaseProperty
+{
+    public new T Value
+    {
+        get => (T)base.Value;
+        set => base.Value = value;
     }
 
-    public class GenericProperty<T> : BaseProperty
-    {
-        public new T Value
-        {
-            get => (T)base.Value;
-            set => base.Value = value;
-        }
+    public new T ReplacedValue { get; set; }
+}
 
-        public new T ReplacedValue { get; set; }
+public class BasePropertyUser
+{
+    readonly BaseProperty property;
+
+    public BasePropertyUser(BaseProperty property)
+    {
+        this.property = property;
     }
 
-    public class BasePropertyUser
+    public void Foo()
     {
-        readonly BaseProperty property;
-
-        public BasePropertyUser(BaseProperty property)
-        {
-            this.property = property;
-        }
-
-        public void Foo()
-        {
-            property.Value = "test1";
-            property.ReplacedValue = "test2";
-            Console.WriteLine($"{property.Value} and {property.ReplacedValue}");
-        }
+        property.Value = "test1";
+        property.ReplacedValue = "test2";
+        Console.WriteLine($"{property.Value} and {property.ReplacedValue}");
     }
 }

@@ -1,13 +1,12 @@
 using System;
 
-namespace Virtuosity
+namespace Virtuosity;
+
+/// <summary>
+/// Used to exclude a class form virtualization.
+/// </summary>
+[AttributeUsage(AttributeTargets.Class)]
+public sealed class DoNotVirtualizeAttribute :
+    Attribute
 {
-    /// <summary>
-    /// Used to exclude a class form virtualization.
-    /// </summary>
-    [AttributeUsage(AttributeTargets.Class)]
-    public sealed class DoNotVirtualizeAttribute :
-        Attribute
-    {
-    }
 }

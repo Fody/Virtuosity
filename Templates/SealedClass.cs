@@ -1,11 +1,10 @@
-﻿namespace Templates
+﻿namespace Templates;
+
+public sealed class SealedClass
 {
-    public sealed class SealedClass
+    public string Property1 { get; set; }
+    public string Method1()
     {
-        public string Property1 { get; set; }
-        public string Method1()
-        {
-            return null;
-        }
+        return null;
     }
 }

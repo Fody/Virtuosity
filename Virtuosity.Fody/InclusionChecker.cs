@@ -72,7 +72,7 @@ public partial class ModuleWeaver
         }
 
         ValidateLine(line);
-        return new LineMatcher
+        return new()
         {
             Line = line,
             StarStart = starStart,
@@ -85,12 +85,12 @@ public partial class ModuleWeaver
     {
         if (line.Contains('*'))
         {
-            throw new Exception("Namespaces can't only start or end with '*'.");
+            throw new("Namespaces can't only start or end with '*'.");
         }
 
         if (line.Contains(' '))
         {
-            throw new Exception("Namespaces cant contain spaces.");
+            throw new("Namespaces cant contain spaces.");
         }
     }
 }

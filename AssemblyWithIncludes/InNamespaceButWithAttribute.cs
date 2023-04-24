@@ -1,12 +1,11 @@
 using Virtuosity;
 
-namespace IncludeNamespace
+namespace IncludeNamespace;
+
+[DoNotVirtualize]
+public class InNamespaceButWithAttribute
 {
-    [DoNotVirtualize]
-    public class InNamespaceButWithAttribute
+    public void Method()
     {
-        public void Method()
-        {
-        }
     }
 }

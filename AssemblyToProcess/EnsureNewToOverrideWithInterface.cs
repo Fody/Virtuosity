@@ -1,20 +1,19 @@
 ﻿
-namespace EnsureNewToOverrideWithInterface
+namespace EnsureNewToOverrideWithInterface;
+
+public interface IInterface
 {
-    public interface IInterface
-    {
-        string Property { get; }
-    }
+    string Property { get; }
+}
 
-    public class BaseImplementation : IInterface
-    {
-        public string Property => "Alpha";
-    }
+public class BaseImplementation : IInterface
+{
+    public string Property => "Alpha";
+}
 
-    public class ChildImplementation : BaseImplementation
-    {
-        #pragma warning disable 108, 114
-        public string Property => "Bravo";
-        #pragma warning restore 108, 114
-    }
+public class ChildImplementation : BaseImplementation
+{
+#pragma warning disable 108, 114
+    public string Property => "Bravo";
+#pragma warning restore 108, 114
 }

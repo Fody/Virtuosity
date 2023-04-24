@@ -1,12 +1,11 @@
-namespace IncludeNamespace
-{
-    using Virtuosity;
+namespace IncludeNamespace;
 
-    [DoNotVirtualize]
-    public class InNamespaceButWithAttribute
+using Virtuosity;
+
+[DoNotVirtualize]
+public class InNamespaceButWithAttribute
+{
+    public void Method()
     {
-        public void Method()
-        {
-        }
     }
 }

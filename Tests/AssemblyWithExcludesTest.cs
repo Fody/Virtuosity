@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Reflection;
+﻿using System.Reflection;
 using Fody;
 using Xunit;
 
@@ -11,7 +10,10 @@ public class AssemblyWithExcludesTest
     {
         var weavingTask = new ModuleWeaver
         {
-            ExcludeNamespaces = new List<string> { "ExcludeNamespace" }
+            ExcludeNamespaces = new()
+            {
+                "ExcludeNamespace"
+            }
         };
         assembly = weavingTask.ExecuteTestRun("AssemblyWithExcludes.dll").Assembly;
     }
