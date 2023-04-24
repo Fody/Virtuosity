@@ -58,14 +58,14 @@ public partial class ModuleWeaver
     public static LineMatcher BuildLineMatcher(string line)
     {
         var starStart = false;
-        if (line.StartsWith('*'))
+        if (line.StartsWith("*"))
         {
             starStart = true;
             line = line.Substring(1);
         }
 
         var starEnd = false;
-        if (line.EndsWith('*'))
+        if (line.EndsWith("*"))
         {
             starEnd = true;
             line = line.Substring(0, line.Length - 1);
