@@ -220,7 +220,7 @@ public class NewPropertyIntegrationTests
     {
         return type
             .GetProperties(PropertyBindingFlags)
-            .Where(x => x.DeclaringType == type)
+            .Where(_ => _.DeclaringType == type)
             .SingleOrDefault(x => string.Compare(x.Name, name, StringComparison.InvariantCultureIgnoreCase) == 0);
     }
 

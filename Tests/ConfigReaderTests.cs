@@ -7,14 +7,17 @@ public class ConfigReaderTests
     [Fact]
     public void ExcludeNamespacesNode()
     {
-        var xElement = XElement.Parse(@"
-<Virtuosity>
-    <ExcludeNamespaces>
-Foo
-Bar
-Foo.Bar
-    </ExcludeNamespaces>
-</Virtuosity>");
+        var xElement = XElement.Parse(
+            """
+
+            <Virtuosity>
+                <ExcludeNamespaces>
+            Foo
+            Bar
+            Foo.Bar
+                </ExcludeNamespaces>
+            </Virtuosity>
+            """);
         var moduleWeaver = new ModuleWeaver
         {
             Config = xElement
@@ -28,8 +31,11 @@ Foo.Bar
     [Fact]
     public void ExcludeNamespacesAttribute()
     {
-        var xElement = XElement.Parse(@"
-<Virtuosity ExcludeNamespaces='Foo|Bar'/>");
+        var xElement = XElement.Parse(
+            """
+
+            <Virtuosity ExcludeNamespaces='Foo|Bar'/>
+            """);
         var moduleWeaver = new ModuleWeaver
         {
             Config = xElement
@@ -42,12 +48,15 @@ Foo.Bar
     [Fact]
     public void ExcludeNamespacesCombined()
     {
-        var xElement = XElement.Parse(@"
-<Virtuosity  ExcludeNamespaces='Foo'>
-    <ExcludeNamespaces>
-Bar
-    </ExcludeNamespaces>
-</Virtuosity>");
+        var xElement = XElement.Parse(
+            """
+
+            <Virtuosity  ExcludeNamespaces='Foo'>
+                <ExcludeNamespaces>
+            Bar
+                </ExcludeNamespaces>
+            </Virtuosity>
+            """);
         var moduleWeaver = new ModuleWeaver
         {
             Config = xElement
@@ -60,14 +69,17 @@ Bar
     [Fact]
     public void IncludeNamespacesNode()
     {
-        var xElement = XElement.Parse(@"
-<Virtuosity>
-    <IncludeNamespaces>
-Foo
-Bar
-Foo.Bar
-    </IncludeNamespaces>
-</Virtuosity>");
+        var xElement = XElement.Parse(
+            """
+
+            <Virtuosity>
+                <IncludeNamespaces>
+            Foo
+            Bar
+            Foo.Bar
+                </IncludeNamespaces>
+            </Virtuosity>
+            """);
         var moduleWeaver = new ModuleWeaver
         {
             Config = xElement
@@ -81,8 +93,11 @@ Foo.Bar
     [Fact]
     public void IncludeNamespacesAttribute()
     {
-        var xElement = XElement.Parse(@"
-<Virtuosity IncludeNamespaces='Foo|Bar'/>");
+        var xElement = XElement.Parse(
+            """
+
+            <Virtuosity IncludeNamespaces='Foo|Bar'/>
+            """);
         var moduleWeaver = new ModuleWeaver
         {
             Config = xElement
@@ -95,8 +110,11 @@ Foo.Bar
     [Fact]
     public void IncludeAndExcludeNamespacesAttribute()
     {
-        var xElement = XElement.Parse(@"
-<Virtuosity IncludeNamespaces='Bar' ExcludeNamespaces='Foo'/>");
+        var xElement = XElement.Parse(
+            """
+
+            <Virtuosity IncludeNamespaces='Bar' ExcludeNamespaces='Foo'/>
+            """);
         var moduleWeaver = new ModuleWeaver
         {
             Config = xElement
@@ -108,12 +126,15 @@ Foo.Bar
     [Fact]
     public void IncludeNamespacesCombined()
     {
-        var xElement = XElement.Parse(@"
-<Virtuosity  IncludeNamespaces='Foo'>
-    <IncludeNamespaces>
-Bar
-    </IncludeNamespaces>
-</Virtuosity>");
+        var xElement = XElement.Parse(
+            """
+
+            <Virtuosity  IncludeNamespaces='Foo'>
+                <IncludeNamespaces>
+            Bar
+                </IncludeNamespaces>
+            </Virtuosity>
+            """);
         var moduleWeaver = new ModuleWeaver
         {
             Config = xElement
