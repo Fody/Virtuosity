@@ -7,6 +7,4 @@ namespace Virtuosity;
 /// </summary>
 [AttributeUsage(AttributeTargets.Class)]
 public sealed class DoNotVirtualizeAttribute :
-    Attribute
-{
-}
+    Attribute;
