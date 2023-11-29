@@ -10,10 +10,7 @@ public class AssemblyWithIncludesTest
     {
         var weavingTask = new ModuleWeaver
         {
-            IncludeNamespaces = new()
-            {
-                "IncludeNamespace"
-            }
+            IncludeNamespaces = ["IncludeNamespace"]
         };
         assembly = weavingTask.ExecuteTestRun("AssemblyWithIncludes.dll").Assembly;
     }

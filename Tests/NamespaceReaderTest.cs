@@ -7,11 +7,10 @@ public class NamespaceReaderTest
     public void GetLines()
     {
         var namespaces = ModuleWeaver.GetLines(
-                new()
-                {
-                    "Namespace1",
-                    "Namespace2"
-                })
+            [
+                "Namespace1",
+                "Namespace2"
+            ])
             .ToList();
         Assert.Equal("Namespace1", namespaces[0].Line);
         Assert.Equal("Namespace2", namespaces[1].Line);

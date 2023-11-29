@@ -10,10 +10,7 @@ public class AssemblyWithExcludesTest
     {
         var weavingTask = new ModuleWeaver
         {
-            ExcludeNamespaces = new()
-            {
-                "ExcludeNamespace"
-            }
+            ExcludeNamespaces = ["ExcludeNamespace"]
         };
         assembly = weavingTask.ExecuteTestRun("AssemblyWithExcludes.dll").Assembly;
     }
