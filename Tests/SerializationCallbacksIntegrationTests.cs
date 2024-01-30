@@ -10,8 +10,8 @@ public class SerializationCallbacksIntegrationTests
 
     static SerializationCallbacksIntegrationTests()
     {
-        var weavingTask = new ModuleWeaver();
-        assembly = weavingTask.ExecuteTestRun("AssemblyToProcess.dll",
+        var weaver = new ModuleWeaver();
+        assembly = weaver.ExecuteTestRun("AssemblyToProcess.dll",
             assemblyName: nameof(SerializationCallbacksIntegrationTests)).Assembly;
     }
 

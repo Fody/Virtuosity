@@ -8,11 +8,11 @@ public class AssemblyWithIncludesTest
 
     static AssemblyWithIncludesTest()
     {
-        var weavingTask = new ModuleWeaver
+        var weaver = new ModuleWeaver
         {
             IncludeNamespaces = ["IncludeNamespace"]
         };
-        assembly = weavingTask.ExecuteTestRun("AssemblyWithIncludes.dll").Assembly;
+        assembly = weaver.ExecuteTestRun("AssemblyWithIncludes.dll").Assembly;
     }
 
     [Fact]

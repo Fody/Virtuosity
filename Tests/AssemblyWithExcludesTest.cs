@@ -8,11 +8,11 @@ public class AssemblyWithExcludesTest
 
     static AssemblyWithExcludesTest()
     {
-        var weavingTask = new ModuleWeaver
+        var weaver = new ModuleWeaver
         {
             ExcludeNamespaces = ["ExcludeNamespace"]
         };
-        assembly = weavingTask.ExecuteTestRun("AssemblyWithExcludes.dll").Assembly;
+        assembly = weaver.ExecuteTestRun("AssemblyWithExcludes.dll").Assembly;
     }
 
     [Fact]
