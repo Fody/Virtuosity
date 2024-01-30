@@ -10,6 +10,7 @@ public partial class ModuleWeaver
             {
                 continue;
             }
+
             if (ShouldIncludeType(type))
             {
                 ProcessType(type);
@@ -17,12 +18,6 @@ public partial class ModuleWeaver
         }
     }
 
-    static bool ShouldInclude(TypeDefinition type)
-    {
-        if (type.IsSealed)
-        {
-            return false;
-        }
-        return true;
-    }
+    static bool ShouldInclude(TypeDefinition type) =>
+        !type.IsSealed;
 }

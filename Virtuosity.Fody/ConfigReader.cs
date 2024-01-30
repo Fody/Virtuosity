@@ -34,12 +34,13 @@ public partial class ModuleWeaver
         if (excludeNamespacesElement != null)
         {
             foreach (var item in excludeNamespacesElement.Value
-                .Split(new[]
-                {
-                    "\r\n",
-                    "\n"
-                }, StringSplitOptions.RemoveEmptyEntries)
-                .NonEmpty())
+                         .Split(
+                             [
+                                 "\r\n",
+                                 "\n"
+                             ],
+                             StringSplitOptions.RemoveEmptyEntries)
+                         .NonEmpty())
             {
                 ExcludeNamespaces.Add(item);
             }
@@ -61,12 +62,13 @@ public partial class ModuleWeaver
         if (includeNamespacesElement != null)
         {
             foreach (var item in includeNamespacesElement.Value
-                .Split(new[]
-                {
-                    "\r\n",
-                    "\n"
-                }, StringSplitOptions.RemoveEmptyEntries)
-                .NonEmpty())
+                         .Split(
+                             [
+                                 "\r\n",
+                                 "\n"
+                             ],
+                             StringSplitOptions.RemoveEmptyEntries)
+                         .NonEmpty())
             {
                 IncludeNamespaces.Add(item);
             }

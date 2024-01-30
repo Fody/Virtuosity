@@ -50,10 +50,8 @@ public partial class ModuleWeaver
         return false;
     }
 
-    public static IEnumerable<LineMatcher> GetLines(List<string> namespaces)
-    {
-        return namespaces.Select(BuildLineMatcher);
-    }
+    public static IEnumerable<LineMatcher> GetLines(List<string> namespaces) =>
+        namespaces.Select(BuildLineMatcher);
 
     public static LineMatcher BuildLineMatcher(string line)
     {
