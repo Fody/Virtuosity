@@ -13,7 +13,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.9.0" />
     <ProjectReference Include="..\AssemblyWithExcludes\AssemblyWithExcludes.csproj" />
     <ProjectReference Include="..\AssemblyWithIncludes\AssemblyWithIncludes.csproj" />
     <ProjectReference Include="..\Virtuosity.Fody\Virtuosity.Fody.csproj" />
