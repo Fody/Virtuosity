@@ -1,6 +1,5 @@
 ﻿using System.Reflection;
 using Fody;
-using Xunit;
 
 public class AssemblyWithExcludesTest
 {
@@ -15,7 +14,7 @@ public class AssemblyWithExcludesTest
         assembly = weaver.ExecuteTestRun("AssemblyWithExcludes.dll").Assembly;
     }
 
-    [Fact]
+    [Test]
     public void Simple()
     {
         assembly.EnsureMembersAreNotVirtual("ExcludeNamespace.ExcludeClass", "Method");
@@ -24,7 +23,7 @@ public class AssemblyWithExcludesTest
         assembly.EnsureMembersAreNotVirtual("ExcludeNamespace.NotInNamespaceButWithAttribute", "Method");
     }
 
-    [Fact]
+    [Test]
     public void EnsureNested()
     {
         assembly.EnsureMembersAreVirtual("IncludeNamespace.Outer+Inner", "Property");

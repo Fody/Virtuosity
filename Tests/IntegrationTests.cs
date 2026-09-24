@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Reflection;
 using Fody;
-using Xunit;
 
 // ReSharper disable PrivateFieldCanBeConvertedToLocalVariable
 
@@ -16,56 +15,56 @@ public class IntegrationTests
             assemblyName: nameof(IntegrationTests)).Assembly;
     }
 
-    [Fact]
+    [Test]
     public void MethodsAndPropertiesAreMarkedAsVirtual()
     {
         assembly.EnsureMembersAreVirtual("MethodsAndPropertiesAreMarkedAsVirtualClass", "Method1", "Property1");
     }
 
-    [Fact]
+    [Test]
     public void NonAbstractMethodsAndPropertiesOnAbstractClassAreMarkedAsVirtual()
     {
         assembly.EnsureMembersAreVirtual("AbstractClass", "NonAbstractMethod", "NonAbstractProperty");
     }
 
-    [Fact]
+    [Test]
     public void InterfaceSealedClass()
     {
         assembly.EnsureMembersAreSealed("InterfaceSealedClass", "Property");
         assembly.EnsureMembersAreVirtual("InterfaceSealedClass", "Property");
     }
 
-    [Fact]
+    [Test]
     public void EnsureNested()
     {
         assembly.EnsureMembersAreVirtual("EnsureNested.Outer+Inner", "Property");
     }
 
-    [Fact]
-    public void EnsureNewToOverrideWithInterface()
+    [Test]
+    public async Task EnsureNewToOverrideWithInterface()
     {
         var child = assembly.GetType("EnsureNewToOverrideWithInterface.ChildImplementation");
         var baseProperty = assembly.GetType("EnsureNewToOverrideWithInterface.BaseImplementation").GetProperty("Property", BindingFlags.Public | BindingFlags.Instance);
         var propValue = baseProperty.GetValue(Activator.CreateInstance(child), null);
-        Assert.Equal("Bravo", propValue);
+        await Assert.That(propValue).IsEqualTo("Bravo");
     }
 
-    [Fact]
+    [Test]
     public void InterfaceVirtualClass()
     {
         assembly.EnsureMembersAreVirtual("InterfaceVirtualClass", "Property");
         assembly.EnsureMembersAreNotSealed("InterfaceVirtualClass", "Property");
     }
 
-    [Fact]
-    public void EnsurePropertyCallIsRedirected()
+    [Test]
+    public async Task EnsurePropertyCallIsRedirected()
     {
         var type = assembly.GetType("PropertyRedirectionChildClass", true);
         dynamic instance = Activator.CreateInstance(type);
-        Assert.Equal("Child", instance.Property1);
+        await Assert.That((string)instance.Property1).IsEqualTo("Child");
     }
 
-    [Fact]
+    [Test]
     public void SealedNotMarkedVirtual()
     {
         assembly.EnsureMembersAreNotVirtual("SealedClass", "Method1", "Property1");

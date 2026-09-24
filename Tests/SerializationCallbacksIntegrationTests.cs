@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Reflection;
 using Fody;
-using Xunit;
 
 public class SerializationCallbacksIntegrationTests
 {
@@ -23,31 +22,31 @@ public class SerializationCallbacksIntegrationTests
         type = assembly.GetType("SerializationCallbackMethods", true);
     }
 
-    [Fact]
+    [Test]
     public void Method_MarkedByOnSerializingAttribute_MustNotMakeVirtual()
     {
         AssertUnmodifiedMethod("Serializing");
     }
 
-    [Fact]
+    [Test]
     public void Method_MarkedByOnSerializedAttribute_MustNotMakeVirtual()
     {
         AssertUnmodifiedMethod("Serialized");
     }
 
-    [Fact]
+    [Test]
     public void Method_MarkedByOnDeserializingAttribute_MustNotMakeVirtual()
     {
         AssertUnmodifiedMethod("Deserializing");
     }
 
-    [Fact]
+    [Test]
     public void Method_MarkedByOnDeserializedAttribute_MustNotMakeVirtual()
     {
         AssertUnmodifiedMethod("Deserialized");
     }
 
-    [Fact]
+    [Test]
     public void MustBeAbleToInstantiateType()
     {
         Activator.CreateInstance(type);
@@ -57,13 +56,13 @@ public class SerializationCallbacksIntegrationTests
     {
         var method = type.GetMethod(methodName);
 
-        Assert.False(method.IsAbstract, $"{method.Name} IsAbstract");
-        Assert.False(method.IsSpecialName, $"{method.Name} IsSpecialName");
-        Assert.False(method.IsVirtual, $"{method.Name} IsVirtual");
-        Assert.False(method.IsStatic, $"{method.Name} IsStatic");
-        Assert.False(method.IsFinal, $"{method.Name} IsFinal");
-        Assert.False(method.Attributes.HasFlag(MethodAttributes.NewSlot), $"{method.Name} HasFlag(NewSlot)");
-        Assert.True(method.IsHideBySig, $"{method.Name} IsHideBySig");
-        Assert.True(method.IsPublic, $"{method.Name} IsPublic");
+        Check.False(method.IsAbstract, $"{method.Name} IsAbstract");
+        Check.False(method.IsSpecialName, $"{method.Name} IsSpecialName");
+        Check.False(method.IsVirtual, $"{method.Name} IsVirtual");
+        Check.False(method.IsStatic, $"{method.Name} IsStatic");
+        Check.False(method.IsFinal, $"{method.Name} IsFinal");
+        Check.False(method.Attributes.HasFlag(MethodAttributes.NewSlot), $"{method.Name} HasFlag(NewSlot)");
+        Check.True(method.IsHideBySig, $"{method.Name} IsHideBySig");
+        Check.True(method.IsPublic, $"{method.Name} IsPublic");
     }
 }

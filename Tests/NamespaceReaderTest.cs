@@ -1,10 +1,9 @@
 ﻿using System.Linq;
-using Xunit;
 
 public class NamespaceReaderTest
 {
-    [Fact]
-    public void GetLines()
+    [Test]
+    public async Task GetLines()
     {
         var namespaces = ModuleWeaver.GetLines(
             [
@@ -12,43 +11,43 @@ public class NamespaceReaderTest
                 "Namespace2"
             ])
             .ToList();
-        Assert.Equal("Namespace1", namespaces[0].Line);
-        Assert.Equal("Namespace2", namespaces[1].Line);
+        await Assert.That(namespaces[0].Line).IsEqualTo("Namespace1");
+        await Assert.That(namespaces[1].Line).IsEqualTo("Namespace2");
     }
 
-    [Fact]
-    public void BuildLineMatcherSimple()
+    [Test]
+    public async Task BuildLineMatcherSimple()
     {
         var lineMatcher = ModuleWeaver.BuildLineMatcher("Namespace1");
-        Assert.Equal("Namespace1", lineMatcher.Line);
-        Assert.False(lineMatcher.StarStart);
-        Assert.False(lineMatcher.StarEnd);
+        await Assert.That(lineMatcher.Line).IsEqualTo("Namespace1");
+        await Assert.That(lineMatcher.StarStart).IsFalse();
+        await Assert.That(lineMatcher.StarEnd).IsFalse();
     }
 
-    [Fact]
-    public void BuildLineMatcherStarStart()
+    [Test]
+    public async Task BuildLineMatcherStarStart()
     {
         var lineMatcher = ModuleWeaver.BuildLineMatcher("*Namespace1");
-        Assert.Equal("Namespace1", lineMatcher.Line);
-        Assert.True(lineMatcher.StarStart);
-        Assert.False(lineMatcher.StarEnd);
+        await Assert.That(lineMatcher.Line).IsEqualTo("Namespace1");
+        await Assert.That(lineMatcher.StarStart).IsTrue();
+        await Assert.That(lineMatcher.StarEnd).IsFalse();
     }
 
-    [Fact]
-    public void BuildLineMatcherStarEnd()
+    [Test]
+    public async Task BuildLineMatcherStarEnd()
     {
         var lineMatcher = ModuleWeaver.BuildLineMatcher("Namespace1*");
-        Assert.Equal("Namespace1", lineMatcher.Line);
-        Assert.False(lineMatcher.StarStart);
-        Assert.True(lineMatcher.StarEnd);
+        await Assert.That(lineMatcher.Line).IsEqualTo("Namespace1");
+        await Assert.That(lineMatcher.StarStart).IsFalse();
+        await Assert.That(lineMatcher.StarEnd).IsTrue();
     }
 
-    [Fact]
-    public void BuildLineMatcherStarStartEnd()
+    [Test]
+    public async Task BuildLineMatcherStarStartEnd()
     {
         var lineMatcher = ModuleWeaver.BuildLineMatcher("*Namespace1*");
-        Assert.Equal("Namespace1", lineMatcher.Line);
-        Assert.True(lineMatcher.StarStart);
-        Assert.True(lineMatcher.StarEnd);
+        await Assert.That(lineMatcher.Line).IsEqualTo("Namespace1");
+        await Assert.That(lineMatcher.StarStart).IsTrue();
+        await Assert.That(lineMatcher.StarEnd).IsTrue();
     }
 }

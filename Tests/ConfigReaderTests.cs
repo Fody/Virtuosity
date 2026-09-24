@@ -1,11 +1,10 @@
 ﻿using System.Xml.Linq;
 using Fody;
-using Xunit;
 
 public class ConfigReaderTests
 {
-    [Fact]
-    public void ExcludeNamespacesNode()
+    [Test]
+    public async Task ExcludeNamespacesNode()
     {
         var xElement = XElement.Parse(
             """
@@ -23,13 +22,13 @@ public class ConfigReaderTests
             Config = xElement
         };
         moduleWeaver.ReadConfig();
-        Assert.Equal("Foo", moduleWeaver.ExcludeNamespaces[0]);
-        Assert.Equal("Bar", moduleWeaver.ExcludeNamespaces[1]);
-        Assert.Equal("Foo.Bar", moduleWeaver.ExcludeNamespaces[2]);
+        await Assert.That(moduleWeaver.ExcludeNamespaces[0]).IsEqualTo("Foo");
+        await Assert.That(moduleWeaver.ExcludeNamespaces[1]).IsEqualTo("Bar");
+        await Assert.That(moduleWeaver.ExcludeNamespaces[2]).IsEqualTo("Foo.Bar");
     }
 
-    [Fact]
-    public void ExcludeNamespacesAttribute()
+    [Test]
+    public async Task ExcludeNamespacesAttribute()
     {
         var xElement = XElement.Parse(
             """
@@ -41,12 +40,12 @@ public class ConfigReaderTests
             Config = xElement
         };
         moduleWeaver.ReadConfig();
-        Assert.Equal("Foo", moduleWeaver.ExcludeNamespaces[0]);
-        Assert.Equal("Bar", moduleWeaver.ExcludeNamespaces[1]);
+        await Assert.That(moduleWeaver.ExcludeNamespaces[0]).IsEqualTo("Foo");
+        await Assert.That(moduleWeaver.ExcludeNamespaces[1]).IsEqualTo("Bar");
     }
 
-    [Fact]
-    public void ExcludeNamespacesCombined()
+    [Test]
+    public async Task ExcludeNamespacesCombined()
     {
         var xElement = XElement.Parse(
             """
@@ -62,12 +61,12 @@ public class ConfigReaderTests
             Config = xElement
         };
         moduleWeaver.ReadConfig();
-        Assert.Equal("Foo", moduleWeaver.ExcludeNamespaces[0]);
-        Assert.Equal("Bar", moduleWeaver.ExcludeNamespaces[1]);
+        await Assert.That(moduleWeaver.ExcludeNamespaces[0]).IsEqualTo("Foo");
+        await Assert.That(moduleWeaver.ExcludeNamespaces[1]).IsEqualTo("Bar");
     }
 
-    [Fact]
-    public void IncludeNamespacesNode()
+    [Test]
+    public async Task IncludeNamespacesNode()
     {
         var xElement = XElement.Parse(
             """
@@ -85,13 +84,13 @@ public class ConfigReaderTests
             Config = xElement
         };
         moduleWeaver.ReadConfig();
-        Assert.Equal("Foo", moduleWeaver.IncludeNamespaces[0]);
-        Assert.Equal("Bar", moduleWeaver.IncludeNamespaces[1]);
-        Assert.Equal("Foo.Bar", moduleWeaver.IncludeNamespaces[2]);
+        await Assert.That(moduleWeaver.IncludeNamespaces[0]).IsEqualTo("Foo");
+        await Assert.That(moduleWeaver.IncludeNamespaces[1]).IsEqualTo("Bar");
+        await Assert.That(moduleWeaver.IncludeNamespaces[2]).IsEqualTo("Foo.Bar");
     }
 
-    [Fact]
-    public void IncludeNamespacesAttribute()
+    [Test]
+    public async Task IncludeNamespacesAttribute()
     {
         var xElement = XElement.Parse(
             """
@@ -103,12 +102,12 @@ public class ConfigReaderTests
             Config = xElement
         };
         moduleWeaver.ReadConfig();
-        Assert.Equal("Foo", moduleWeaver.IncludeNamespaces[0]);
-        Assert.Equal("Bar", moduleWeaver.IncludeNamespaces[1]);
+        await Assert.That(moduleWeaver.IncludeNamespaces[0]).IsEqualTo("Foo");
+        await Assert.That(moduleWeaver.IncludeNamespaces[1]).IsEqualTo("Bar");
     }
 
-    [Fact]
-    public void IncludeAndExcludeNamespacesAttribute()
+    [Test]
+    public async Task IncludeAndExcludeNamespacesAttribute()
     {
         var xElement = XElement.Parse(
             """
@@ -119,12 +118,12 @@ public class ConfigReaderTests
         {
             Config = xElement
         };
-        var exception = Assert.Throws<WeavingException>(() => moduleWeaver.ReadConfig());
-        Assert.Equal("Either configure IncludeNamespaces OR ExcludeNamespaces, not both.", exception.Message);
+        var exception = await Assert.That(() => moduleWeaver.ReadConfig()).Throws<WeavingException>();
+        await Assert.That(exception!.Message).IsEqualTo("Either configure IncludeNamespaces OR ExcludeNamespaces, not both.");
     }
 
-    [Fact]
-    public void IncludeNamespacesCombined()
+    [Test]
+    public async Task IncludeNamespacesCombined()
     {
         var xElement = XElement.Parse(
             """
@@ -140,7 +139,7 @@ public class ConfigReaderTests
             Config = xElement
         };
         moduleWeaver.ReadConfig();
-        Assert.Equal("Foo", moduleWeaver.IncludeNamespaces[0]);
-        Assert.Equal("Bar", moduleWeaver.IncludeNamespaces[1]);
+        await Assert.That(moduleWeaver.IncludeNamespaces[0]).IsEqualTo("Foo");
+        await Assert.That(moduleWeaver.IncludeNamespaces[1]).IsEqualTo("Bar");
     }
 }

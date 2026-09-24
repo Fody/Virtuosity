@@ -1,46 +1,45 @@
-﻿using Xunit;
-
+﻿
 public class LineMatcherTest
 {
-    [Fact]
-    public void Simple()
+    [Test]
+    public async Task Simple()
     {
         var lineMatcher = new LineMatcher
                               {
                                   Line = "Namespace1"
                               };
-        Assert.True(lineMatcher.Match("Namespace1"));
-        Assert.False(lineMatcher.Match("Namespace2"));
+        await Assert.That(lineMatcher.Match("Namespace1")).IsTrue();
+        await Assert.That(lineMatcher.Match("Namespace2")).IsFalse();
     }
 
-    [Fact]
-    public void StarStart()
+    [Test]
+    public async Task StarStart()
     {
         var lineMatcher = new LineMatcher
                               {
                                   Line = "Diagnostics",
                                   StarStart = true
                               };
-        Assert.True(lineMatcher.Match("System.Diagnostics"));
-        Assert.True(lineMatcher.Match("Diagnostics"));
-        Assert.False(lineMatcher.Match("NUnit.Framework"));
+        await Assert.That(lineMatcher.Match("System.Diagnostics")).IsTrue();
+        await Assert.That(lineMatcher.Match("Diagnostics")).IsTrue();
+        await Assert.That(lineMatcher.Match("NUnit.Framework")).IsFalse();
     }
 
-    [Fact]
-    public void StarEnd()
+    [Test]
+    public async Task StarEnd()
     {
         var lineMatcher = new LineMatcher
                               {
                                   Line = "System",
                                   StarEnd = true
                               };
-        Assert.True(lineMatcher.Match("System.Diagnostics"));
-        Assert.True(lineMatcher.Match("System"));
-        Assert.False(lineMatcher.Match("NUnit.Framework"));
+        await Assert.That(lineMatcher.Match("System.Diagnostics")).IsTrue();
+        await Assert.That(lineMatcher.Match("System")).IsTrue();
+        await Assert.That(lineMatcher.Match("NUnit.Framework")).IsFalse();
     }
 
-    [Fact]
-    public void StarStartEnd()
+    [Test]
+    public async Task StarStartEnd()
     {
         var lineMatcher = new LineMatcher
                               {
@@ -48,9 +47,9 @@ public class LineMatcherTest
                                   StarStart = true,
                                   StarEnd = true
                               };
-        Assert.True(lineMatcher.Match("System.Diagnostics"));
-        Assert.True(lineMatcher.Match("System.Diag"));
-        Assert.True(lineMatcher.Match("Diagnostics"));
-        Assert.False(lineMatcher.Match("NUnit.Framework"));
+        await Assert.That(lineMatcher.Match("System.Diagnostics")).IsTrue();
+        await Assert.That(lineMatcher.Match("System.Diag")).IsTrue();
+        await Assert.That(lineMatcher.Match("Diagnostics")).IsTrue();
+        await Assert.That(lineMatcher.Match("NUnit.Framework")).IsFalse();
     }
 }

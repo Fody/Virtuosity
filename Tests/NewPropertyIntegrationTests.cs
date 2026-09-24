@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Reflection;
 using Fody;
-using Xunit;
 
 public class NewPropertyIntegrationTests
 {
@@ -48,68 +47,68 @@ public class NewPropertyIntegrationTests
         genericDerivedNewProperty = GetPropertyInfoFromSpecificType(genericDerivedType, NewProperty_DifferentBackingField_PropertyName);
     }
 
-    [Fact]
+    [Test]
     public void Get_OnBaseClass_MustBeNewVirtualMethod()
     {
         AssertIsNewVirtualMethod(baseProperty.GetMethod);
     }
 
-    [Fact]
+    [Test]
     public void Set_OnBaseClass_MustBeNewVirtualMethod()
     {
         AssertIsNewVirtualMethod(baseProperty.SetMethod);
     }
 
-    [Fact]
+    [Test]
     public void Get_WhenPropertyUsesSameBackingFieldAsBase_MustBeNewVirtualMethod()
     {
         AssertIsNewVirtualMethod(derivedSameBackingProperty.GetMethod);
     }
 
-    [Fact]
+    [Test]
     public void Set_WhenPropertyUsesSameBackingFieldAsBase_MustBeNewVirtualMethod()
     {
         AssertIsNewVirtualMethod(derivedSameBackingProperty.SetMethod);
     }
 
-    [Fact]
+    [Test]
     public void Get_WhenPropertyUsesOtherBackingFieldAsBase_MustBeNewVirtualMethod()
     {
         AssertIsNewVirtualMethod(derivedNewProperty.GetMethod);
     }
 
-    [Fact]
+    [Test]
     public void Set_WhenPropertyUsesOtherBackingFieldAsBase_MustBeNewVirtualMethod()
     {
         AssertIsNewVirtualMethod(derivedNewProperty.SetMethod);
     }
 
-    [Fact]
+    [Test]
     public void Get_Generic_WhenPropertyUsesSameBackingFieldAsBase_MustBeNewVirtualMethod()
     {
         AssertIsNewVirtualMethod(genericDerivedSameBackingProperty.GetMethod);
     }
 
-    [Fact]
+    [Test]
     public void Set_Generic_WhenPropertyUsesSameBackingFieldAsBase_MustBeNewVirtualMethod()
     {
         AssertIsNewVirtualMethod(genericDerivedSameBackingProperty.SetMethod);
     }
 
-    [Fact]
+    [Test]
     public void Get_Generic_WhenPropertyUsesOtherBackingFieldAsBase_MustBeNewVirtualMethod()
     {
         AssertIsNewVirtualMethod(genericDerivedNewProperty.GetMethod);
     }
 
-    [Fact]
+    [Test]
     public void Set_Generic_WhenPropertyUsesOtherBackingFieldAsBase_MustBeNewVirtualMethod()
     {
         AssertIsNewVirtualMethod(genericDerivedNewProperty.SetMethod);
     }
 
-    [Fact]
-    public void Get_WhenPropertyUsesSameBackingFieldAsBase_MustGetValueFromBase()
+    [Test]
+    public async Task Get_WhenPropertyUsesSameBackingFieldAsBase_MustGetValueFromBase()
     {
         var expectedDateTimeOffset = DateTimeOffset.UtcNow;
 
@@ -117,26 +116,26 @@ public class NewPropertyIntegrationTests
 
         baseProperty.SetValue(instance, expectedDateTimeOffset);
 
-        var actualValue = derivedSameBackingProperty.GetValue(instance);
+        object actualValue = (object)derivedSameBackingProperty.GetValue(instance);
 
-        Assert.Equal(expectedDateTimeOffset, actualValue);
+        await Assert.That(actualValue).IsEqualTo(expectedDateTimeOffset);
     }
 
-    [Fact]
-    public void Set_WhenPropertyUsesSameBackingFieldAsBase_MustSetValueToBase()
+    [Test]
+    public async Task Set_WhenPropertyUsesSameBackingFieldAsBase_MustSetValueToBase()
     {
         var expectedDateTimeOffset = DateTimeOffset.UtcNow;
 
         dynamic instance = Activator.CreateInstance(derivedType);
 
         derivedSameBackingProperty.SetValue(instance, expectedDateTimeOffset);
-        var actualValue = baseProperty.GetValue(instance);
+        object actualValue = (object)baseProperty.GetValue(instance);
 
-        Assert.Equal(expectedDateTimeOffset, actualValue);
+        await Assert.That(actualValue).IsEqualTo(expectedDateTimeOffset);
     }
 
-    [Fact]
-    public void Get_WhenPropertyUsesOtherBackingFieldAsBase_MustNotGetValueFromBase()
+    [Test]
+    public async Task Get_WhenPropertyUsesOtherBackingFieldAsBase_MustNotGetValueFromBase()
     {
         var expectedDateTimeOffset = DateTimeOffset.UtcNow;
 
@@ -144,26 +143,26 @@ public class NewPropertyIntegrationTests
 
         baseNewProperty.SetValue(instance, expectedDateTimeOffset);
 
-        var actualValue = derivedNewProperty.GetValue(instance);
+        object actualValue = (object)derivedNewProperty.GetValue(instance);
 
-        Assert.NotEqual(expectedDateTimeOffset, actualValue);
+        await Assert.That(actualValue).IsNotEqualTo(expectedDateTimeOffset);
     }
 
-    [Fact]
-    public void Set_WhenPropertyUsesOtherBackingFieldAsBase_MustNotSetValueOnBase()
+    [Test]
+    public async Task Set_WhenPropertyUsesOtherBackingFieldAsBase_MustNotSetValueOnBase()
     {
         var expectedDateTimeOffset = DateTimeOffset.UtcNow;
 
         dynamic instance = Activator.CreateInstance(derivedType);
 
         derivedNewProperty.SetValue(instance, expectedDateTimeOffset);
-        var actualValue = baseProperty.GetValue(instance);
+        object actualValue = (object)baseProperty.GetValue(instance);
 
-        Assert.Null(actualValue);
+        await Assert.That(actualValue).IsNull();
     }
 
-    [Fact]
-    public void Get_Generic_WhenPropertyUsesSameBackingFieldAsBase_MustGetValueFromBase()
+    [Test]
+    public async Task Get_Generic_WhenPropertyUsesSameBackingFieldAsBase_MustGetValueFromBase()
     {
         var expectedDateTimeOffset = DateTimeOffset.UtcNow;
 
@@ -171,26 +170,26 @@ public class NewPropertyIntegrationTests
 
         baseProperty.SetValue(instance, expectedDateTimeOffset);
 
-        var actualValue = genericDerivedSameBackingProperty.GetValue(instance);
+        object actualValue = (object)genericDerivedSameBackingProperty.GetValue(instance);
 
-        Assert.Equal(expectedDateTimeOffset, actualValue);
+        await Assert.That(actualValue).IsEqualTo(expectedDateTimeOffset);
     }
 
-    [Fact]
-    public void Set_Generic_WhenPropertyUsesSameBackingFieldAsBase_MustSetValueToBase()
+    [Test]
+    public async Task Set_Generic_WhenPropertyUsesSameBackingFieldAsBase_MustSetValueToBase()
     {
         var expectedDateTimeOffset = DateTimeOffset.UtcNow;
 
         dynamic instance = Activator.CreateInstance(genericDerivedType);
 
         genericDerivedSameBackingProperty.SetValue(instance, expectedDateTimeOffset);
-        var actualValue = baseProperty.GetValue(instance);
+        object actualValue = (object)baseProperty.GetValue(instance);
 
-        Assert.Equal(expectedDateTimeOffset, actualValue);
+        await Assert.That(actualValue).IsEqualTo(expectedDateTimeOffset);
     }
 
-    [Fact]
-    public void Get_Generic_WhenPropertyUsesOtherBackingFieldAsBase_MustNotGetValueFromBase()
+    [Test]
+    public async Task Get_Generic_WhenPropertyUsesOtherBackingFieldAsBase_MustNotGetValueFromBase()
     {
         var expectedDateTimeOffset = DateTimeOffset.UtcNow;
 
@@ -198,22 +197,22 @@ public class NewPropertyIntegrationTests
 
         baseNewProperty.SetValue(instance, expectedDateTimeOffset);
 
-        var actualValue = genericDerivedNewProperty.GetValue(instance);
+        object actualValue = (object)genericDerivedNewProperty.GetValue(instance);
 
-        Assert.NotEqual(expectedDateTimeOffset, actualValue);
+        await Assert.That(actualValue).IsNotEqualTo(expectedDateTimeOffset);
     }
 
-    [Fact]
-    public void Set_Generic_WhenPropertyUsesOtherBackingFieldAsBase_MustNotSetValueOnBase()
+    [Test]
+    public async Task Set_Generic_WhenPropertyUsesOtherBackingFieldAsBase_MustNotSetValueOnBase()
     {
         var expectedDateTimeOffset = DateTimeOffset.UtcNow;
 
         dynamic instance = Activator.CreateInstance(genericDerivedType);
 
         genericDerivedNewProperty.SetValue(instance, expectedDateTimeOffset);
-        var actualValue = baseProperty.GetValue(instance);
+        object actualValue = (object)baseProperty.GetValue(instance);
 
-        Assert.Null(actualValue);
+        await Assert.That(actualValue).IsNull();
     }
 
     static PropertyInfo GetPropertyInfoFromSpecificType(Type type, string name)
@@ -226,12 +225,12 @@ public class NewPropertyIntegrationTests
 
     static void AssertIsNewVirtualMethod(MethodInfo method)
     {
-        Assert.False(method.IsAbstract, $"{method.Name} IsAbstract");
-        Assert.True(method.IsHideBySig, $"{method.Name} IsHideBySig");
-        Assert.True(method.IsSpecialName, $"{method.Name} IsSpecialName");
-        Assert.True(method.IsVirtual, $"{method.Name} IsVirtual");
-        Assert.False(method.IsStatic, $"{method.Name} IsStatic");
-        Assert.False(method.IsFinal, $"{method.Name} IsFinal");
-        Assert.True(method.Attributes.HasFlag(MethodAttributes.NewSlot), $"{method.Name} HasFlag(NewSlot)");
+        Check.False(method.IsAbstract, $"{method.Name} IsAbstract");
+        Check.True(method.IsHideBySig, $"{method.Name} IsHideBySig");
+        Check.True(method.IsSpecialName, $"{method.Name} IsSpecialName");
+        Check.True(method.IsVirtual, $"{method.Name} IsVirtual");
+        Check.False(method.IsStatic, $"{method.Name} IsStatic");
+        Check.False(method.IsFinal, $"{method.Name} IsFinal");
+        Check.True(method.Attributes.HasFlag(MethodAttributes.NewSlot), $"{method.Name} HasFlag(NewSlot)");
     }
 }
